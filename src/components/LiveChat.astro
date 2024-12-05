@@ -1,6 +1,7 @@
 ---
-// Voeg hier je Tawk.to property ID toe
-const TAWK_PROPERTY_ID = 'YOUR_PROPERTY_ID';
+// Tawk.to configuration
+const TAWK_PROPERTY_ID = '6751e1c72480f5b4f5a83ad5';
+const TAWK_WIDGET_ID = '1iebtjt71';
 
 // Type definitie voor dagen
 type DayKey = 'ma' | 'di' | 'wo' | 'do' | 'vr' | 'za' | 'zo';
@@ -60,75 +61,47 @@ const isChatAvailable = currentHour >= config.chatHours[currentDay].open &&
   </button>
 </div>
 
-<script define:vars={{ config, isChatAvailable }}>
-  // Tawk.to configuratie
+<script define:vars={{ TAWK_PROPERTY_ID, TAWK_WIDGET_ID, config, isChatAvailable }}>
   var Tawk_API = Tawk_API || {};
-  
-  // Stel welkomstbericht in op basis van beschikbaarheid
-  Tawk_API.onBeforeLoad = function() {
-    Tawk_API.visitor = {
-      name: 'Bezoeker', // Dit wordt later aangepast als de bezoeker zijn naam invult
-    };
+  var Tawk_LoadStart = new Date();
 
-    if (isChatAvailable) {
-      Tawk_API.customStyle = {
+  // Configure Tawk_API before loading the script
+  Tawk_API.onLoad = function() {
+    // Set visitor name if available
+    if (localStorage.getItem('visitorName')) {
+      Tawk_API.setAttributes({
+        name: localStorage.getItem('visitorName')
+      });
+    }
+
+    // Set custom status message based on availability
+    if (!isChatAvailable) {
+      Tawk_API.customStyle({
         zIndex: 1000,
         visibility: {
           desktop: {
             position: 'br',
-            yOffset: 100,
-            xOffset: 20
+            xOffset: '20',
+            yOffset: '20'
           },
           mobile: {
             position: 'br',
-            yOffset: 80,
-            xOffset: 20
+            xOffset: '20',
+            yOffset: '20'
           }
         }
-      };
+      });
     }
   };
 
-  // Event handlers
-  Tawk_API.onLoad = function() {
-    // Chat venster sluiten bij laden
-    if (!config.settings.autoOpen) {
-      Tawk_API.hideWidget();
-    }
-  };
-
-  Tawk_API.onChatMaximized = function() {
-    // Verberg de chat knop als het chat venster open is
-    const chatButton = document.getElementById('openChat');
-    if (chatButton) chatButton.style.display = 'none';
-  };
-
-  Tawk_API.onChatMinimized = function() {
-    // Toon de chat knop weer als het chat venster gesloten is
-    const chatButton = document.getElementById('openChat');
-    if (chatButton) chatButton.style.display = 'flex';
-  };
-
-  // Chat widget laden
-  var Tawk_LoadStart = new Date();
+  // Load Tawk.to script
   (function(){
-    var s1 = document.createElement("script"),
-        s0 = document.getElementsByTagName("script")[0];
+    var s1 = document.createElement("script");
+    var s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
-    s1.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/default`;
+    s1.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/${TAWK_WIDGET_ID}`;
     s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
   })();
-
-  // Chat knop click handler
-  document.getElementById('openChat')?.addEventListener('click', function() {
-    if (typeof Tawk_API !== 'undefined') {
-      if (Tawk_API.isChatMinimized()) {
-        Tawk_API.maximize();
-      } else {
-        Tawk_API.toggleVisibility();
-      }
-    }
-  });
 </script>
