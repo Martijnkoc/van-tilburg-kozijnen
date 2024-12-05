@@ -1,0 +1,74 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<section id="home" class="relative min-h-[600px] sm:min-h-[700px] md:min-h-screen flex items-center">
+  <!-- Achtergrondafbeelding met overlay -->
+  <div class="absolute inset-0 z-0">
+    <picture>
+      <!-- Mobile -->
+      <source
+        media="(max-width: 640px)"
+        srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=640&q=80"
+      />
+      <!-- Tablet -->
+      <source
+        media="(max-width: 1024px)"
+        srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1024&q=80"
+      />
+      <!-- Desktop -->
+      <img
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        alt="Premium houten kozijnen"
+        class="w-full h-full object-cover"
+      />
+    </picture>
+    <div class="absolute inset-0 bg-gradient-to-b from-text/60 to-text/20"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20 md:pt-24">
+    <div class="max-w-3xl">
+      <h1 class="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+        Tijdloze Kwaliteit in<br class="hidden sm:block" />Houten Kozijnen
+      </h1>
+      <p class="font-commons text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl">
+        Ambachtelijk vakmanschap ontmoet moderne techniek voor het perfecte resultaat in uw woning.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <Button href="#contact" variant="primary" class="w-full sm:w-auto text-center justify-center">
+          Vrijblijvende offerte
+        </Button>
+        <Button href="#projecten" variant="secondary" class="w-full sm:w-auto text-center justify-center">
+          Bekijk ons werk
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <button 
+      class="flex flex-col items-center text-white/80 hover:text-white transition-colors duration-200"
+      onclick="document.getElementById('over-ons').scrollIntoView({ behavior: 'smooth' })"
+    >
+      <span class="font-commons text-xs sm:text-sm mb-2">Ontdek meer</span>
+      <svg 
+        class="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          stroke-width="2" 
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        />
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- Preview van volgende sectie -->
+<div id="next-section" class="h-24 bg-white"></div>

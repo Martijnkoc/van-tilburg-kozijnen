@@ -1,0 +1,61 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Vrijblijvend advies",
+    description: "We bespreken uw wensen en mogelijkheden tijdens een persoonlijk gesprek."
+  },
+  {
+    number: "02",
+    title: "Inmeten",
+    description: "Onze experts komen bij u langs voor nauwkeurige metingen en technische details."
+  },
+  {
+    number: "03",
+    title: "Offerte",
+    description: "U ontvangt een heldere offerte met alle specificaties en kosten."
+  },
+  {
+    number: "04",
+    title: "Productie",
+    description: "Uw kozijnen worden op maat gemaakt met de hoogste kwaliteitseisen."
+  },
+  {
+    number: "05",
+    title: "Montage",
+    description: "Vakkundige installatie door ons ervaren montageteam."
+  }
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+  {steps.map((step, index) => (
+    <div class="relative">
+      <div class="bg-primary-600/5 rounded-lg p-4 sm:p-6 h-full">
+        <div class="flex flex-col sm:flex-row md:flex-col items-start gap-4">
+          <div class="flex-shrink-0">
+            <span class="inline-block text-2xl sm:text-3xl font-bold text-primary-600 font-montreal">
+              {step.number}
+            </span>
+          </div>
+          <div>
+            <h4 class="text-lg sm:text-xl font-bold text-text-dark mb-2 font-montreal">
+              {step.title}
+            </h4>
+            <p class="text-sm sm:text-base text-text-light font-commons">
+              {step.description}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {index !== steps.length - 1 && (
+        <div class="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+          <svg class="w-8 h-8 text-primary-600/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      )}
+    </div>
+  ))}
+</div>

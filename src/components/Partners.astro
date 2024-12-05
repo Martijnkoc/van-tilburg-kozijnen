@@ -1,0 +1,73 @@
+---
+interface Partner {
+  name: string;
+  logo: string;
+  description: string;
+  width?: string;
+  altText: string;
+}
+
+const partners: Partner[] = [
+  {
+    logo: "/images/partners/accoya.svg",
+    name: "Accoya",
+    description: "Wereldleider in duurzaam gemodificeerd hout voor luxe kozijnen",
+    altText: "Accoya logo - Duurzaam gemodificeerd hout voor luxe kozijnen"
+  },
+  {
+    logo: "/images/partners/sikkens.svg",
+    name: "Sikkens",
+    description: "Premium verfsystemen voor optimale bescherming en uitstraling",
+    altText: "Sikkens logo - Premium verfsystemen voor houten kozijnen"
+  },
+  {
+    logo: "/images/partners/roto.svg",
+    name: "Roto",
+    description: "Hoogwaardige raam- en deurbeslag systemen",
+    altText: "Roto logo - Hoogwaardige raam- en deurbeslag systemen"
+  },
+  {
+    logo: "/images/partners/komo.svg",
+    name: "KOMO",
+    description: "Onafhankelijk kwaliteitskeurmerk voor bouwproducten",
+    width: "w-40",
+    altText: "KOMO logo - Onafhankelijk kwaliteitskeurmerk voor kozijnen"
+  }
+];
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-text-dark mb-4 sm:mb-6 font-montreal">
+        Onze Partners
+      </h2>
+      <p class="text-base sm:text-lg text-text-light font-commons">
+        Wij werken samen met toonaangevende merken en zijn KOMO gecertificeerd om de hoogste kwaliteit te garanderen.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      {partners.map(partner => (
+        <div class="bg-white rounded-lg p-6 sm:p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="h-20 flex items-center justify-center mb-4 sm:mb-6">
+            <img
+              src={partner.logo}
+              alt={partner.altText}
+              class={`max-h-full max-w-full object-contain ${partner.width || ''}`}
+              loading="lazy"
+            />
+          </div>
+          <div class="text-center">
+            <h3 class="text-lg sm:text-xl font-bold text-text-dark mb-2 sm:mb-3 font-montreal">
+              {partner.name}
+            </h3>
+            <p class="text-sm sm:text-base text-text-light font-commons">
+              {partner.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

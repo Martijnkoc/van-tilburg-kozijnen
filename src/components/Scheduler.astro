@@ -1,0 +1,107 @@
+---
+// Vervang dit met je Cal.com username of team naam
+const CAL_USERNAME = "van-tilburg-kozijnen";
+
+// Configuratie voor de afsprakenplanner
+const config = {
+  accentColor: "#000000", // Primaire kleur voor de planner
+  hideEventTypeDetails: false,
+  layout: "month_view",
+  // Beschikbare tijdsloten (in minuten)
+  duration: [30, 60],
+  // Dagen en tijden waarop afspraken mogelijk zijn
+  availability: {
+    monday: ["9:00-12:00", "13:00-17:00"],
+    tuesday: ["9:00-12:00", "13:00-17:00"],
+    wednesday: ["9:00-12:00", "13:00-17:00"],
+    thursday: ["9:00-12:00", "13:00-17:00"],
+    friday: ["9:00-12:00", "13:00-17:00"],
+    saturday: ["9:00-13:00"]
+  }
+};
+---
+
+<div class="fixed bottom-24 left-6 z-40 group">
+  <div class="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap before:content-[''] before:absolute before:-left-2 before:top-1/2 before:-translate-y-1/2 before:border-8 before:border-transparent before:border-r-white">
+    <span class="block font-medium">Plan direct een afspraak in</span>
+    <span class="block text-xs mt-1">Kies een datum en tijd die jou uitkomt</span>
+  </div>
+  <button
+    id="openScheduler"
+    class="flex items-center gap-3 bg-primary text-white px-4 py-3 rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 transform hover:scale-105"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    <span class="hidden md:inline text-sm font-medium">Plan afspraak</span>
+  </button>
+</div>
+
+<script define:vars={{ config }}>
+  // Add Cal object to window
+  window.Cal = window.Cal || {};
+
+  (function (C, A, L) {
+    let p = function (a, ar) {
+      a.q.push(ar);
+    };
+    let d = C.document;
+    C.Cal =
+      C.Cal ||
+      function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          const script = d.createElement("script");
+          script.src = A;
+          d.head.appendChild(script);
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () {
+            p(api, arguments);
+          };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          typeof namespace === "string"
+            ? ((cal.ns[namespace] = api) && p(api, ar))
+            : p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  window.Cal?.("init", {
+    origin: "https://app.cal.com",
+    callbacks: {
+      // Event handlers
+      eventTypeSelected: (event) => {
+        console.log("Event type selected:", event);
+      },
+      dateSelected: (event) => {
+        console.log("Date selected:", event);
+      },
+      completed: (event) => {
+        console.log("Scheduling completed:", event);
+        // Hier kun je een bevestigingsmail trigger toevoegen
+      }
+    }
+  });
+
+  // Configure button click
+  const button = document.getElementById("openScheduler");
+  if (button) {
+    button.addEventListener("click", () => {
+      window.Cal?.("ui", {
+        styles: { branding: { brandColor: config.accentColor } },
+        hideEventTypeDetails: config.hideEventTypeDetails,
+        layout: config.layout,
+        duration: config.duration,
+        availability: config.availability
+      });
+    });
+  }
+</script>

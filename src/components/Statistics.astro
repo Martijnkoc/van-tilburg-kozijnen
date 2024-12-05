@@ -1,0 +1,108 @@
+---
+interface Statistic {
+  number: number;
+  suffix?: string;
+  label: string;
+  description: string;
+}
+
+const statistics: Statistic[] = [
+  {
+    number: 25,
+    suffix: "+",
+    label: "Jaar ervaring",
+    description: "Specialist in Accoya kozijnen"
+  },
+  {
+    number: 1000,
+    suffix: "+",
+    label: "Projecten",
+    description: "Succesvol afgerond"
+  },
+  {
+    number: 100,
+    suffix: "%",
+    label: "Klanttevredenheid",
+    description: "Onze prioriteit"
+  },
+  {
+    number: 50,
+    label: "Jaar garantie",
+    description: "Op Accoya hout"
+  }
+];
+---
+
+<section class="py-12 sm:py-16 md:py-20 bg-primary-600 text-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+      {
+        statistics.map((stat) => (
+          <div class="text-center">
+            <div class="mb-2 sm:mb-3">
+              <span 
+                class="text-3xl sm:text-4xl md:text-5xl font-bold font-montreal counter"
+                data-target={stat.number}
+                data-suffix={stat.suffix || ""}
+              >
+                0
+              </span>
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-lg sm:text-xl font-semibold font-montreal">
+                {stat.label}
+              </h3>
+              <p class="text-sm sm:text-base text-white/80 font-commons">
+                {stat.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const counters = document.querySelectorAll('.counter');
+  
+  const startCounting = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target as HTMLElement;
+        const target = parseInt(counter.getAttribute('data-target') || '0');
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const duration = 2000; // 2 seconds
+        const steps = 50;
+        const stepValue = target / steps;
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += stepValue;
+          if (current < target) {
+            counter.textContent = Math.floor(current) + suffix;
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + suffix;
+          }
+        };
+        
+        requestAnimationFrame(updateCounter);
+        observer.unobserve(counter);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(startCounting, {
+    root: null,
+    threshold: 0.1
+  });
+
+  counters.forEach(counter => observer.observe(counter));
+</script>
+
+<style>
+  .counter {
+    transition: all 0.2s ease-out;
+  }
+</style>

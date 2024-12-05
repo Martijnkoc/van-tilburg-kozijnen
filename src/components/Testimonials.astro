@@ -1,0 +1,78 @@
+---
+interface Testimonial {
+  name: string;
+  role: string;
+  content: string;
+  image: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Peter van den Berg",
+    role: "Huiseigenaar",
+    content: "Van Tilburg Kozijnen heeft uitstekend werk geleverd bij de renovatie van onze ramen en deuren. De kwaliteit en service waren boven verwachting.",
+    image: "/images/testimonials/testimonial-1.jpg",
+    rating: 5,
+  },
+  {
+    name: "Linda de Vries",
+    role: "Interieur Designer",
+    content: "Als professional in de interieurbranche waardeer ik de precisie en het vakmanschap van Van Tilburg Kozijnen. Hun kozijnen zijn van topkwaliteit.",
+    image: "/images/testimonials/testimonial-2.jpg",
+    rating: 5,
+  },
+  {
+    name: "Mark Jansen",
+    role: "Projectontwikkelaar",
+    content: "Al jaren werken we samen met Van Tilburg Kozijnen voor onze projecten. Hun betrouwbaarheid en expertise zijn ongeëvenaard in de branche.",
+    image: "/images/testimonials/testimonial-3.jpg",
+    rating: 5,
+  },
+];
+---
+
+<section class="py-16 bg-bg-light">
+  <div class="container mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-text-dark mb-4 font-montreal">
+        Wat onze klanten zeggen
+      </h2>
+      <p class="text-text-light max-w-2xl mx-auto font-commons">
+        Ontdek waarom klanten voor Van Tilburg Kozijnen kiezen en wat ze van onze service vinden.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((testimonial, index) => (
+        <div 
+          class="bg-white rounded-lg p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-bounce-soft"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 class="font-bold text-text-dark font-montreal">{testimonial.name}</h3>
+              <p class="text-sm text-text-light font-commons">{testimonial.role}</p>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            {[...Array(testimonial.rating)].map(() => (
+              <span class="text-secondary">★</span>
+            ))}
+          </div>
+
+          <p class="text-text-light font-commons">"{testimonial.content}"</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

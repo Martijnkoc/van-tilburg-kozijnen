@@ -1,0 +1,43 @@
+---
+---
+
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-gray-900/95 text-white py-4 px-6 transform translate-y-full transition-transform duration-300 z-50">
+  <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="text-sm">
+      Wij gebruiken cookies om uw ervaring op onze website te verbeteren. 
+      <a href="/privacy" class="underline hover:text-primary-500">Lees ons privacybeleid</a>
+    </div>
+    <div class="flex gap-4">
+      <button id="accept-cookies" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-md transition-colors">
+        Accepteren
+      </button>
+      <button id="decline-cookies" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors">
+        Weigeren
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cookieConsent = document.getElementById('cookie-consent');
+  const acceptButton = document.getElementById('accept-cookies');
+  const declineButton = document.getElementById('decline-cookies');
+
+  // Check if user has already made a choice
+  if (!localStorage.getItem('cookieConsent')) {
+    // Show the banner after a short delay
+    setTimeout(() => {
+      cookieConsent?.classList.remove('translate-y-full');
+    }, 1000);
+  }
+
+  acceptButton?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    cookieConsent?.classList.add('translate-y-full');
+  });
+
+  declineButton?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'declined');
+    cookieConsent?.classList.add('translate-y-full');
+  });
+</script>

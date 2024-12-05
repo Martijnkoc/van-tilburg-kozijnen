@@ -1,0 +1,47 @@
+---
+---
+
+<button
+  id="scroll-to-top"
+  class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg transform scale-0 transition-all duration-300 hover:bg-primary/90 hover:scale-110 z-50"
+  aria-label="Scroll to top"
+>
+  <svg
+    class="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 10l7-7m0 0l7 7m-7-7v18"
+    />
+  </svg>
+</button>
+
+<script>
+  const scrollToTopButton = document.getElementById('scroll-to-top');
+
+  const toggleScrollButton = () => {
+    if (!scrollToTopButton) return;
+    
+    if (window.scrollY > 300) {
+      scrollToTopButton.classList.remove('scale-0');
+      scrollToTopButton.classList.add('scale-100');
+    } else {
+      scrollToTopButton.classList.remove('scale-100');
+      scrollToTopButton.classList.add('scale-0');
+    }
+  };
+
+  scrollToTopButton?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  window.addEventListener('scroll', toggleScrollButton);
+</script>

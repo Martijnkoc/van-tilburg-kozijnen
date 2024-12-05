@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section id="over-ons" class="py-12 sm:py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+      <div class="space-y-4 sm:space-y-6">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-dark mb-4 sm:mb-6 font-montreal">
+          Specialist in luxe<br class="hidden sm:block" /> houten kozijnen
+        </h1>
+        <div class="space-y-4 sm:space-y-6">
+          <span class="text-base sm:text-lg text-text-light">Exclusieve Accoya houten kozijnen, deuren en schuifpuien</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+          <div class="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <div class="text-2xl sm:text-3xl font-bold text-primary-600 mb-2">25+</div>
+            <div class="text-sm sm:text-base text-text-light">Jaar ervaring</div>
+          </div>
+          <div class="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <div class="text-2xl sm:text-3xl font-bold text-primary-600 mb-2">1000+</div>
+            <div class="text-sm sm:text-base text-text-light">Tevreden klanten</div>
+          </div>
+        </div>
+        <ul class="space-y-3 sm:space-y-4">
+          <li class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-base sm:text-lg text-text-light">Specialist in kunststof, aluminium en houten kozijnen</span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-base sm:text-lg text-text-light">Vakkundige montage door eigen montageteam</span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-base sm:text-lg text-text-light">10 jaar garantie op al onze producten</span>
+          </li>
+        </ul>
+      </div>
+      <div class="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
+        <picture>
+          <!-- Mobile -->
+          <source
+            media="(max-width: 640px)"
+            srcset="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=640&q=80"
+          />
+          <!-- Tablet -->
+          <source
+            media="(max-width: 1024px)"
+            srcset="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1024&q=80"
+          />
+          <!-- Desktop -->
+          <img
+            src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            alt="Modern huis met grote raampartijen"
+            class="w-full h-full object-cover rounded-lg"
+          />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>

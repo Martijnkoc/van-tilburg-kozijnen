@@ -1,0 +1,160 @@
+---
+interface Props {
+  beforeImage: string;
+  afterImage: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const {
+  beforeImage,
+  afterImage,
+  beforeLabel = "Voor",
+  afterLabel = "Na"
+} = Astro.props;
+---
+
+<div class="before-after-slider relative w-full aspect-[4/3] overflow-hidden rounded-lg">
+  <!-- After Image (Full) -->
+  <div class="absolute inset-0">
+    <img
+      src={afterImage}
+      alt="Na"
+      class="w-full h-full object-cover"
+    />
+    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-text shadow-lg">
+      {afterLabel}
+    </span>
+  </div>
+
+  <!-- Before Image (Clip) -->
+  <div class="before-image absolute inset-0" style="clip-path: inset(0 50% 0 0);">
+    <img
+      src={beforeImage}
+      alt="Voor"
+      class="w-full h-full object-cover"
+    />
+    <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-text shadow-lg">
+      {beforeLabel}
+    </span>
+  </div>
+
+  <!-- Slider Handle -->
+  <div class="slider-handle absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize select-none touch-none" style="left: 50%;">
+    <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+      <svg class="w-6 h-6 text-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h8m-8 5h8" />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  class BeforeAfterSlider {
+    private container: HTMLElement;
+    private handle: HTMLElement;
+    private beforeImage: HTMLElement;
+    private isDragging: boolean = false;
+    private startX: number = 0;
+    private handlePosition: number = 50;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.handle = container.querySelector('.slider-handle') as HTMLElement;
+      this.beforeImage = container.querySelector('.before-image') as HTMLElement;
+
+      this.initializeEvents();
+    }
+
+    private initializeEvents(): void {
+      // Mouse events
+      this.handle.addEventListener('mousedown', this.startDragging.bind(this));
+      document.addEventListener('mousemove', this.drag.bind(this));
+      document.addEventListener('mouseup', this.stopDragging.bind(this));
+
+      // Touch events
+      this.handle.addEventListener('touchstart', this.startDragging.bind(this));
+      document.addEventListener('touchmove', this.drag.bind(this));
+      document.addEventListener('touchend', this.stopDragging.bind(this));
+
+      // Click/tap on container
+      this.container.addEventListener('click', this.handleClick.bind(this));
+    }
+
+    private startDragging(e: MouseEvent | TouchEvent): void {
+      this.isDragging = true;
+      this.startX = this.getEventX(e) - this.handle.offsetLeft;
+      this.container.classList.add('dragging');
+    }
+
+    private drag(e: MouseEvent | TouchEvent): void {
+      if (!this.isDragging) return;
+
+      e.preventDefault();
+      const x = this.getEventX(e);
+      const containerRect = this.container.getBoundingClientRect();
+      const containerX = containerRect.left;
+      const containerWidth = containerRect.width;
+
+      let position = ((x - containerX) / containerWidth) * 100;
+      position = Math.max(0, Math.min(100, position));
+
+      this.updatePosition(position);
+    }
+
+    private stopDragging(): void {
+      this.isDragging = false;
+      this.container.classList.remove('dragging');
+    }
+
+    private handleClick(e: MouseEvent): void {
+      const containerRect = this.container.getBoundingClientRect();
+      const containerX = containerRect.left;
+      const containerWidth = containerRect.width;
+      const x = e.clientX;
+
+      const position = ((x - containerX) / containerWidth) * 100;
+      this.updatePosition(position);
+    }
+
+    private updatePosition(position: number): void {
+      this.handlePosition = position;
+      this.handle.style.left = `${position}%`;
+      this.beforeImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+    }
+
+    private getEventX(e: MouseEvent | TouchEvent): number {
+      return e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+    }
+  }
+
+  // Initialize all sliders on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll<HTMLElement>('.before-after-slider').forEach(slider => {
+      new BeforeAfterSlider(slider);
+    });
+  });
+</script>
+
+<style>
+  .before-after-slider {
+    touch-action: none;
+  }
+
+  .before-after-slider.dragging {
+    cursor: grabbing;
+  }
+
+  .before-after-slider img {
+    pointer-events: none;
+  }
+
+  .slider-handle {
+    transition: transform 0.1s ease;
+  }
+
+  .slider-handle:hover,
+  .dragging .slider-handle {
+    transform: scale(1.1);
+  }
+</style>

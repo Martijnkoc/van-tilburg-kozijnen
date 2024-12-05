@@ -1,0 +1,135 @@
+---
+// Voeg hier je tracking IDs toe
+const GOOGLE_ANALYTICS_ID = 'YOUR_GA_ID';
+const FACEBOOK_PIXEL_ID = 'YOUR_PIXEL_ID';
+
+// Custom events voor conversie tracking
+const trackableEvents = {
+  CONTACT_FORM: 'contact_form_submit',
+  WHATSAPP_CLICK: 'whatsapp_click',
+  APPOINTMENT_BOOKED: 'appointment_booked',
+  CHAT_STARTED: 'chat_started',
+  PHONE_CALL: 'phone_call'
+} as const;
+
+// Type definities
+interface Window {
+  dataLayer: any[];
+  gtag: (...args: any[]) => void;
+  fbq: (...args: any[]) => void;
+  _fbq: any;
+  trackConversion: (eventName: string, data?: Record<string, any>) => void;
+  trackTiming: (category: string, variable: string, value: number) => void;
+}
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+    fbq: (...args: any[]) => void;
+    _fbq: any;
+    trackConversion: (eventName: string, data?: Record<string, any>) => void;
+    trackTiming: (category: string, variable: string, value: number) => void;
+  }
+}
+---
+
+<!-- Google Analytics -->
+<script type="text/partytown" define:vars={{ GOOGLE_ANALYTICS_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GOOGLE_ANALYTICS_ID, {
+    anonymize_ip: true,
+    cookie_flags: 'SameSite=None;Secure'
+  });
+</script>
+
+<!-- Facebook Pixel -->
+<script type="text/partytown" define:vars={{ FACEBOOK_PIXEL_ID }}>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', FACEBOOK_PIXEL_ID);
+  fbq('track', 'PageView');
+</script>
+
+<!-- Conversion tracking utility -->
+<script>
+  class ConversionTracker {
+    static track(eventName: string, data: Record<string, any> = {}) {
+      // Google Analytics
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, {
+          ...data,
+          event_category: 'Conversion',
+          non_interaction: false
+        });
+      }
+
+      // Facebook Pixel
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', eventName, data);
+      }
+
+      // Console log voor development
+      if (import.meta.env.DEV) {
+        console.log(`[Conversion Tracked] ${eventName}:`, data);
+      }
+    }
+
+    static trackTiming(category: string, variable: string, value: number) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'timing_complete', {
+          name: variable,
+          value: value,
+          event_category: category
+        });
+      }
+    }
+  }
+
+  // Maak beschikbaar voor andere componenten
+  window.trackConversion = ConversionTracker.track.bind(ConversionTracker);
+  window.trackTiming = ConversionTracker.trackTiming.bind(ConversionTracker);
+</script>
+
+<!-- Automatische event tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Track externe links
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="http"]').forEach(link => {
+      link.addEventListener('click', () => {
+        ConversionTracker.track('external_link_click', {
+          url: link.href
+        });
+      });
+    });
+
+    // Track scroll diepte
+    let maxScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY + window.innerHeight;
+      const height = document.documentElement.scrollHeight;
+      const percentage = Math.round((scrolled / height) * 100);
+      
+      if (percentage > maxScroll && percentage % 25 === 0) {
+        maxScroll = percentage;
+        ConversionTracker.track('scroll_depth', { depth: percentage });
+      }
+    });
+
+    // Track tijd op pagina
+    const startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+      const timeSpent = Date.now() - startTime;
+      ConversionTracker.trackTiming('User Engagement', 'Time on Page', timeSpent);
+    });
+  });
+</script>

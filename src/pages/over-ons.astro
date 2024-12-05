@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Over Ons - Your Company">
+    <Header />
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="bg-bg-light py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-6">Over Ons</h1>
+                    <p class="text-xl text-text-light">Uw betrouwbare partner in hoogwaardige bouwprojecten</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Info -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-text-dark mb-6">Onze Geschiedenis</h2>
+                        <p class="text-text-light mb-6">
+                            Al meer dan [X] jaar zijn wij specialist in het leveren van hoogwaardige bouwdiensten. 
+                            Wat begon als een klein familiebedrijf is uitgegroeid tot een toonaangevende speler in de regio.
+                        </p>
+                        <p class="text-text-light mb-6">
+                            Onze focus ligt op kwaliteit, duurzaamheid en klanttevredenheid. Met een team van ervaren 
+                            professionals zorgen we voor een perfect eindresultaat bij elk project.
+                        </p>
+                    </div>
+                    <div class="relative h-[400px]">
+                        <img
+                            src="/images/about-company.jpg"
+                            alt="Ons bedrijf"
+                            class="w-full h-full object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values -->
+        <section class="bg-bg-light py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-text-dark text-center mb-12">Onze Kernwaarden</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-4">Kwaliteit</h3>
+                        <p class="text-text-light">
+                            We streven naar de hoogste kwaliteit in al onze projecten, 
+                            van materialen tot uitvoering.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-4">Samenwerking</h3>
+                        <p class="text-text-light">
+                            Door nauwe samenwerking met onze klanten zorgen we voor 
+                            het beste resultaat.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-4">Duurzaamheid</h3>
+                        <p class="text-text-light">
+                            We werken met duurzame materialen en methoden voor een 
+                            betere toekomst.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-text-dark text-center mb-12">Ons Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img
+                                src="/images/team-1.jpg"
+                                alt="Team member"
+                                class="w-full h-full object-cover rounded-full"
+                            />
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-2">Naam Persoon</h3>
+                        <p class="text-text-light">Functie</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img
+                                src="/images/team-2.jpg"
+                                alt="Team member"
+                                class="w-full h-full object-cover rounded-full"
+                            />
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-2">Naam Persoon</h3>
+                        <p class="text-text-light">Functie</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img
+                                src="/images/team-3.jpg"
+                                alt="Team member"
+                                class="w-full h-full object-cover rounded-full"
+                            />
+                        </div>
+                        <h3 class="text-xl font-bold text-text-dark mb-2">Naam Persoon</h3>
+                        <p class="text-text-light">Functie</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

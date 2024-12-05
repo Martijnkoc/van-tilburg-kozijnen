@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+    {
+        title: 'Modern Bedrijfspand',
+        category: 'Nieuwbouw',
+        location: 'Amsterdam',
+        year: '2023',
+        image: '/images/project1.jpg',
+        description: 'Een modern bedrijfspand met duurzame materialen en innovatief ontwerp.',
+    },
+    {
+        title: 'Historische Renovatie',
+        category: 'Renovatie',
+        location: 'Utrecht',
+        year: '2023',
+        image: '/images/project2.jpg',
+        description: 'Zorgvuldige renovatie van een historisch pand met behoud van authentieke details.',
+    },
+    {
+        title: 'Kantoor Transformatie',
+        category: 'Verbouw',
+        location: 'Rotterdam',
+        year: '2022',
+        image: '/images/project3.jpg',
+        description: 'Complete transformatie van kantoorruimte naar moderne werkplek.',
+    },
+    // Add more projects here
+];
+
+const categories = ['Alle', 'Nieuwbouw', 'Renovatie', 'Verbouw', 'Onderhoud'];
+---
+
+<Layout title="Projecten - Your Company">
+    <Header />
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="bg-bg-light py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-6">Onze Projecten</h1>
+                    <p class="text-xl text-text-light">Ontdek onze voltooide projecten en laat u inspireren</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-center gap-4">
+                    {categories.map(category => (
+                        <button
+                            class="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+                            data-category={category}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {projects.map(project => (
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden" data-project data-category={project.category}>
+                            <div class="relative aspect-w-16 aspect-h-9">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <span class="text-sm text-primary font-medium">{project.category}</span>
+                                        <h3 class="text-xl font-bold text-text-dark mt-1">{project.title}</h3>
+                                    </div>
+                                    <span class="text-sm text-text-light">{project.year}</span>
+                                </div>
+                                <p class="text-text-light mb-4">{project.description}</p>
+                                <div class="flex items-center text-text-light">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    {project.location}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-category]');
+    const projects = document.querySelectorAll<HTMLDivElement>('[data-project]');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('bg-primary', 'text-white'));
+            button.classList.add('bg-primary', 'text-white');
+
+            // Filter projects
+            if (category === 'Alle') {
+                projects.forEach(project => {
+                    if (project instanceof HTMLElement) {
+                        project.style.display = 'block';
+                    }
+                });
+            } else {
+                projects.forEach(project => {
+                    if (project instanceof HTMLElement) {
+                        if (project.getAttribute('data-category') === category) {
+                            project.style.display = 'block';
+                        } else {
+                            project.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

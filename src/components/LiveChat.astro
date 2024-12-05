@@ -1,0 +1,134 @@
+---
+// Voeg hier je Tawk.to property ID toe
+const TAWK_PROPERTY_ID = 'YOUR_PROPERTY_ID';
+
+// Type definitie voor dagen
+type DayKey = 'ma' | 'di' | 'wo' | 'do' | 'vr' | 'za' | 'zo';
+
+// Chat configuratie
+const config = {
+  // Openingstijden chat (24-uurs formaat)
+  chatHours: {
+    ma: { open: 9, close: 17 },
+    di: { open: 9, close: 17 },
+    wo: { open: 9, close: 17 },
+    do: { open: 9, close: 17 },
+    vr: { open: 9, close: 17 },
+    za: { open: 9, close: 13 },
+    zo: { open: 0, close: 0 }
+  },
+  // Chat instellingen
+  settings: {
+    autoOpen: false, // Chat automatisch openen
+    hideWhenOffline: false, // Chat verbergen als offline
+    welcomeMessage: "Welkom bij Van Tilburg Kozijnen! Hoe kunnen we u helpen?",
+    offlineMessage: "We zijn momenteel niet beschikbaar. Laat een bericht achter en we nemen contact met u op.",
+  }
+};
+
+// Bepaal of chat beschikbaar is
+const now = new Date();
+const days: DayKey[] = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
+const currentDay = days[now.getDay()] as DayKey;
+const currentHour = now.getHours();
+const isChatAvailable = currentHour >= config.chatHours[currentDay].open && 
+                       currentHour < config.chatHours[currentDay].close;
+---
+
+<div class="fixed bottom-6 right-6 z-40 group">
+  <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap before:content-[''] before:absolute before:-right-2 before:top-1/2 before:-translate-y-1/2 before:border-8 before:border-transparent before:border-l-white">
+    <span class="block font-medium">
+      {isChatAvailable ? 'Start een live chat met ons' : 'Laat een bericht achter'}
+    </span>
+    <span class="block text-xs mt-1">
+      {isChatAvailable ? 'We reageren direct' : 'We nemen z.s.m. contact op'}
+    </span>
+  </div>
+  <button
+    id="openChat"
+    class={`flex items-center gap-3 ${
+      isChatAvailable ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-500 hover:bg-gray-600'
+    } text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105`}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+    <span class="hidden md:inline text-sm font-medium">
+      {isChatAvailable ? 'Live Chat' : 'Offline'}
+    </span>
+    <span class={`w-2 h-2 rounded-full ${isChatAvailable ? 'bg-blue-300' : 'bg-gray-300'} animate-pulse`}></span>
+  </button>
+</div>
+
+<script define:vars={{ config, isChatAvailable }}>
+  // Tawk.to configuratie
+  var Tawk_API = Tawk_API || {};
+  
+  // Stel welkomstbericht in op basis van beschikbaarheid
+  Tawk_API.onBeforeLoad = function() {
+    Tawk_API.visitor = {
+      name: 'Bezoeker', // Dit wordt later aangepast als de bezoeker zijn naam invult
+    };
+
+    if (isChatAvailable) {
+      Tawk_API.customStyle = {
+        zIndex: 1000,
+        visibility: {
+          desktop: {
+            position: 'br',
+            yOffset: 100,
+            xOffset: 20
+          },
+          mobile: {
+            position: 'br',
+            yOffset: 80,
+            xOffset: 20
+          }
+        }
+      };
+    }
+  };
+
+  // Event handlers
+  Tawk_API.onLoad = function() {
+    // Chat venster sluiten bij laden
+    if (!config.settings.autoOpen) {
+      Tawk_API.hideWidget();
+    }
+  };
+
+  Tawk_API.onChatMaximized = function() {
+    // Verberg de chat knop als het chat venster open is
+    const chatButton = document.getElementById('openChat');
+    if (chatButton) chatButton.style.display = 'none';
+  };
+
+  Tawk_API.onChatMinimized = function() {
+    // Toon de chat knop weer als het chat venster gesloten is
+    const chatButton = document.getElementById('openChat');
+    if (chatButton) chatButton.style.display = 'flex';
+  };
+
+  // Chat widget laden
+  var Tawk_LoadStart = new Date();
+  (function(){
+    var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = `https://embed.tawk.to/${TAWK_PROPERTY_ID}/default`;
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+
+  // Chat knop click handler
+  document.getElementById('openChat')?.addEventListener('click', function() {
+    if (typeof Tawk_API !== 'undefined') {
+      if (Tawk_API.isChatMinimized()) {
+        Tawk_API.maximize();
+      } else {
+        Tawk_API.toggleVisibility();
+      }
+    }
+  });
+</script>

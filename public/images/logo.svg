@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 300 100">
+  <g>
+    <!-- Icon part -->
+    <g fill="#F26522">
+      <path d="M30,20 L50,20 L50,40 L30,40 Z"/>
+      <path d="M50,40 L70,40 L70,60 L50,60 Z"/>
+      <path d="M30,60 L50,60 L50,80 L30,80 Z"/>
+      <path d="M50,20 L70,20 L70,40 L50,40 Z"/>
+    </g>
+    <!-- Text part -->
+    <g fill="#00A7E1">
+      <text x="85" y="45" font-family="Arial" font-weight="bold" font-size="24">R.VAN TILBURG</text>
+      <text x="85" y="75" font-family="Arial" font-size="20" fill="#F26522">KOZIJNEN</text>
+    </g>
+  </g>
+</svg>
