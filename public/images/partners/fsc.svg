@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.42 373.52">
+  <path fill="#006F2D" d="M130.71,0L0,75.5v222.52l130.71,75.5l130.71-75.5V75.5L130.71,0z M65.36,275.45V98.07l65.35-37.73v177.38 L65.36,275.45z M196.07,275.45l-65.36-37.73V60.34l65.36,37.73V275.45z"/>
+  <path fill="#006F2D" d="M130.71,60.34v177.38l-65.35,37.73V98.07L130.71,60.34z M196.07,98.07v177.38l-65.36-37.73V60.34 L196.07,98.07z"/>
+  <text x="130.71" y="320" text-anchor="middle" font-family="Arial" font-size="48" fill="#006F2D" font-weight="bold">FSC®</text>
+</svg>

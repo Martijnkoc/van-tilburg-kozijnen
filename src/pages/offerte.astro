@@ -11,7 +11,7 @@ const services = [
 ];
 ---
 
-<Layout title="Offerte Aanvragen - Your Company">
+<Layout title="Offerte Aanvragen - Van Tilburg Kozijnen">
     <Header />
     <main class="pt-20">
         <!-- Hero Section -->
@@ -30,7 +30,7 @@ const services = [
         <section class="py-20">
             <div class="container mx-auto px-4">
                 <div class="max-w-3xl mx-auto">
-                    <form class="bg-white rounded-lg shadow-lg p-8">
+                    <form id="quoteForm" class="bg-white rounded-lg shadow-lg p-8">
                         <!-- Personal Information -->
                         <div class="mb-8">
                             <h2 class="text-2xl font-bold text-text-dark mb-6">Persoonlijke Gegevens</h2>
@@ -56,7 +56,7 @@ const services = [
                                     />
                                 </div>
                                 <div>
-                                    <label for="email" class="block text-sm font-medium text-text-dark mb-2">Email</label>
+                                    <label for="email" class="block text-sm font-medium text-text-dark mb-2">E-mailadres</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -66,7 +66,7 @@ const services = [
                                     />
                                 </div>
                                 <div>
-                                    <label for="phone" class="block text-sm font-medium text-text-dark mb-2">Telefoon</label>
+                                    <label for="phone" class="block text-sm font-medium text-text-dark mb-2">Telefoonnummer</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -155,13 +155,73 @@ const services = [
     <Footer />
 </Layout>
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
+    // Type definitions
+    declare global {
+        interface Window {
+            emailjs: any;
+        }
+    }
+
+    // Initialize EmailJS
+    (function() {
+        window.emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+
     // Form submission handling
-    const form = document.querySelector('form');
-    form?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Bedankt voor uw aanvraag! We nemen zo spoedig mogelijk contact met u op.');
-        form.reset();
-    });
+    const form = document.getElementById('quoteForm') as HTMLFormElement;
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            if (!submitButton) return;
+
+            const originalText = submitButton.textContent || 'Offerte Aanvragen';
+            submitButton.disabled = true;
+            submitButton.textContent = 'Verzenden...';
+
+            // Prepare form data
+            const formData = {
+                firstName: (form.elements.namedItem('firstName') as HTMLInputElement).value,
+                lastName: (form.elements.namedItem('lastName') as HTMLInputElement).value,
+                email: (form.elements.namedItem('email') as HTMLInputElement).value,
+                phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+                service: (form.elements.namedItem('service') as HTMLSelectElement).value,
+                location: (form.elements.namedItem('location') as HTMLInputElement).value,
+                description: (form.elements.namedItem('description') as HTMLTextAreaElement).value,
+                timeline: (form.elements.namedItem('timeline') as HTMLSelectElement).value
+            };
+
+            // Send email using EmailJS
+            window.emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                .then(function() {
+                    // Show success message
+                    window.notifications?.show('Uw aanvraag is succesvol verzonden! We nemen zo spoedig mogelijk contact met u op.', {
+                        type: 'success',
+                        duration: 5000
+                    });
+                    
+                    // Reset form
+                    form.reset();
+                })
+                .catch(function() {
+                    // Show error message
+                    window.notifications?.show('Er is iets misgegaan bij het verzenden van uw aanvraag. Probeer het later opnieuw of neem telefonisch contact op.', {
+                        type: 'error',
+                        duration: 5000
+                    });
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                });
+        });
+    }
 </script>
