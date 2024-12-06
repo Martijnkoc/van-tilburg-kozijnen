@@ -4,6 +4,7 @@ interface Statistic {
   suffix?: string;
   label: string;
   description: string;
+  icon: string;
 }
 
 const statistics: Statistic[] = [
@@ -11,50 +12,94 @@ const statistics: Statistic[] = [
     number: 25,
     suffix: "+",
     label: "Jaar ervaring",
-    description: "Specialist in Accoya kozijnen"
+    description: "Specialist in Accoya kozijnen",
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
   },
   {
     number: 1000,
     suffix: "+",
     label: "Projecten",
-    description: "Succesvol afgerond"
+    description: "Succesvol afgerond",
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
   },
   {
     number: 100,
     suffix: "%",
     label: "Klanttevredenheid",
-    description: "Onze prioriteit"
+    description: "Onze prioriteit",
+    icon: "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
   },
   {
     number: 50,
     label: "Jaar garantie",
-    description: "Op Accoya hout"
+    description: "Op Accoya hout",
+    icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
   }
 ];
 ---
 
-<section class="py-12 sm:py-16 md:py-20 bg-primary-600 text-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+<section class="relative py-16 sm:py-20 md:py-24 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 overflow-hidden perspective">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute w-[500px] h-[500px] -top-48 -left-48 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute w-[500px] h-[500px] -bottom-48 -right-48 bg-accent-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute w-[500px] h-[500px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+  </div>
+
+  <!-- Subtle Grid Pattern -->
+  <div 
+    class="absolute inset-0 opacity-5"
+    style="background-image: linear-gradient(to right, rgb(255 255 255 / 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.1) 1px, transparent 1px); background-size: 30px 30px;"
+  ></div>
+
+  <!-- Main Content -->
+  <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
       {
-        statistics.map((stat) => (
-          <div class="text-center">
-            <div class="mb-2 sm:mb-3">
-              <span 
-                class="text-3xl sm:text-4xl md:text-5xl font-bold font-montreal counter"
-                data-target={stat.number}
-                data-suffix={stat.suffix || ""}
-              >
-                0
-              </span>
-            </div>
-            <div class="space-y-1">
-              <h3 class="text-lg sm:text-xl font-semibold font-montreal">
-                {stat.label}
-              </h3>
-              <p class="text-sm sm:text-base text-white/80 font-commons">
-                {stat.description}
-              </p>
+        statistics.map((stat, index) => (
+          <div 
+            class="relative group stat-card"
+            style={`animation-delay: ${index * 150}ms; transform-style: preserve-3d;`}
+            data-depth={(index % 2) * 10 + 20}
+          >
+            <div class="relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 transform transition-all duration-500 hover:scale-105 hover:bg-white/15 animate-fade-up card-content">
+              <!-- Glow Effect -->
+              <div class="absolute -inset-px bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur glow-effect"></div>
+              
+              <!-- Icon Container -->
+              <div class="flex items-center justify-center mb-6">
+                <div class="relative w-20 h-20">
+                  <!-- Rotating Border -->
+                  <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-white/40 to-white/10 rotating-border"></div>
+                  <!-- Icon Background -->
+                  <div class="absolute inset-[2px] rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm icon-container">
+                    <svg class="w-10 h-10 text-white transform group-hover:scale-110 transition-transform duration-500 icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={stat.icon}></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="text-center relative z-10">
+                <div class="mb-3">
+                  <span 
+                    class="text-5xl sm:text-6xl font-bold font-montreal counter bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/80"
+                    data-target={stat.number}
+                    data-suffix={stat.suffix || ""}
+                  >
+                    0
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-wide stat-label">{stat.label}</h3>
+                <p class="text-white/80 text-sm leading-relaxed stat-description">{stat.description}</p>
+              </div>
+
+              <!-- Hover Lines Effect -->
+              <div class="absolute inset-0 rounded-2xl transition-transform duration-500">
+                <div class="absolute top-0 left-1/2 w-px h-0 group-hover:h-full bg-gradient-to-b from-transparent via-white/20 to-transparent transition-all duration-500"></div>
+                <div class="absolute left-0 top-1/2 h-px w-0 group-hover:w-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-500"></div>
+              </div>
             </div>
           </div>
         ))
@@ -63,46 +108,206 @@ const statistics: Statistic[] = [
   </div>
 </section>
 
+<style>
+  .perspective {
+    perspective: 1000px;
+  }
+
+  .stat-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+
+  .card-content {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .icon-container {
+    transition: transform 0.5s ease;
+  }
+
+  .group:hover .icon-container {
+    transform: translateZ(20px);
+  }
+
+  .glow-effect {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .group:hover .glow-effect {
+    opacity: 1;
+  }
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(20px, -30px) scale(1.1); }
+    50% { transform: translate(-20px, 20px) scale(0.9); }
+    75% { transform: translate(30px, 30px) scale(0.95); }
+  }
+
+  @keyframes spin-once {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fade-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px) translateZ(0);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0) translateZ(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateZ(0); }
+    50% { transform: translateZ(20px); }
+  }
+
+  .animate-blob {
+    animation: blob 10s infinite;
+  }
+
+  .animate-spin-once {
+    animation: spin-once 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .stat-label, .stat-description {
+    transition: transform 0.3s ease;
+  }
+
+  .group:hover .stat-label {
+    transform: translateZ(10px);
+  }
+
+  .group:hover .stat-description {
+    transform: translateZ(5px);
+  }
+</style>
+
 <script>
-  const counters = document.querySelectorAll('.counter');
-  
-  const startCounting = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-    entries.forEach(entry => {
+  let cards: NodeListOf<HTMLElement>;
+  let isAnimating = false;
+
+  const lerp = (start: number, end: number, factor: number) => {
+    return start + (end - start) * factor;
+  };
+
+  const mapRange = (value: number, low1: number, high1: number, low2: number, high2: number) => {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  };
+
+  const updateCardTransform = (card: HTMLElement, event: MouseEvent) => {
+    if (!isAnimating) {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const rotateX = mapRange(event.clientY - centerY, -rect.height / 2, rect.height / 2, 5, -5);
+      const rotateY = mapRange(event.clientX - centerX, -rect.width / 2, rect.width / 2, -5, 5);
+      
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+  };
+
+  const resetCardTransform = (card: HTMLElement) => {
+    isAnimating = true;
+    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    setTimeout(() => { isAnimating = false; }, 300);
+  };
+
+  // 3D Tilt Effect
+  document.addEventListener('DOMContentLoaded', () => {
+    cards = document.querySelectorAll('.stat-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => updateCardTransform(card, e as MouseEvent));
+      card.addEventListener('mouseleave', () => resetCardTransform(card));
+    });
+  });
+
+  // Counter Animation
+  const animateValue = (element: HTMLElement, start: number, end: number, duration: number, suffix: string) => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // Verbeterde easing functie voor soepelere animatie
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * (end - start) + start);
+      
+      element.textContent = current + suffix;
+      
+      // Voeg een pop effect toe bij het bereiken van het eindbedrag
+      if (progress === 1) {
+        element.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          element.style.transform = 'scale(1)';
+        }, 100);
+      }
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  };
+
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const counter = entry.target as HTMLElement;
-        const target = parseInt(counter.getAttribute('data-target') || '0');
-        const suffix = counter.getAttribute('data-suffix') || '';
-        const duration = 2000; // 2 seconds
-        const steps = 50;
-        const stepValue = target / steps;
-        let current = 0;
-        
-        const updateCounter = () => {
-          current += stepValue;
-          if (current < target) {
-            counter.textContent = Math.floor(current) + suffix;
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target + suffix;
-          }
-        };
-        
-        requestAnimationFrame(updateCounter);
+        const target = parseInt(counter.dataset.target || "0");
+        const suffix = counter.dataset.suffix || "";
+        animateValue(counter, 0, target, 2500, suffix);
         observer.unobserve(counter);
       }
     });
   };
 
-  const observer = new IntersectionObserver(startCounting, {
-    root: null,
-    threshold: 0.1
+  // Observers
+  const observer = new IntersectionObserver(handleIntersection, {
+    threshold: 0.2
   });
 
-  counters.forEach(counter => observer.observe(counter));
-</script>
+  const spinObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-spin-once');
+        spinObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
 
-<style>
-  .counter {
-    transition: all 0.2s ease-out;
-  }
-</style>
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.counter').forEach((counter) => {
+      observer.observe(counter);
+    });
+
+    document.querySelectorAll('.rotating-border').forEach((border) => {
+      spinObserver.observe(border);
+    });
+  });
+</script>

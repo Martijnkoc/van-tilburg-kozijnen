@@ -3,59 +3,295 @@ const steps = [
   {
     number: "01",
     title: "Vrijblijvend advies",
-    description: "We bespreken uw wensen en mogelijkheden tijdens een persoonlijk gesprek."
+    description: "We bespreken uw wensen en mogelijkheden tijdens een persoonlijk gesprek.",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
   },
   {
     number: "02",
     title: "Inmeten",
-    description: "Onze experts komen bij u langs voor nauwkeurige metingen en technische details."
+    description: "Onze experts komen bij u langs voor nauwkeurige metingen en technische details.",
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
   },
   {
     number: "03",
     title: "Offerte",
-    description: "U ontvangt een heldere offerte met alle specificaties en kosten."
+    description: "U ontvangt een heldere offerte met alle specificaties en kosten.",
+    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
   },
   {
     number: "04",
     title: "Productie",
-    description: "Uw kozijnen worden op maat gemaakt met de hoogste kwaliteitseisen."
+    description: "Uw kozijnen worden op maat gemaakt met de hoogste kwaliteitseisen.",
+    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
   },
   {
     number: "05",
     title: "Montage",
-    description: "Vakkundige installatie door ons ervaren montageteam."
+    description: "Vakkundige installatie door ons ervaren montageteam.",
+    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
   }
 ];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
-  {steps.map((step, index) => (
-    <div class="relative">
-      <div class="bg-primary-600/5 rounded-lg p-4 sm:p-6 h-full">
-        <div class="flex flex-col sm:flex-row md:flex-col items-start gap-4">
-          <div class="flex-shrink-0">
-            <span class="inline-block text-2xl sm:text-3xl font-bold text-primary-600 font-montreal">
-              {step.number}
-            </span>
-          </div>
-          <div>
-            <h4 class="text-lg sm:text-xl font-bold text-text-dark mb-2 font-montreal">
-              {step.title}
-            </h4>
-            <p class="text-sm sm:text-base text-text-light font-commons">
-              {step.description}
-            </p>
+<div class="process-timeline relative">
+  <!-- Steps -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+    {steps.map((step, index) => (
+      <div 
+        class="process-step relative h-[280px]"
+        data-step={index + 1}
+      >
+        <div class="card-3d-wrapper h-full">
+          <div class="card-front bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 h-full transform transition-all duration-500 hover:scale-105 flex flex-col">
+            <!-- Step Number & Icon -->
+            <div class="flex items-center justify-center mb-4 relative">
+              <div class="relative w-20 h-20">
+                <!-- Animated Border -->
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-400/40 to-primary-600/40 animate-pulse"></div>
+                <!-- Icon Container -->
+                <div class="absolute inset-[2px] rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm overflow-hidden group">
+                  {step.number === "01" && (
+                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
+                      <path class="document-line" d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="document-line delay-1" d="M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="document-outline" d="M7 21a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  )}
+                  {step.number === "02" && (
+                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
+                      <path class="measure-line" d="M4 21h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="measure-tick" d="M6 21v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="measure-tick delay-1" d="M10 21v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="measure-tick delay-2" d="M14 21v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path class="measure-tick delay-3" d="M18 21v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  )}
+                  {step.number === "03" && (
+                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
+                      <path class="paper-outline" d="M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
+                      <path class="checkmark delay-1" d="M9 11l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  )}
+                  {step.number === "04" && (
+                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
+                      <path class="gear-outline" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37c.996.608" stroke="currentColor" stroke-width="2"/>
+                      <circle class="gear-center" cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  )}
+                  {step.number === "05" && (
+                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
+                      <path class="check-circle" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  )}
+                </div>
+              </div>
+              <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold shadow-lg">
+                {step.number}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="text-center relative z-10 flex-grow flex flex-col justify-center">
+              <h4 class="text-lg font-bold text-text-dark mb-1.5 font-montreal">{step.title}</h4>
+              <p class="text-[0.9rem] leading-snug text-text-light font-commons">{step.description}</p>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="absolute inset-0 rounded-2xl transition-all duration-500">
+              <div class="absolute top-0 left-1/2 w-px h-0 group-hover:h-full bg-gradient-to-b from-transparent via-primary-500/20 to-transparent transition-all duration-500"></div>
+              <div class="absolute left-0 top-1/2 h-px w-0 group-hover:w-full bg-gradient-to-r from-transparent via-primary-500/20 to-transparent transition-all duration-500"></div>
+            </div>
           </div>
         </div>
+
+        <!-- Connection Line -->
+        {index !== steps.length - 1 && (
+          <div class="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+            <div class="relative w-8">
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                <path d="M2 12H30M30 12L20 4M30 12L20 20" stroke="rgb(249, 115, 22)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        )}
       </div>
-      
-      {index !== steps.length - 1 && (
-        <div class="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-          <svg class="w-8 h-8 text-primary-600/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      )}
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
+
+<style>
+  .process-timeline {
+    perspective: 2000px;
+  }
+
+  .card-3d-wrapper {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .process-step:hover .card-3d-wrapper {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+  }
+
+  .card-front {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .arrow-icon {
+    animation: arrow-pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgb(249, 115, 22));
+  }
+
+  @keyframes arrow-pulse {
+    0%, 100% { 
+      transform: translateX(0);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateX(2px);
+      opacity: 1;
+    }
+  }
+
+  /* Icon Animations */
+  .animated-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .process-step:hover .animated-icon {
+    transform: scale(1.1);
+  }
+
+  /* Document Icon Animation */
+  .document-line {
+    stroke-dasharray: 6;
+    stroke-dashoffset: 6;
+    transition: stroke-dashoffset 0.3s ease;
+  }
+
+  .document-line.delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  .process-step:hover .document-line {
+    stroke-dashoffset: 0;
+  }
+
+  /* Measure Icon Animation */
+  .measure-tick {
+    transform-origin: bottom;
+    animation: measureTick 0.5s ease-out both paused;
+  }
+
+  .measure-tick.delay-1 { animation-delay: 0.1s; }
+  .measure-tick.delay-2 { animation-delay: 0.2s; }
+  .measure-tick.delay-3 { animation-delay: 0.3s; }
+
+  .process-step:hover .measure-tick {
+    animation-play-state: running;
+  }
+
+  @keyframes measureTick {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  /* Checkmark Animation */
+  .checkmark {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    transition: stroke-dashoffset 0.3s ease;
+  }
+
+  .process-step:hover .checkmark {
+    stroke-dashoffset: 0;
+  }
+
+  /* Gear Animation */
+  .process-step:hover .gear-outline {
+    animation: spin 3s linear infinite;
+  }
+
+  .process-step:hover .gear-center {
+    animation: spin 3s linear infinite reverse;
+  }
+
+  @keyframes spin {
+    from { transform-origin: center; transform: rotate(0deg); }
+    to { transform-origin: center; transform: rotate(360deg); }
+  }
+
+  /* Check Circle Animation */
+  .check-circle {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    transition: stroke-dashoffset 0.5s ease;
+  }
+
+  .process-step:hover .check-circle {
+    stroke-dashoffset: 0;
+  }
+</style>
+
+<script>
+  let observer: IntersectionObserver;
+  let steps: NodeListOf<Element>;
+
+  function initializeTimeline() {
+    steps = document.querySelectorAll('.process-step');
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '0px'
+    });
+
+    steps.forEach((step) => {
+      observer.observe(step);
+    });
+
+    // Add hover effect for 3D transform
+    steps.forEach((step) => {
+      step.addEventListener('mousemove', (e) => {
+        const rect = (step as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xc = rect.width / 2;
+        const yc = rect.height / 2;
+        
+        const dx = x - xc;
+        const dy = y - yc;
+        
+        const wrapper = step.querySelector('.card-3d-wrapper') as HTMLElement;
+        if (wrapper) {
+          wrapper.style.transform = `rotateY(${dx / 20}deg) rotateX(${-dy / 20}deg) translateZ(20px)`;
+        }
+      });
+
+      step.addEventListener('mouseleave', () => {
+        const wrapper = step.querySelector('.card-3d-wrapper') as HTMLElement;
+        if (wrapper) {
+          wrapper.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)';
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeTimeline);
+
+  // Cleanup
+  document.addEventListener('astro:before-swap', () => {
+    if (observer) {
+      observer.disconnect();
+    }
+  });
+</script>

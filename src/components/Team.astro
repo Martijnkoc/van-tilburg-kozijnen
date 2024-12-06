@@ -45,30 +45,30 @@ const team: TeamMember[] = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
       {team.map(member => (
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div class="aspect-w-3 aspect-h-4 relative">
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="aspect-w-4 aspect-h-5">
             <img
               src={member.image}
               alt={member.name}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover object-center"
             />
           </div>
-          <div class="p-4 text-center">
-            <h3 class="text-lg font-semibold text-text-dark mb-1">{member.name}</h3>
-            <p class="text-sm text-text-light mb-2">{member.role}</p>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+            <p class="text-gray-600 mb-4">{member.role}</p>
             {member.linkedin && (
-              <a 
-                href={member.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-flex items-center text-sm text-accent-500 hover:text-accent-600"
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
               >
-                <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
-                LinkedIn Profiel
+                LinkedIn
               </a>
             )}
           </div>
@@ -77,3 +77,20 @@ const team: TeamMember[] = [
     </div>
   </div>
 </section>
+
+<style>
+  .aspect-w-4 {
+    position: relative;
+    padding-bottom: 125%; /* 4:5 aspect ratio */
+  }
+  
+  .aspect-w-4 > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+</style>

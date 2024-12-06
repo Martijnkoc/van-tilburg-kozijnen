@@ -28,7 +28,7 @@ import Button from './ui/Button.astro';
 
   <!-- Content -->
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20 md:pt-24">
-    <div class="max-w-3xl">
+    <div class="max-w-3xl backdrop-blur-sm bg-black/10 p-8 rounded-xl border border-white/10">
       <h1 class="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
         Tijdloze Kwaliteit in<br class="hidden sm:block" />Houten Kozijnen
       </h1>
@@ -36,10 +36,10 @@ import Button from './ui/Button.astro';
         Ambachtelijk vakmanschap ontmoet moderne techniek voor het perfecte resultaat in uw woning.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-        <Button href="#contact" variant="primary" class="w-full sm:w-auto text-center justify-center">
+        <Button href="#contact" variant="primary" class="w-full sm:w-auto text-center justify-center bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl hover:shadow-primary-600/20 backdrop-blur-sm transition-all duration-300">
           Vrijblijvende offerte
         </Button>
-        <Button href="#projecten" variant="secondary" class="w-full sm:w-auto text-center justify-center">
+        <Button href="#projecten" variant="secondary" class="w-full sm:w-auto text-center justify-center border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white backdrop-blur-sm transition-all duration-300">
           Bekijk ons werk
         </Button>
       </div>
@@ -49,22 +49,12 @@ import Button from './ui/Button.astro';
   <!-- Scroll indicator -->
   <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
     <button 
-      class="flex flex-col items-center text-white/80 hover:text-white transition-colors duration-200"
+      class="flex flex-col items-center animate-bounce p-4 bg-primary-600 hover:bg-primary-700 rounded-full shadow-lg hover:shadow-xl hover:shadow-primary-600/20 transition-all duration-300 group"
       onclick="document.getElementById('over-ons').scrollIntoView({ behavior: 'smooth' })"
     >
-      <span class="font-commons text-xs sm:text-sm mb-2">Ontdek meer</span>
-      <svg 
-        class="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" 
-        fill="none" 
-        stroke="currentColor" 
-        viewBox="0 0 24 24"
-      >
-        <path 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          stroke-width="2" 
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        />
+      <span class="font-commons text-sm text-white">Ontdek meer</span>
+      <svg class="w-5 h-5 text-white mt-1 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
     </button>
   </div>

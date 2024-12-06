@@ -84,5 +84,6 @@ export default {
     forms({
       strategy: 'class',
     }),
+    require('@tailwindcss/forms'),
   ],
 }

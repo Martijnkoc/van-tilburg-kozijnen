@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import AppointmentForm from './AppointmentForm.astro';
 ---
 
 <section id="over-ons" class="py-12 sm:py-16 md:py-20 bg-white">
@@ -7,10 +8,10 @@ import { Image } from 'astro:assets';
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
       <div class="space-y-4 sm:space-y-6">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-dark mb-4 sm:mb-6 font-montreal">
-          Specialist in luxe<br class="hidden sm:block" /> houten kozijnen
+          Specialist in luxe<br class="hidden sm:block" /> Accoya kozijnen
         </h1>
         <div class="space-y-4 sm:space-y-6">
-          <span class="text-base sm:text-lg text-text-light">Exclusieve Accoya houten kozijnen, deuren en schuifpuien</span>
+          <span class="text-base sm:text-lg text-text-light">Duurzame en onderhoudsarme kozijnen, deuren en schuifpuien van Accoya hout</span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
           <div class="bg-gray-50 p-4 sm:p-6 rounded-lg">
@@ -27,7 +28,19 @@ import { Image } from 'astro:assets';
             <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base sm:text-lg text-text-light">Specialist in kunststof, aluminium en houten kozijnen</span>
+            <span class="text-base sm:text-lg text-text-light">50 jaar garantie op Accoya hout bovengronds</span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-base sm:text-lg text-text-light">CO2-negatief en 100% recyclebaar materiaal</span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-base sm:text-lg text-text-light">Minimaal onderhoud en maximale duurzaamheid</span>
           </li>
           <li class="flex items-start gap-2 sm:gap-3">
             <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,34 +48,24 @@ import { Image } from 'astro:assets';
             </svg>
             <span class="text-base sm:text-lg text-text-light">Vakkundige montage door eigen montageteam</span>
           </li>
-          <li class="flex items-start gap-2 sm:gap-3">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span class="text-base sm:text-lg text-text-light">10 jaar garantie op al onze producten</span>
-          </li>
         </ul>
+        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+          <a
+            href="#contact"
+            class="inline-flex justify-center items-center rounded-md bg-accent-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+          >
+            Plan een afspraak
+          </a>
+        </div>
       </div>
-      <div class="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
-        <picture>
-          <!-- Mobile -->
-          <source
-            media="(max-width: 640px)"
-            srcset="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=640&q=80"
-          />
-          <!-- Tablet -->
-          <source
-            media="(max-width: 1024px)"
-            srcset="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1024&q=80"
-          />
-          <!-- Desktop -->
-          <img
-            src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-            alt="Modern huis met grote raampartijen"
-            class="w-full h-full object-cover rounded-lg"
-          />
-        </picture>
+      <div class="relative">
+        <!-- Placeholder for image -->
+        <div class="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+          <img src="/images/about/accoya-showcase.jpg" alt="Luxe Accoya houten kozijnen showcase" class="w-full h-full object-cover" />
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<AppointmentForm />

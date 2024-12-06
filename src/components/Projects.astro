@@ -7,6 +7,7 @@ interface Project {
   description: string;
   image: ImageMetadata;
   altText: string;
+  details: string[];
 }
 
 // Import images
@@ -19,24 +20,42 @@ const projects: Project[] = [
     title: "Villa Renovatie Oisterwijk",
     description: "Complete renovatie met luxe Accoya houten kozijnen en deuren voor optimale isolatie en uitstraling",
     image: project1,
-    altText: "Moderne villa met Accoya houten kozijnen en deuren in Oisterwijk"
+    altText: "Moderne villa met Accoya houten kozijnen en deuren in Oisterwijk",
+    details: [
+      "Accoya houten kozijnen",
+      "Luxe schuifpuien",
+      "Optimale isolatie",
+      "Moderne uitstraling"
+    ]
   },
   {
     title: "Monumentaal Pand Den Bosch",
     description: "Restauratie met authentieke Accoya kozijnen die perfect passen bij het historische karakter",
     image: project2,
-    altText: "Gerestaureerd monumentaal pand met Accoya houten kozijnen in Den Bosch"
+    altText: "Gerestaureerd monumentaal pand met Accoya houten kozijnen in Den Bosch",
+    details: [
+      "Authentieke details",
+      "Historische uitstraling",
+      "Duurzame materialen",
+      "Energiezuinig"
+    ]
   },
   {
     title: "Nieuwbouw Tilburg",
     description: "Moderne nieuwbouwwoning voorzien van duurzame Accoya kozijnen en schuifpuien",
     image: project3,
-    altText: "Strakke nieuwbouwwoning met Accoya kozijnen en schuifpui in Tilburg"
+    altText: "Strakke nieuwbouwwoning met Accoya kozijnen en schuifpui in Tilburg",
+    details: [
+      "Moderne architectuur",
+      "Grote schuifpuien",
+      "Minimalistisch design",
+      "Maximale lichtinval"
+    ]
   }
 ];
 ---
 
-<section id="projecten" class="py-12 sm:py-16 md:py-20 bg-white">
+<section id="projecten" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-text-dark mb-4 sm:mb-6 font-montreal">
@@ -47,29 +66,56 @@ const projects: Project[] = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
       {projects.map(project => (
-        <div class="group relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div class="aspect-w-4 aspect-h-3">
+        <div class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="aspect-w-16 aspect-h-10 relative overflow-hidden">
             <Image
               src={project.image}
               alt={project.altText}
               width={800}
               height={600}
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-text-dark mb-1 sm:mb-2 font-montreal">
+          <div class="p-6 sm:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-montreal group-hover:text-primary-600 transition-colors">
               {project.title}
             </h3>
-            <p class="text-sm sm:text-base text-text-light font-commons">
+            <p class="text-gray-600 mb-4 font-commons">
               {project.description}
             </p>
+            <ul class="space-y-2">
+              {project.details.map(detail => (
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 mr-2 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {detail}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .aspect-w-16 {
+    position: relative;
+    padding-bottom: 62.5%; /* 16:10 aspect ratio */
+  }
+  
+  .aspect-w-16 > :first-child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+</style>

@@ -18,7 +18,7 @@
   }
 
   html {
-    @apply scroll-smooth font-sans antialiased;
+    @apply scroll-smooth font-montserrat antialiased;
   }
 
   body {
@@ -26,7 +26,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight text-gray-900;
+    @apply font-bold tracking-tight text-gray-900;
   }
 
   h1 {
@@ -230,6 +230,42 @@
   .usp-icon {
     @apply w-5 h-5 text-primary-600 flex-shrink-0;
   }
+
+  /* Timeline Styles */
+  .connection-line-animated {
+    background: linear-gradient(to bottom, transparent, #0ea5e9, transparent);
+    animation: flowDown 2s linear infinite;
+  }
+
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full bg-primary-500;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+  }
+
+  .timeline-dot::after {
+    content: '';
+    @apply absolute w-6 h-6 rounded-full;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%);
+    animation: pulse 2s infinite;
+  }
+
+  .timeline-card {
+    transition: all 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .timeline-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 }
 
 @layer utilities {
@@ -238,13 +274,23 @@
   }
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@keyframes flowDown {
+  0% {
+    transform: translateY(-100%);
   }
-  to {
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
     opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
 }
 
@@ -256,28 +302,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 

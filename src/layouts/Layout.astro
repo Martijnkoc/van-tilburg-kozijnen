@@ -7,6 +7,7 @@ import ScrollToTop from '../components/ScrollToTop.astro';
 import USPBar from '../components/USPBar.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Scheduler from '../components/Scheduler.astro';
+import AppointmentForm from '../components/AppointmentForm.astro';
 
 interface Props {
   title?: string;
@@ -98,9 +99,10 @@ import '../styles/fonts.css';
     <SocialMedia />
     <Footer />
     <ScrollToTop />
-    <CookieConsent />
     <WhatsAppButton />
+    <CookieConsent />
     <Scheduler />
+    <AppointmentForm />
     
     <script>
       // Register service worker for PWA

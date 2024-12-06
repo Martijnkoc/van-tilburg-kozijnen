@@ -32,13 +32,13 @@ const testimonials: Testimonial[] = [
 ];
 ---
 
-<section class="py-16 bg-bg-light">
+<section class="py-16 bg-gradient-to-br from-bg-light via-bg-light/95 to-bg-light/90">
   <div class="container mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-text-dark mb-4 font-montreal">
+      <h2 class="text-4xl font-bold text-text-dark/90 mb-4 font-montreal">
         Wat onze klanten zeggen
       </h2>
-      <p class="text-text-light max-w-2xl mx-auto font-commons">
+      <p class="text-text-light/90 max-w-2xl mx-auto font-commons">
         Ontdek waarom klanten voor Van Tilburg Kozijnen kiezen en wat ze van onze service vinden.
       </p>
     </div>
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {testimonials.map((testimonial, index) => (
         <div 
-          class="bg-white rounded-lg p-6 shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-bounce-soft"
+          class="backdrop-blur-sm bg-white/80 rounded-xl p-6 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/20 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.25)] transform hover:-translate-y-1 transition-all duration-300 ease-bounce-soft"
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >
