@@ -1,4 +1,7 @@
 ---
+// Import styles first
+import '../styles/base.css';
+
 import Header from '../components/Header.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import SocialMedia from '../components/SocialMedia.astro';
@@ -9,9 +12,6 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Scheduler from '../components/Scheduler.astro';
 import AppointmentForm from '../components/AppointmentForm.astro';
 import QuoteModal from '../components/QuoteModal.astro';
-
-// Import styles
-import '../styles/base.css';
 
 interface Props {
   title?: string;

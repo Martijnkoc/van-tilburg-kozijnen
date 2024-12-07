@@ -259,7 +259,7 @@ const steps = [
 
     // Add hover effect for 3D transform
     steps.forEach((step) => {
-      step.addEventListener('mousemove', (e) => {
+      step.addEventListener('mousemove', (e: MouseEvent) => {
         const rect = (step as HTMLElement).getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
