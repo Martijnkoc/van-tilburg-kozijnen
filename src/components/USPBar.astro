@@ -1,37 +1,30 @@
 ---
 const usps = [
   {
-    icon: "award",
-    text: "10 jaar garantie",
-    gradient: "from-blue-500 to-blue-600"
+    icon: 'shield-check',
+    text: '50 jaar garantie'
   },
   {
-    icon: "leaf",
-    text: "Duurzame producten",
-    gradient: "from-green-500 to-green-600"
+    icon: 'truck',
+    text: 'Gratis bezorging'
   },
   {
-    icon: "star",
-    text: "Luxe afwerking",
-    gradient: "from-amber-500 to-amber-600"
+    icon: 'badge-check',
+    text: 'KOMO gecertificeerd'
   },
   {
-    icon: "tools",
-    text: "Vakkundig geplaatst",
-    gradient: "from-orange-500 to-orange-600"
+    icon: 'thumb-up',
+    text: 'Nederlands vakmanschap'
   }
 ];
 ---
 
-<div class="bg-blue-600 text-white">
+<div class="hidden md:block bg-primary-600 text-white">
   <div class="container mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-2">
+    <div class="grid grid-cols-4 gap-4 py-2">
       {usps.map((usp, index) => (
-        <div class="flex items-center justify-center sm:justify-start gap-2 p-2">
-          <span class="icon-container">
-            <i class={`fas fa-${usp.icon} text-xl`}></i>
-          </span>
-          <span>{usp.text}</span>
+        <div class="flex items-center justify-center gap-2">
+          <span class="text-sm font-medium">{usp.text}</span>
         </div>
       ))}
     </div>
