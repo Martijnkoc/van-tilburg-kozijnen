@@ -10,5 +10,8 @@
     }
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": [
+    "dist",
+    "src/components/AppointmentButton.astro"
+  ]
 }

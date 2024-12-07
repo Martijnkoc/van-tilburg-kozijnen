@@ -179,6 +179,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Social media verification -->
     <meta name="facebook-domain-verification" content="your-verification-code" />
     <meta name="google-site-verification" content="your-verification-code" />
+    
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body class="bg-white">
     <!-- Skip to main content for accessibility -->
@@ -199,6 +202,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <Scheduler />
     <AppointmentForm />
     <QuoteModal />
+    
+    <!-- AOS Script -->
+    <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out',
+          once: false,
+          mirror: true,
+          offset: 50
+        });
+      });
+    </script>
     
     <script>
       // Register service worker for PWA
