@@ -1,4 +1,11 @@
 ---
+interface Props {
+  type?: 'appointment' | 'quote';
+  title?: string;
+}
+
+const { type = 'appointment', title = 'Plan een afspraak' } = Astro.props;
+
 const timeSlots = [
   { value: "ochtend", label: "Ochtend (09:00 - 12:00)" },
   { value: "middag", label: "Middag (12:00 - 17:00)" }
@@ -12,12 +19,12 @@ const projectTypes = [
 ];
 ---
 
-<div id="appointmentModal" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+<div id={`${type}Modal`} class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
   <div class="w-full max-w-lg bg-white/90 backdrop-blur-md rounded-lg shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] border border-white/20">
     <div class="p-6 bg-gradient-to-br from-white/60 to-white/40">
       <div class="flex justify-between items-center mb-6">
         <h3 class="text-2xl font-bold text-gray-900">
-          Plan een afspraak
+          {title}
         </h3>
         <button type="button" class="closeModal text-gray-400 hover:text-gray-500">
           <span class="sr-only">Sluiten</span>
@@ -27,57 +34,63 @@ const projectTypes = [
         </button>
       </div>
       
-      <form id="appointmentForm" class="space-y-4">
+      <form 
+        id={`${type}Form`} 
+        class="space-y-4"
+      >
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">
+            <label for={`${type}-name`} class="block text-sm font-medium text-gray-700">
               Naam
             </label>
             <input
               type="text"
               name="name"
-              id="name"
+              id={`${type}-name`}
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
+              class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+              placeholder="Uw naam"
             />
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">
+            <label for={`${type}-email`} class="block text-sm font-medium text-gray-700">
               E-mailadres
             </label>
             <input
               type="email"
               name="email"
-              id="email"
+              id={`${type}-email`}
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
+              class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+              placeholder="Uw e-mailadres"
             />
           </div>
         </div>
 
         <div>
-          <label for="phone" class="block text-sm font-medium text-gray-700">
+          <label for={`${type}-phone`} class="block text-sm font-medium text-gray-700">
             Telefoonnummer
           </label>
           <input
             type="tel"
             name="phone"
-            id="phone"
+            id={`${type}-phone`}
             required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
+            class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+            placeholder="Uw telefoonnummer"
           />
         </div>
 
         <div>
-          <label for="projectType" class="block text-sm font-medium text-gray-700">
+          <label for={`${type}-projectType`} class="block text-sm font-medium text-gray-700">
             Type project
           </label>
           <select
-            id="projectType"
+            id={`${type}-projectType`}
             name="projectType"
             required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
+            class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
           >
             <option value="">Selecteer type project</option>
             {projectTypes.map(type => (
@@ -86,63 +99,67 @@ const projectTypes = [
           </select>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label for="preferredDate" class="block text-sm font-medium text-gray-700">
-              Voorkeursdatum
-            </label>
-            <input
-              type="date"
-              name="preferredDate"
-              id="preferredDate"
-              required
-              min={new Date().toISOString().split('T')[0]}
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
-            />
-          </div>
+        {type === 'appointment' && (
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for={`${type}-preferredDate`} class="block text-sm font-medium text-gray-700">
+                Voorkeursdatum
+              </label>
+              <input
+                type="date"
+                name="preferredDate"
+                id={`${type}-preferredDate`}
+                required
+                min={new Date().toISOString().split('T')[0]}
+                class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+              />
+            </div>
 
-          <div>
-            <label for="preferredTime" class="block text-sm font-medium text-gray-700">
-              Voorkeurstijd
-            </label>
-            <select
-              id="preferredTime"
-              name="preferredTime"
-              required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
-            >
-              <option value="">Selecteer voorkeurstijd</option>
-              {timeSlots.map(slot => (
-                <option value={slot.value}>{slot.label}</option>
-              ))}
-            </select>
+            <div>
+              <label for={`${type}-preferredTime`} class="block text-sm font-medium text-gray-700">
+                Voorkeurstijd
+              </label>
+              <select
+                id={`${type}-preferredTime`}
+                name="preferredTime"
+                required
+                class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+              >
+                <option value="">Selecteer voorkeurstijd</option>
+                {timeSlots.map(slot => (
+                  <option value={slot.value}>{slot.label}</option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
 
         <div>
-          <label for="message" class="block text-sm font-medium text-gray-700">
-            Toelichting
+          <label for={`${type}-message`} class="block text-sm font-medium text-gray-700">
+            {type === 'quote' ? 'Projectomschrijving' : 'Toelichting'}
           </label>
           <textarea
-            id="message"
+            id={`${type}-message`}
             name="message"
             rows="3"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500 sm:text-sm"
+            class="mt-1 block w-full rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+            placeholder={type === 'quote' ? 'Beschrijf uw project en wensen...' : 'Eventuele toelichting...'}
           ></textarea>
         </div>
 
         <div class="flex justify-end space-x-3 pt-4">
           <button
             type="button"
-            class="closeModal inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+            class="closeModal inline-flex justify-center rounded-lg border border-gray-300/50 bg-white/70 backdrop-blur-sm px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200"
+            onclick="document.getElementById(`${type}Modal`).classList.add('hidden'); document.getElementById(`${type}Modal`).classList.remove('flex'); document.body.style.overflow = '';"
           >
             Annuleren
           </button>
           <button
             type="submit"
-            class="inline-flex justify-center rounded-md border border-transparent bg-accent-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+            class="inline-flex justify-center rounded-lg border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200"
           >
-            Verstuur aanvraag
+            {type === 'quote' ? 'Offerte aanvragen' : 'Verstuur aanvraag'}
           </button>
         </div>
       </form>
@@ -150,69 +167,77 @@ const projectTypes = [
   </div>
 </div>
 
-<script>
+<script define:vars={{ type }}>
+  import { EMAILJS_CONFIG, initEmailJS, sendEmail } from '../lib/emailjs';
+
   document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('appointmentModal');
-    const closeButtons = document.querySelectorAll('.closeModal');
-    const form = document.getElementById('appointmentForm') as HTMLFormElement;
+    const form = document.getElementById(`${type}Form`);
+    const modal = document.getElementById(`${type}Modal`);
 
-    if (!modal || !form) {
-      console.error('Required elements not found');
-      return;
-    }
+    if (!form || !modal) return;
 
-    // Open modal when clicking any "Plan afspraak" button
-    document.querySelectorAll('[href="#contact"]').forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (modal) modal.classList.remove('hidden');
-      });
-    });
+    // Initialize EmailJS
+    initEmailJS();
 
-    // Close modal when clicking close button
-    closeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (modal) modal.classList.add('hidden');
-      });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      
+      try {
+        const formData = new FormData(form);
+        const templateParams = {
+          from_name: formData.get('name'),
+          from_email: formData.get('email'),
+          phone: formData.get('phone'),
+          project_type: formData.get('projectType'),
+          message: formData.get('message'),
+          ...(type === 'appointment' && {
+            preferred_date: formData.get('preferredDate'),
+            preferred_time: formData.get('preferredTime'),
+          })
+        };
+
+        await sendEmail(
+          type === 'quote' ? EMAILJS_CONFIG.QUOTE_TEMPLATE_ID : EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+          templateParams
+        );
+
+        form.reset();
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+        
+        const event = new CustomEvent('show-notification', {
+          detail: {
+            type: 'success',
+            message: type === 'quote' 
+              ? 'Bedankt voor uw offerte aanvraag! We nemen binnen 24 uur contact met u op.'
+              : 'Bedankt voor uw afspraak aanvraag! We nemen zo spoedig mogelijk contact met u op.'
+          }
+        });
+        window.dispatchEvent(event);
+      } catch (error) {
+        console.error('Error:', error);
+        const event = new CustomEvent('show-notification', {
+          detail: {
+            type: 'error',
+            message: 'Er is iets misgegaan. Probeer het opnieuw of neem telefonisch contact op.'
+          }
+        });
+        window.dispatchEvent(event);
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     });
 
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.add('hidden');
-      }
-    });
-
-    // Handle form submission
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      
-      try {
-        const response = await fetch('/api/create-appointment', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-        
-        if (result.success) {
-          alert('Bedankt voor uw aanvraag! U ontvangt binnen enkele minuten een email met de afspraakbevestiging en een agenda-item.');
-        } else {
-          throw new Error(result.message);
-        }
-        
-        // Close modal and reset form
-        if (modal) modal.classList.add('hidden');
-        form.reset();
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Er is iets misgegaan. Probeer het later opnieuw of neem telefonisch contact met ons op.');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
       }
     });
   });

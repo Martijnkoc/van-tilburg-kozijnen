@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmailJS Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <h2>Test EmailJS</h2>
+    <button onclick="sendTestEmail()">Send Test Email</button>
+
+    <script>
+        (function() {
+            emailjs.init("S4g4iJg985aIeUFHC");
+        })();
+
+        function sendTestEmail() {
+            const templateParams = {
+                from_name: "Test User",
+                from_email: "test@test.com",
+                phone: "1234567890",
+                project_type: "Test Project",
+                message: "This is a test message"
+            };
+
+            emailjs.send("service_n9x8npb", "template_fkz7dbc", templateParams)
+                .then(function(response) {
+                    console.log("SUCCESS!", response.status, response.text);
+                    alert("Email sent successfully!");
+                }, function(error) {
+                    console.log("FAILED...", error);
+                    alert("Failed to send email: " + error);
+                });
+        }
+    </script>
+</body>
+</html>

@@ -8,6 +8,10 @@ import USPBar from '../components/USPBar.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Scheduler from '../components/Scheduler.astro';
 import AppointmentForm from '../components/AppointmentForm.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+
+// Import styles
+import '../styles/base.css';
 
 interface Props {
   title?: string;
@@ -24,10 +28,6 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-import '../styles/base.css';
-import '../styles/fonts.css';
-
 ---
 
 <!DOCTYPE html>
@@ -51,6 +51,11 @@ import '../styles/fonts.css';
       media="print"
       onload="this.media='all'"
     />
+    
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -82,27 +87,118 @@ import '../styles/fonts.css';
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Local Business Schema.org markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "R.VAN TILBURG KOZIJNEN",
+        "image": "/images/og-image.jpg",
+        "description": "Specialist in luxe Accoya houten kozijnen, deuren en schuifpuien. 50 jaar garantie, duurzaam en onderhoudsarm.",
+        "@id": "https://vantilburgkozijnen.nl",
+        "url": "https://vantilburgkozijnen.nl",
+        "telephone": "+31164672085",
+        "email": "info@vantilburgkozijnen.nl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Putsmolentje 7",
+          "addressLocality": "Ossendrecht",
+          "postalCode": "4641 SK",
+          "addressCountry": "NL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.3998,
+          "longitude": 4.3245
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:30",
+          "closes": "17:00"
+        },
+        "sameAs": [
+          "https://www.facebook.com/vantilburgkozijnen",
+          "https://www.instagram.com/vantilburgkozijnen",
+          "https://www.linkedin.com/company/van-tilburg-kozijnen"
+        ],
+        "priceRange": "€€€",
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.3998,
+            "longitude": 4.3245
+          },
+          "geoRadius": "100000"
+        }
+      }
+    </script>
+
+    <!-- Breadcrumb Schema.org markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://vantilburgkozijnen.nl"
+        }]
+      }
+    </script>
+
+    <!-- Additional SEO meta tags -->
+    <meta name="geo.region" content="NL-NB" />
+    <meta name="geo.placename" content="Ossendrecht" />
+    <meta name="geo.position" content="51.3998;4.3245" />
+    <meta name="ICBM" content="51.3998, 4.3245" />
+    
+    <!-- Language alternatives -->
+    <link rel="alternate" href="https://vantilburgkozijnen.nl" hreflang="nl-nl" />
+    <link rel="alternate" href="https://vantilburgkozijnen.nl" hreflang="x-default" />
+    
+    <!-- Performance optimizations -->
+    <link rel="preload" as="image" href="/images/hero-image.jpg" />
+    <link rel="preload" as="font" href="/fonts/montserrat-v25-latin-regular.woff2" type="font/woff2" crossorigin />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+    
+    <!-- Mobile optimization -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Social media verification -->
+    <meta name="facebook-domain-verification" content="your-verification-code" />
+    <meta name="google-site-verification" content="your-verification-code" />
   </head>
-  <body>
+  <body class="bg-white">
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md">
       Skip to main content
     </a>
     
-    <Header />
     <USPBar />
-    
+    <Header />
     <main id="main" class="flex-grow">
       <slot />
     </main>
-    
-    <SocialMedia />
     <Footer />
+    <CookieConsent />
+    <SocialMedia />
     <ScrollToTop />
     <WhatsAppButton />
-    <CookieConsent />
     <Scheduler />
     <AppointmentForm />
+    <QuoteModal />
     
     <script>
       // Register service worker for PWA
@@ -112,10 +208,30 @@ import '../styles/fonts.css';
         });
       }
     </script>
+    
+    <script>
+      import { initializeModals } from '../scripts/modal.js';
+      import { initializeNotifications } from '../scripts/notification.js';
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initializeModals();
+        initializeNotifications();
+      });
+    </script>
   </body>
 </html>
 
 <style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
   html {
     font-feature-settings: "cv02","cv03","cv04","cv11";
   }

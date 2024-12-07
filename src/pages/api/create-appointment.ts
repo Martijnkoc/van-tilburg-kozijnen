@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import ical from 'ical-generator';
 import { createTransport } from 'nodemailer';
 
-const COMPANY_EMAIL = 'info@vantilburgkozijnen.nl'; // Vervang dit met jullie email
+const COMPANY_EMAIL = 'info@vantilburgkozijnen.nl';
 const COMPANY_NAME = 'Van Tilburg Kozijnen';
 const APPOINTMENT_DURATION = 90; // Afspraakduur in minuten
 
@@ -19,15 +19,12 @@ const transporter = createTransport({
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-    const { name, email, phone, projectType, preferredDate, preferredTime, message } = data;
+    const { name, email, phone, date, time, message = '' } = data;
 
     // Bereken start- en eindtijd van de afspraak
-    const startTime = new Date(preferredDate);
-    if (preferredTime === 'ochtend') {
-      startTime.setHours(9, 0, 0);
-    } else {
-      startTime.setHours(13, 0, 0);
-    }
+    const [hours, minutes] = time.split(':').map(Number);
+    const startTime = new Date(date);
+    startTime.setHours(hours, minutes, 0);
     
     const endTime = new Date(startTime);
     endTime.setMinutes(endTime.getMinutes() + APPOINTMENT_DURATION);
@@ -41,34 +38,26 @@ export const POST: APIRoute = async ({ request }) => {
     calendar.createEvent({
       start: startTime,
       end: endTime,
-      summary: `Afspraak ${COMPANY_NAME} - ${projectType}`,
+      summary: `Afspraak ${COMPANY_NAME}`,
       description: `
 Afspraak details:
-Type project: ${projectType}
-Klant: ${name}
+Naam: ${name}
 Telefoon: ${phone}
 Email: ${email}
-Toelichting: ${message}
-      `.trim(),
-      location: 'Ambachtsweg 6, 5081 NL Hilvarenbeek',
+Bericht: ${message}
+      `,
+      location: 'Nader te bepalen',
       organizer: {
         name: COMPANY_NAME,
         email: COMPANY_EMAIL
-      },
-      attendees: [
-        {
-          name: name,
-          email: email,
-          rsvp: true
-        }
-      ]
+      }
     });
 
-    // Verstuur email naar klant
+    // Stuur bevestigingsmail naar klant
     await transporter.sendMail({
       from: `"${COMPANY_NAME}" <${COMPANY_EMAIL}>`,
       to: email,
-      subject: `Afspraakbevestiging ${COMPANY_NAME}`,
+      subject: `Afspraakbevestiging - ${COMPANY_NAME}`,
       text: `
 Beste ${name},
 
@@ -76,14 +65,13 @@ Bedankt voor het maken van een afspraak bij ${COMPANY_NAME}.
 
 Details van uw afspraak:
 Datum: ${startTime.toLocaleDateString('nl-NL')}
-Tijd: ${startTime.toLocaleTimeString('nl-NL')} - ${endTime.toLocaleTimeString('nl-NL')}
-Type project: ${projectType}
+Tijd: ${time}
 
-U vindt in de bijlage een agenda-item dat u kunt toevoegen aan uw agenda.
+Wij nemen binnen 24 uur contact met u op om de afspraak definitief te bevestigen.
 
 Met vriendelijke groet,
-Team ${COMPANY_NAME}
-      `.trim(),
+${COMPANY_NAME}
+      `,
       icalEvent: {
         filename: 'afspraak.ics',
         method: 'REQUEST',
@@ -91,44 +79,36 @@ Team ${COMPANY_NAME}
       }
     });
 
-    // Verstuur email naar bedrijf
+    // Stuur notificatie naar bedrijf
     await transporter.sendMail({
-      from: `"${COMPANY_NAME}" <${COMPANY_EMAIL}>`,
+      from: `"Website Afspraken" <${COMPANY_EMAIL}>`,
       to: COMPANY_EMAIL,
-      subject: `Nieuwe afspraak: ${name} - ${projectType}`,
+      subject: `Nieuwe afspraak aanvraag - ${name}`,
       text: `
-Nieuwe afspraak ingepland:
+Er is een nieuwe afspraak aangevraagd via de website.
 
-Klant: ${name}
+Details:
+Naam: ${name}
 Email: ${email}
 Telefoon: ${phone}
-Type project: ${projectType}
 Datum: ${startTime.toLocaleDateString('nl-NL')}
-Tijd: ${startTime.toLocaleTimeString('nl-NL')} - ${endTime.toLocaleTimeString('nl-NL')}
-Toelichting: ${message}
-      `.trim(),
-      icalEvent: {
-        filename: 'afspraak.ics',
-        method: 'REQUEST',
-        content: calendar.toString()
-      }
+Tijd: ${time}
+Bericht: ${message}
+
+Neem contact op met de klant om de afspraak definitief te bevestigen.
+      `
     });
 
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Afspraak succesvol ingepland'
-    }), {
+    return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json'
       }
     });
+
   } catch (error) {
     console.error('Error creating appointment:', error);
-    return new Response(JSON.stringify({
-      success: false,
-      message: 'Er is iets misgegaan bij het inplannen van de afspraak'
-    }), {
+    return new Response(JSON.stringify({ error: 'Failed to create appointment' }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json'

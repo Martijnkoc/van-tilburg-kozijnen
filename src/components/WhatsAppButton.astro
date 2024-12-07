@@ -34,7 +34,7 @@ const isOpenValue = isOpen; // Voor gebruik in inline script
   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
   target="_blank"
   rel="noopener noreferrer"
-  class={`fixed bottom-24 right-6 z-40 flex items-center gap-3 ${isOpen ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'} text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300 group transform hover:scale-105`}
+  class={`fixed bottom-6 right-6 z-40 flex items-center gap-3 ${isOpen ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'} text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300 group transform hover:scale-105`}
   aria-label="Contact via WhatsApp"
   onclick={`window.trackConversion && window.trackConversion('WHATSAPP_CLICK', { isBusinessOpen: ${isOpenValue} });`}
 >

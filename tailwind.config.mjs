@@ -83,7 +83,6 @@ export default {
     aspectRatio,
     forms({
       strategy: 'class',
-    }),
-    require('@tailwindcss/forms'),
+    })
   ],
 }

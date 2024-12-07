@@ -121,7 +121,7 @@ const timeSlots = [
             <input
               type="text"
               id="name"
-              name="name"
+              name="from_name"
               required
               class="w-full px-4 py-2 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
               placeholder="Uw naam"
@@ -134,7 +134,7 @@ const timeSlots = [
             <input
               type="email"
               id="email"
-              name="email"
+              name="from_email"
               required
               class="w-full px-4 py-2 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
               placeholder="Uw e-mail"
@@ -217,10 +217,14 @@ const timeSlots = [
         <div class="mt-6">
           <button
             type="submit"
-            class="w-full sm:w-auto px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 backdrop-blur-sm transition-all duration-200 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.25)]"
+            class="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Verstuur bericht
+            Verstuur Bericht
           </button>
+        </div>
+        <div id="formStatus" class="mt-4 text-center hidden">
+          <p class="success hidden text-green-600">Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.</p>
+          <p class="error hidden text-red-600">Er is iets misgegaan. Probeer het opnieuw of neem telefonisch contact op.</p>
         </div>
       </form>
     </div>
@@ -228,47 +232,49 @@ const timeSlots = [
 </section>
 
 <script>
+  import { EMAILJS_CONFIG, initEmailJS, sendEmail } from '../lib/emailjs';
+
+  // Initialize EmailJS
+  initEmailJS();
+
   const form = document.getElementById('contactForm') as HTMLFormElement;
+  const formStatus = document.getElementById('formStatus');
+  const successMessage = formStatus?.querySelector('.success');
+  const errorMessage = formStatus?.querySelector('.error');
   
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitButton.disabled = true;
     
     try {
-      // Hier zou je normaal gesproken een API call maken
-      // Voor nu simuleren we een succesvolle verzending
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Toon succes bericht
-      alert('Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.');
-      
-      // Reset het formulier
+      const formData = new FormData(form);
+      const templateParams = {
+        from_name: formData.get('from_name'),
+        from_email: formData.get('from_email'),
+        phone: formData.get('phone'),
+        project_type: formData.get('project_type'),
+        callback_time: formData.get('callback_time'),
+        preferred_date: formData.get('preferred_date'),
+        message: formData.get('message')
+      };
+
+      await sendEmail(EMAILJS_CONFIG.CONTACT_TEMPLATE_ID, templateParams);
+
+      // Show success message
+      formStatus?.classList.remove('hidden');
+      successMessage?.classList.remove('hidden');
+      errorMessage?.classList.add('hidden');
       form.reset();
-      
-      // Stuur bevestigingsmail (dit zou normaal server-side gebeuren)
-      const emailContent = `
-        Beste ${data.name},
-        
-        Bedankt voor uw bericht. We hebben de volgende gegevens ontvangen:
-        
-        Type project: ${data.project_type}
-        Voorkeurstijd: ${data.callback_time}
-        Voorkeursdatum: ${data.preferred_date}
-        
-        We nemen zo spoedig mogelijk contact met u op.
-        
-        Met vriendelijke groet,
-        R.VAN TILBURG KOZIJNEN
-      `;
-      
-      // In een echte implementatie zou je hier een API call maken naar je backend
-      console.log('Bevestigingsmail verstuurd:', emailContent);
-      
     } catch (error) {
-      alert('Er is iets misgegaan bij het versturen van het formulier. Probeer het later opnieuw.');
-      console.error('Form submission error:', error);
+      // Show error message
+      formStatus?.classList.remove('hidden');
+      errorMessage?.classList.remove('hidden');
+      successMessage?.classList.add('hidden');
+      console.error('Error:', error);
+    } finally {
+      submitButton.disabled = false;
     }
   });
 </script>
