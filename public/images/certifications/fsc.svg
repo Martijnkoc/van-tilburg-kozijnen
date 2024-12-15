@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100 30L170 65V135L100 170L30 135V65L100 30Z" fill="#00843D"/>
+  <text x="100" y="120" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="50">FSC</text>
+</svg>

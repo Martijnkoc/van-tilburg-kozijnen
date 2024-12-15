@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { guarantees, certifications } from '../data/guarantees';
+
+const pageTitle = "Garanties en Keurmerken - R.VAN TILBURG KOZIJNEN";
+const pageDescription = "Ontdek onze uitgebreide garanties en keurmerken. Wij staan voor kwaliteit, betrouwbaarheid en vakmanschap in al onze producten en diensten.";
+---
+
+<Layout title={pageTitle}>
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-gray-50 via-gray-50/95 to-gray-100/90 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-montreal">Garanties en Keurmerken</h1>
+          <p class="text-xl text-gray-600 font-commons">Wij staan voor kwaliteit en zekerheid. Ontdek onze uitgebreide garanties en erkende keurmerken.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garanties Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center font-montreal">Onze Garanties</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Object.entries(guarantees).map(([key, guarantee]) => (
+              <div class="backdrop-blur-md bg-white/90 rounded-xl p-6 sm:p-8 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] border border-white/20 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.3)] transition-all duration-300">
+                <div class="flex flex-col h-full">
+                  <h3 class="text-2xl font-bold text-gray-900 mb-4 font-montreal">{guarantee.title}</h3>
+                  {guarantee.duration && (
+                    <div class="bg-primary-500/10 text-primary-700 px-4 py-2 rounded-lg inline-block mb-4 font-medium">
+                      Garantie: {guarantee.duration}
+                    </div>
+                  )}
+                  <p class="text-gray-600 mb-6 font-commons">{guarantee.description}</p>
+                  {guarantee.conditions && (
+                    <div class="mt-auto">
+                      <h4 class="text-lg font-semibold text-gray-900 mb-3 font-montreal">Garantievoorwaarden:</h4>
+                      <ul class="space-y-2">
+                        {guarantee.conditions.map(condition => (
+                          <li class="flex items-start space-x-2 text-gray-600 font-commons">
+                            <svg class="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>{condition}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keurmerken Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 via-gray-50/95 to-gray-100/90">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center font-montreal">Onze Keurmerken</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {Object.entries(certifications).map(([key, cert]) => (
+              <div class="backdrop-blur-md bg-white/90 rounded-xl p-6 sm:p-8 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] border border-white/20 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.3)] transition-all duration-300">
+                <div class="flex flex-col h-full">
+                  <div class="flex items-center justify-center mb-6 h-24">
+                    <img src={cert.logo} alt={cert.title} class="h-full object-contain" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center font-montreal">{cert.title}</h3>
+                  <p class="text-gray-600 mb-6 text-center font-commons">{cert.description}</p>
+                  <div class="mt-auto">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3 font-montreal">Voordelen:</h4>
+                    <ul class="space-y-2">
+                      {cert.benefits.map(benefit => (
+                        <li class="flex items-start space-x-2 text-gray-600 font-commons">
+                          <svg class="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-montreal">Kies voor Zekerheid en Kwaliteit</h2>
+          <p class="text-xl text-gray-600 mb-8 font-commons">
+            Wilt u meer weten over onze garanties en keurmerken? Neem contact met ons op voor een vrijblijvend gesprek.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              class="inline-block px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-semibold transition-colors duration-200 text-center"
+            >
+              Neem contact op
+            </a>
+            <a
+              href="/over-ons"
+              class="inline-block px-6 py-3 rounded-lg bg-white hover:bg-gray-50 text-gray-900 font-semibold border-2 border-gray-200 transition-colors duration-200 text-center"
+            >
+              Meer over ons
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

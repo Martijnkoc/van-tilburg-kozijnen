@@ -2,40 +2,34 @@
 const steps = [
   {
     number: "01",
-    title: "Vrijblijvend advies",
-    description: "We bespreken uw wensen en mogelijkheden tijdens een persoonlijk gesprek.",
+    title: "Strategisch adviesgesprek",
+    description: "Onze experts analyseren uw project en adviseren over de beste oplossingen voor uw specifieke situatie.",
     icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
   },
   {
     number: "02",
-    title: "Inmeten",
-    description: "Onze experts komen bij u langs voor nauwkeurige metingen en technische details.",
+    title: "Technische inmeting",
+    description: "Ons technisch team voert een gedetailleerde inmeting uit en brengt alle technische specificaties in kaart.",
     icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
   },
   {
     number: "03",
-    title: "Offerte",
-    description: "U ontvangt een heldere offerte met alle specificaties en kosten.",
+    title: "Project offerte",
+    description: "U ontvangt een gedetailleerde offerte met transparante prijsopbouw, planning en projectspecificaties.",
     icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
   },
   {
     number: "04",
-    title: "Productie",
-    description: "Uw kozijnen worden op maat gemaakt met de hoogste kwaliteitseisen.",
-    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-  },
-  {
-    number: "05",
-    title: "Montage",
-    description: "Vakkundige installatie door ons ervaren montageteam.",
-    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
+    title: "Productie & Kwaliteitscontrole",
+    description: "Uw kozijnen worden geproduceerd volgens ISO-normen met uitgebreide kwaliteitscontroles in elke fase.",
+    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608"
   }
 ];
 ---
 
 <div class="process-timeline relative">
   <!-- Steps -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
     {steps.map((step, index) => (
       <div 
         class="process-step relative h-[280px]"
@@ -76,11 +70,6 @@ const steps = [
                     <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
                       <path class="gear-outline" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37c.996.608" stroke="currentColor" stroke-width="2"/>
                       <circle class="gear-center" cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                  )}
-                  {step.number === "05" && (
-                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
-                      <path class="check-circle" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   )}
                 </div>
@@ -196,65 +185,47 @@ const steps = [
   .measure-tick.delay-3 { animation-delay: 0.3s; }
 
   .animate-once .measure-tick {
-    animation: measureTick 0.5s forwards;
+    animation: tick-appear 0.3s ease forwards;
   }
 
-  @keyframes measureTick {
-    to { 
+  @keyframes tick-appear {
+    to {
       opacity: 1;
-      transform: scaleY(1);
     }
   }
 
   /* Gear Animation */
   .gear-outline {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+    transform-origin: center;
   }
 
-  .animate-once .gear-outline {
-    animation: draw-gear 1s forwards;
+  .process-step:hover .gear-outline {
+    animation: rotate 4s linear infinite;
   }
 
-  @keyframes draw-gear {
+  .gear-center {
+    transform-origin: center;
+  }
+
+  .process-step:hover .gear-center {
+    animation: rotate-reverse 4s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
     to {
-      stroke-dashoffset: 0;
+      transform: rotate(360deg);
     }
   }
 
-  /* Checkmark Animation */
-  .check-circle {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-  }
-
-  .animate-once .check-circle {
-    animation: draw-check 0.8s forwards;
-  }
-
-  @keyframes draw-check {
+  @keyframes rotate-reverse {
+    from {
+      transform: rotate(360deg);
+    }
     to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  /* Border Animation */
-  .animate-once .absolute.inset-0 {
-    animation: border-glow 1.5s forwards;
-  }
-
-  @keyframes border-glow {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    100% {
-      opacity: 0.4;
-      transform: scale(1);
+      transform: rotate(0deg);
     }
   }
 </style>

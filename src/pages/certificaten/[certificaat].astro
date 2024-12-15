@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { certifications } from '../../data/certifications';
+
+export function getStaticPaths() {
+  return Object.entries(certifications).map(([slug, data]) => ({
+    params: { certificaat: slug },
+    props: { certification: data }
+  }));
+}
+
+const { certification } = Astro.props;
+---
+
+<Layout title={`${certification.title} | Van Tilburg Kozijnen`}>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="bg-gray-50 py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <a href={certification.url} target="_blank" rel="noopener noreferrer" class="inline-block">
+                        <img 
+                            src={certification.image} 
+                            alt={`${certification.title} logo`}
+                            class="w-48 h-48 object-contain mb-8 mx-auto hover:opacity-80 transition-opacity"
+                        />
+                    </a>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{certification.title}</h1>
+                    <a 
+                        href={certification.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-primary-600 hover:text-primary-700 font-semibold"
+                    >
+                        Bezoek de officiële website →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Info -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="prose prose-lg">
+                        <div class="text-gray-600 leading-relaxed whitespace-pre-line">
+                            {certification.description}
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center">
+                        <a
+                            href="/over-ons#certificeringen"
+                            class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Terug naar certificeringen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

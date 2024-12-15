@@ -14,11 +14,14 @@ import Button from './ui/Button.astro';
   
   <div class="relative container mx-auto px-4 h-screen flex items-center">
     <div class="max-w-3xl" data-aos="fade-up" data-aos-delay="200">
+      <div class="mb-4 text-primary-500 font-semibold tracking-wide uppercase" data-aos="fade-up">
+        Specialist in grootschalige projecten
+      </div>
       <h1 class="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-        Tijdloze Kwaliteit in<br class="hidden sm:block" />Houten Kozijnen
+        Toonaangevend in<br class="hidden sm:block" />Kozijnen & Deuren
       </h1>
       <p class="font-commons text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl" data-aos="fade-up" data-aos-delay="400">
-        Ambachtelijk vakmanschap ontmoet moderne techniek voor het perfecte resultaat in uw woning.
+        Uw betrouwbare partner voor woningcorporaties, aannemers en vastgoedbeheerders. Specialist in nieuwbouw en renovatie.
       </p>
       <div data-aos="fade-up" data-aos-delay="600">
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -27,27 +30,14 @@ import Button from './ui/Button.astro';
             data-modal="quote"
             class="w-full sm:w-auto inline-flex text-center justify-center px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl hover:shadow-primary-600/20 backdrop-blur-sm transition-all duration-300"
           >
-            Vrijblijvende offerte
+            Plan een gesprek
           </button>
           <Button href="#projecten" variant="secondary" class="w-full sm:w-auto text-center justify-center border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white backdrop-blur-sm transition-all duration-300">
-            Bekijk ons werk
+            Bekijk onze projecten
           </Button>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
-    <button 
-      class="flex flex-col items-center animate-bounce p-4 bg-primary-600 hover:bg-primary-700 rounded-full shadow-lg hover:shadow-xl hover:shadow-primary-600/20 transition-all duration-300 group"
-      onclick="document.getElementById('over-ons').scrollIntoView({ behavior: 'smooth' })"
-    >
-      <span class="font-commons text-sm text-white">Ontdek meer</span>
-      <svg class="w-5 h-5 text-white mt-1 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-      </svg>
-    </button>
   </div>
 </section>
 

@@ -9,8 +9,7 @@ export default defineConfig({
   site: 'https://vantilburgkozijnen.nl',
   integrations: [
     tailwind({
-      // Don't apply base styles as we use our own base.css
-      applyBaseStyles: false
+      applyBaseStyles: true
     }),
     sitemap(),
     prefetch()
