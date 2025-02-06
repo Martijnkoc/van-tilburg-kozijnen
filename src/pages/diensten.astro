@@ -1,84 +1,156 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import WorkProcess from '../components/WorkProcess.astro';
+import USPBar from '../components/USPBar.astro';
+import FAQ from '../components/FAQ.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Kozijnen Services van Van Tilburg",
+  "description": "Specialist in houten kozijnen voor nieuwbouw en renovatie. Van advies tot montage, wij verzorgen het complete proces.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Van Tilburg Kozijnen"
+  }
+};
 
 const services = [
-    {
-        title: 'Nieuwbouw',
-        description: 'Van ontwerp tot realisatie verzorgen wij uw complete nieuwbouwproject. Met oog voor detail en kwaliteit creëren we uw droomproject.',
-        features: [
-            'Professioneel projectmanagement',
-            'Hoogwaardige materialen',
-            'Duurzame oplossingen',
-            'Tijdige oplevering',
-        ],
-        image: '/images/service-nieuwbouw.jpg',
-    },
-    {
-        title: 'Renovatie',
-        description: 'Specialistische renovatie met respect voor het bestaande gebouw. We combineren traditionele technieken met moderne oplossingen.',
-        features: [
-            'Behoud van karakter',
-            'Energiebesparende maatregelen',
-            'Minimale overlast',
-            'Vakkundig uitgevoerd',
-        ],
-        image: '/images/service-renovatie.jpg',
-    },
-    {
-        title: 'Onderhoud',
-        description: 'Preventief en correctief onderhoud voor een langere levensduur van uw kozijnen. Regelmatig onderhoud voorkomt onnodige kosten.',
-        features: [
-            'Periodieke inspectie',
-            'Snelle service',
-            'Deskundig advies',
-            'Kwaliteitsgarantie',
-        ],
-        image: '/images/service-onderhoud.jpg',
-    }
+  {
+    title: "Nieuwbouw Kozijnen",
+    description: "Hoogwaardige kozijnen voor uw nieuwbouwproject. We adviseren over materialen, isolatie en design.",
+    features: [
+      "Maatwerk productie",
+      "Hoogwaardige materialen",
+      "Uitstekende isolatie",
+      "Compleet projectmanagement"
+    ],
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5"
+  },
+  {
+    title: "Renovatie",
+    description: "Vakkundige renovatie van bestaande kozijnen of complete vervanging met behoud van karakter.",
+    features: [
+      "Behoud van authentieke details",
+      "Energiebesparende oplossingen",
+      "Minimale overlast",
+      "Snelle uitvoering"
+    ],
+    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+  },
+  {
+    title: "Onderhoud",
+    description: "Preventief en correctief onderhoud om uw kozijnen in topconditie te houden.",
+    features: [
+      "Periodieke inspectie",
+      "Professionele behandeling",
+      "Duurzame bescherming",
+      "Verlengde levensduur"
+    ],
+    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724"
+  }
+];
+
+const faqs = [
+  {
+    question: "Hoe lang duurt een kozijn renovatie gemiddeld?",
+    answer: "De duur van een renovatie hangt af van de omvang van het project. Gemiddeld duurt een complete kozijnrenovatie voor een woning 2-3 dagen. We streven ernaar de overlast tot een minimum te beperken."
+  },
+  {
+    question: "Kan ik mijn kozijnen laten renoveren in plaats van vervangen?",
+    answer: "In veel gevallen is renovatie mogelijk en kosteneffectief. We beoordelen de staat van uw kozijnen en adviseren of renovatie of vervanging de beste optie is."
+  },
+  {
+    question: "Welke garantie krijg ik op nieuwe kozijnen?",
+    answer: "We bieden uitgebreide garantie op zowel materiaal als montage. Voor Accoya kozijnen geldt bijvoorbeeld een garantie tot 50 jaar. De exacte garantievoorwaarden bespreken we tijdens het adviesgesprek."
+  }
 ];
 ---
 
-<Layout title="Diensten - R.VAN TILBURG KOZIJNEN">
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section class="bg-gray-50 py-20">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Onze Diensten</h1>
-                    <p class="text-xl text-gray-600">Ontdek ons complete aanbod aan diensten</p>
-                </div>
-            </div>
-        </section>
+<PageLayout 
+  title="Onze Diensten"
+  description="Specialist in houten kozijnen voor nieuwbouw en renovatie. Van advies tot montage, wij verzorgen het complete proces."
+  schema={schema}
+  keywords="kozijnen nieuwbouw, kozijnen renovatie, kozijnen onderhoud, houten kozijnen waalwijk"
+  breadcrumbs={[
+    { title: "Diensten", url: "/diensten" }
+  ]}
+>
+  <!-- Intro Section -->
+  <section class="mb-16">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Vakmanschap & Expertise</h2>
+      <p class="text-lg text-gray-600">
+        Met meer dan 35 jaar ervaring zijn wij specialist in het leveren en monteren van hoogwaardige houten kozijnen. 
+        Of het nu gaat om nieuwbouw, renovatie of onderhoud, wij staan garant voor kwaliteit en vakmanschap.
+      </p>
+    </div>
+  </section>
 
-        <!-- Services Grid -->
-        <section class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service) => (
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img
-                                src={service.image}
-                                alt={service.title}
-                                class="w-full h-48 object-cover"
-                            />
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                                <p class="text-gray-600 mb-6">{service.description}</p>
-                                <ul class="space-y-2">
-                                    {service.features.map((feature) => (
-                                        <li class="flex items-center text-gray-600">
-                                            <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                            </svg>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  <!-- Services Grid -->
+  <section class="mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map(service => (
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon}></path>
+              </svg>
             </div>
-        </section>
-    </main>
-</Layout>
+            <h3 class="text-xl font-semibold">{service.title}</h3>
+          </div>
+          
+          <p class="text-gray-600 mb-4">{service.description}</p>
+          
+          <ul class="space-y-2">
+            {service.features.map(feature => (
+              <li class="flex items-center text-sm text-gray-500">
+                <svg class="w-4 h-4 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- USP Bar -->
+  <USPBar />
+
+  <!-- Work Process -->
+  <section class="mb-16">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold mb-4">Onze Werkwijze</h2>
+      <p class="text-lg text-gray-600">
+        Van eerste contact tot nazorg, wij begeleiden u door het hele proces
+      </p>
+    </div>
+    <WorkProcess />
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Veelgestelde Vragen</h2>
+    <FAQ questions={faqs} />
+  </section>
+
+  <!-- Call to Action -->
+  <section class="text-center bg-orange-50 rounded-2xl p-8">
+    <h2 class="text-3xl font-bold mb-4">Interesse in onze diensten?</h2>
+    <p class="text-lg text-gray-600 mb-6">
+      Neem contact met ons op voor een vrijblijvend adviesgesprek
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="/offerte" class="btn btn-primary">
+        Vraag een offerte aan
+      </a>
+      <a href="/contact" class="btn btn-secondary">
+        Neem contact op
+      </a>
+    </div>
+  </section>
+</PageLayout>

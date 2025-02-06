@@ -1,6 +1,7 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component } from 'react';
+import type { ErrorInfo, ReactNode, HTMLAttributes } from 'react';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   fallback?: ReactNode;
 }
@@ -11,24 +12,28 @@ interface State {
 }
 
 export class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-  public static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error:', error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error('Error caught by ErrorBoundary:', error, errorInfo);
   }
 
-  public render() {
+  render(): ReactNode {
     if (this.state.hasError) {
       return this.props.fallback || (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-          <h2 className="text-red-800 font-semibold">Er is iets misgegaan</h2>
-          <p className="text-red-600">Probeer de pagina te verversen of neem contact met ons op als het probleem aanhoudt.</p>
+        <div role="alert" className="error-boundary">
+          <h2>Something went wrong.</h2>
+          <details>
+            <summary>Error details</summary>
+            <pre>{this.state.error?.toString()}</pre>
+          </details>
         </div>
       );
     }

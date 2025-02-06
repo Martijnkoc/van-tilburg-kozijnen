@@ -1,0 +1,126 @@
+---
+interface Props {
+  type: 'contact' | 'offerte';
+}
+
+const { type } = Astro.props;
+---
+
+<form
+  id="contactForm"
+  class="space-y-8 max-w-2xl mx-auto"
+  data-form-type={type}
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Naam *</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw naam"
+      />
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw emailadres"
+      />
+    </div>
+
+    <div>
+      <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefoon</label>
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw telefoonnummer"
+      />
+    </div>
+
+    <div class="md:col-span-2">
+      <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Bericht *</label>
+      <textarea
+        name="message"
+        id="message"
+        rows="4"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder={type === 'contact' ? 'Uw bericht...' : 'Beschrijf uw project en wensen...'}
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between pt-2">
+    <p class="text-sm text-gray-500">* Verplichte velden</p>
+    <button
+      type="submit"
+      class="inline-flex justify-center rounded-lg border border-transparent bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+    >
+      {type === 'contact' ? 'Verstuur bericht' : 'Vraag offerte aan'}
+    </button>
+  </div>
+
+  <div
+    id="formMessage"
+    class="hidden rounded-lg p-4 mt-4"
+    role="alert"
+  ></div>
+</form>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const messageDiv = document.getElementById('formMessage');
+
+  if (form && messageDiv) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Clear previous message
+      messageDiv.textContent = '';
+      messageDiv.className = 'hidden rounded-lg p-4 mt-4';
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message'),
+        type: form.dataset.formType
+      };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          messageDiv.textContent = result.message;
+          messageDiv.className = 'rounded-lg bg-green-50 p-4 mt-4 text-green-700';
+          form.reset();
+        } else {
+          throw new Error(result.error || 'Er is iets misgegaan');
+        }
+      } catch (error) {
+        messageDiv.textContent = error instanceof Error ? error.message : 'Er is iets misgegaan';
+        messageDiv.className = 'rounded-lg bg-red-50 p-4 mt-4 text-red-700';
+      }
+    });
+  }
+</script>

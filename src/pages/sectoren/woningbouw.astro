@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import B2BContactForm from '../../components/B2BContactForm.astro';
+
+const features = [
+    {
+        title: "Energiezuinig",
+        description: "Voldoet aan de BENG-eisen voor nieuwbouwwoningen",
+        icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>`
+    },
+    {
+        title: "Duurzaam",
+        description: "FSC® gecertificeerd hout en circulaire productie",
+        icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>`
+    },
+    {
+        title: "Onderhoudsarm",
+        description: "Minimale onderhoudskosten voor VvE's en woningcorporaties",
+        icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        </svg>`
+    },
+    {
+        title: "Inbraakwerend",
+        description: "SKG*** gecertificeerd voor optimale veiligheid",
+        icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>`
+    }
+];
+
+const solutions = [
+    {
+        title: "Nieuwbouw",
+        description: "Complete kozijnpakketten voor nieuwbouwprojecten",
+        items: [
+            "BENG-proof oplossingen",
+            "Prefab mogelijkheden",
+            "Snelle montage",
+            "Turn-key oplevering"
+        ]
+    },
+    {
+        title: "Renovatie",
+        description: "Kozijnvervanging voor bestaande woningen",
+        items: [
+            "Minimale overlast",
+            "1-dag montage mogelijk",
+            "Behoud architectuur",
+            "Energielabel verbetering"
+        ]
+    },
+    {
+        title: "VvE's & Corporaties",
+        description: "Grootschalige projecten voor woningcorporaties",
+        items: [
+            "Projectbegeleiding",
+            "Bewonerscommuncatie",
+            "Onderhoudscontracten",
+            "Gefaseerde uitvoering"
+        ]
+    }
+];
+
+const references = [
+    {
+        name: "De Kroon Rotterdam",
+        description: "120 appartementen gerenoveerd",
+        result: "Energielabel A+"
+    },
+    {
+        name: "Woonwijk Vathorst",
+        description: "350 nieuwbouwwoningen",
+        result: "BENG-norm behaald"
+    },
+    {
+        name: "VvE Parkzicht",
+        description: "Renovatie 80 appartementen",
+        result: "40% energiebesparing"
+    }
+];
+---
+
+<Layout title="Woningbouw | Van Tilburg Kozijnen">
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-primary-900 text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-primary-900 to-blue-900/50"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                    Woningbouw
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+                    Duurzame kozijnoplossingen voor nieuwbouw, renovatie en woningcorporaties
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {features.map((feature) => (
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="text-primary-600" set:html={feature.icon} />
+                        <h3 class="mt-4 text-xl font-bold text-gray-900">{feature.title}</h3>
+                        <p class="mt-2 text-gray-600">{feature.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Onze Oplossingen</h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Specialistische kozijnoplossingen voor elk type woningbouwproject
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {solutions.map((solution) => (
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{solution.title}</h3>
+                        <p class="text-gray-600 mb-4">{solution.description}</p>
+                        <ul class="space-y-2">
+                            {solution.items.map((item) => (
+                                <li class="flex items-center text-gray-600">
+                                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- References -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Referenties</h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Ontdek onze succesvolle woningbouwprojecten
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {references.map((ref) => (
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{ref.name}</h3>
+                        <p class="text-gray-600 mb-4">{ref.description}</p>
+                        <div class="flex items-center text-primary-600">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {ref.result}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div class="text-center mt-8">
+                <a href="/projecten?sector=woningbouw" class="inline-flex items-center text-primary-600 hover:text-primary-700">
+                    Bekijk alle woningbouwprojecten
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Start uw project</h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Neem contact op voor een vrijblijvend gesprek over uw woningbouwproject
+                </p>
+            </div>
+            <B2BContactForm />
+        </div>
+    </section>
+</Layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add any sector-specific JavaScript functionality here
+});
+</script>

@@ -1,0 +1,267 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import WorkProcess from '../components/WorkProcess.astro';
+
+const benefits = [
+  {
+    title: "Duurzaam",
+    description: "Accoya hout gaat minimaal 50 jaar mee en is CO2-neutraal over de gehele levenscyclus.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>`
+  },
+  {
+    title: "Onderhoudsarm",
+    description: "Minder onderhoud nodig dan traditioneel hout, wat zorgt voor lagere kosten op lange termijn.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>`
+  },
+  {
+    title: "Vormvast",
+    description: "Minimale uitzetting en krimp, waardoor kozijnen perfect blijven functioneren.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+    </svg>`
+  }
+];
+
+const specifications = [
+  { label: "Levensduur", value: "50+ jaar" },
+  { label: "Garantie", value: "25 jaar" },
+  { label: "Duurzaamheidsklasse", value: "Klasse 1" },
+  { label: "FSC-gecertificeerd", value: "Ja" },
+  { label: "Onderhoudsinterval", value: "6-10 jaar" },
+  { label: "UV-bestendig", value: "Ja" }
+];
+
+const faqs = [
+  {
+    question: "Wat is Accoya hout?",
+    answer: "Accoya is een gemodificeerd hout dat door een speciale behandeling zeer duurzaam en stabiel wordt. Het hout wordt op moleculair niveau gemodificeerd, waardoor het beter bestand is tegen rot en schimmel."
+  },
+  {
+    question: "Waarom kiezen voor Accoya kozijnen?",
+    answer: "Accoya kozijnen bieden superieure duurzaamheid, zijn onderhoudsarm en hebben een lange levensduur. Ze zijn perfect voor zowel nieuwbouw als renovatie en dragen bij aan een duurzame toekomst."
+  },
+  {
+    question: "Hoe lang gaan Accoya kozijnen mee?",
+    answer: "Accoya kozijnen hebben een gegarandeerde levensduur van minimaal 50 jaar bovengronds. Met het juiste onderhoud kunnen ze nog langer meegaan."
+  }
+];
+---
+
+<Layout title="Accoya Kozijnen">
+  <div class="pt-20">
+    <Breadcrumbs items={[
+      {
+        title: "Producten",
+        url: "/producten"
+      },
+      {
+        title: "Accoya Kozijnen",
+        url: "/accoya"
+      }
+    ]} />
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-24">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0 bg-[radial-gradient(#1F56A3_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      </div>
+
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+            Accoya Kozijnen
+            <span class="text-primary-600 block">De toekomst van duurzaam bouwen</span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Ontdek waarom Accoya de beste keuze is voor uw kozijnen. Duurzaam, onderhoudsarm en met een levensduur van meer dan 50 jaar.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" class="btn btn-primary">
+              Neem contact op
+            </a>
+            <a href="#voordelen" class="btn btn-secondary">
+              Ontdek de voordelen
+            </a>
+          </div>
+        </div>
+
+        <!-- Feature Image -->
+        <div class="mt-16 relative mx-auto max-w-5xl">
+          <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src="/images/products/accoya-hero.jpg" 
+              alt="Accoya Kozijnen" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <!-- Floating cards -->
+          <div class="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4 max-w-xs animate-float">
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0">
+                <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900">50+ jaar levensduur</p>
+                <p class="text-sm text-gray-500">Gegarandeerde duurzaamheid</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -top-6 -right-6 bg-white rounded-lg shadow-lg p-4 max-w-xs animate-float delay-150">
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0">
+                <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900">Onderhoudsarm</p>
+                <p class="text-sm text-gray-500">Langere intervallen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="voordelen" class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Waarom kiezen voor Accoya?</h2>
+          <p class="text-xl text-gray-600">
+            Accoya biedt unieke voordelen die het de perfecte keuze maken voor uw kozijnen.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          {benefits.map((benefit) => (
+            <div class="group relative">
+              <div class="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Fragment set:html={benefit.icon} />
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
+              <p class="text-gray-600">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section class="py-24 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Technische Specificaties</h2>
+          <p class="text-xl text-gray-600">
+            Accoya voldoet aan de hoogste kwaliteitseisen en normen in de bouw.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {specifications.map((spec) => (
+            <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <dt class="text-sm font-medium text-gray-500">{spec.label}</dt>
+              <dd class="mt-1 text-2xl font-semibold text-gray-900">{spec.value}</dd>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Process Section -->
+    <WorkProcess />
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Veelgestelde vragen</h2>
+          <p class="text-xl text-gray-600">
+            Antwoorden op de meest gestelde vragen over Accoya kozijnen.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto divide-y divide-gray-200">
+          {faqs.map((faq) => (
+            <div class="py-6">
+              <dt class="text-lg font-semibold text-gray-900">{faq.question}</dt>
+              <dd class="mt-3 text-gray-600">{faq.answer}</dd>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-primary-900 relative overflow-hidden">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      </div>
+
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl font-bold text-white mb-6">
+            Klaar om te investeren in kwaliteit?
+          </h2>
+          <p class="text-xl text-primary-100 mb-8">
+            Laat ons u helpen bij het kiezen van de perfecte Accoya kozijnen voor uw project.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact" 
+              class="btn-white px-8 py-4 rounded-full text-lg font-medium inline-flex items-center justify-center"
+            >
+              Neem contact op
+            </a>
+            <a 
+              href="/offerte" 
+              class="btn-outline-white px-8 py-4 rounded-full text-lg font-medium inline-flex items-center justify-center"
+            >
+              Vraag een offerte aan
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-900 hover:bg-gray-50 focus:ring-gray-500 shadow-sm;
+  }
+</style>

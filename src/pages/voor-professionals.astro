@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import B2BContactForm from '../components/B2BContactForm.astro';
+
+// Import styles
+import '../styles/main.css';
+
+const resources = [
+  {
+    title: "Technische Documentatie",
+    description: "Download technische specificaties, handleidingen en certificeringen",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>`,
+    links: [
+      { text: "Accoya Specificaties", url: "/downloads/accoya-specs.pdf" },
+      { text: "Hardhout Details", url: "/downloads/hardhout-specs.pdf" },
+      { text: "Montage Handleiding", url: "/downloads/montage-handleiding.pdf" }
+    ]
+  },
+  {
+    title: "CAD & BIM",
+    description: "Download CAD-tekeningen en BIM-modellen voor uw project",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+    </svg>`,
+    links: [
+      { text: "CAD Bibliotheek", url: "/downloads/cad-library.zip" },
+      { text: "BIM Modellen", url: "/downloads/bim-models.zip" },
+      { text: "Revit Families", url: "/downloads/revit-families.zip" }
+    ]
+  },
+  {
+    title: "Certificeringen",
+    description: "Bekijk onze kwaliteitscertificaten en normeringen",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+    </svg>`,
+    links: [
+      { text: "ISO 9001:2015", url: "/downloads/iso-9001.pdf" },
+      { text: "KOMO Certificaat", url: "/downloads/komo-cert.pdf" },
+      { text: "FSC Certificering", url: "/downloads/fsc-cert.pdf" }
+    ]
+  }
+];
+
+const caseStudies = [
+  {
+    title: "Appartementencomplex De Horizon",
+    location: "Tilburg",
+    description: "92 luxe appartementen voorzien van Accoya kozijnen",
+    image: "/images/projects/horizon.jpg",
+    specs: "450+ kozijnen | 8 maanden | €1.2M",
+    link: "/projecten/horizon"
+  },
+  {
+    title: "Renovatie Historisch Centrum",
+    location: "Breda",
+    description: "Restauratie en renovatie van monumentale panden",
+    image: "/images/projects/breda.jpg",
+    specs: "200+ kozijnen | 12 maanden | €800K",
+    link: "/projecten/breda-centrum"
+  },
+  {
+    title: "Nieuwbouw Kantoorpand EDGE",
+    location: "Rotterdam",
+    description: "Duurzaam kantoorgebouw met BREEAM Outstanding",
+    image: "/images/projects/edge.jpg",
+    specs: "600+ kozijnen | 14 maanden | €2.1M",
+    link: "/projecten/edge-rotterdam"
+  }
+];
+---
+
+<Layout title="Voor Professionals | Van Tilburg Kozijnen">
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+      </div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          Voor <span class="text-gradient">Professionals</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+          Technische documentatie, BIM-modellen en projectreferenties voor architecten, aannemers en projectontwikkelaars.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Grid -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {resources.map((resource) => (
+          <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="text-primary-600" set:html={resource.icon} />
+            <h3 class="mt-4 text-xl font-bold text-gray-900">{resource.title}</h3>
+            <p class="mt-2 text-gray-600">{resource.description}</p>
+            <div class="mt-4 space-y-2">
+              {resource.links.map((link) => (
+                <a
+                  href={link.url}
+                  class="block text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  {link.text} →
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">Uitgelichte Projecten</h2>
+        <p class="mt-4 text-xl text-gray-600">Ontdek onze meest uitdagende en succesvolle projecten</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {caseStudies.map((study) => (
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <img
+              src={study.image}
+              alt={study.title}
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900">{study.title}</h3>
+              <p class="text-sm text-primary-600 mt-1">{study.location}</p>
+              <p class="mt-2 text-gray-600">{study.description}</p>
+              <p class="mt-2 text-sm text-gray-500">{study.specs}</p>
+              <a
+                href={study.link}
+                class="mt-4 inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
+              >
+                Bekijk project details →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B Contact Form -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">Direct Contact</h2>
+        <p class="mt-4 text-xl text-gray-600">
+          Neem contact op voor een vrijblijvend gesprek over uw project
+        </p>
+      </div>
+
+      <B2BContactForm />
+    </div>
+  </section>
+
+  <!-- Project Planning -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">Projectbegeleiding</h2>
+        <p class="mt-4 text-xl text-gray-600">
+          Van ontwerp tot realisatie staan wij klaar voor uw project
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+          <h3 class="mt-4 text-lg font-bold text-gray-900">Ontwerpfase</h3>
+          <p class="mt-2 text-gray-600">Technisch advies en ondersteuning bij het ontwerp</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+          <h3 class="mt-4 text-lg font-bold text-gray-900">Engineering</h3>
+          <p class="mt-2 text-gray-600">Technische uitwerking en productietekeningen</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">3</div>
+          <h3 class="mt-4 text-lg font-bold text-gray-900">Productie</h3>
+          <p class="mt-2 text-gray-600">Maatwerk productie in eigen fabriek</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">4</div>
+          <h3 class="mt-4 text-lg font-bold text-gray-900">Montage</h3>
+          <p class="mt-2 text-gray-600">Professionele montage door eigen teams</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

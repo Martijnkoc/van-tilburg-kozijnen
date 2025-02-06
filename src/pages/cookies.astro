@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    title: "Wat zijn cookies?",
+    content: `Cookies zijn kleine tekstbestanden die tijdens uw bezoek aan onze website op uw computer, tablet of smartphone worden geplaatst. In deze bestanden wordt informatie opgeslagen die bij een later bezoek weer kan worden herkend door de website.`
+  },
+  {
+    title: "Welke cookies gebruiken wij?",
+    subsections: [
+      {
+        title: "Functionele cookies",
+        content: "Deze cookies zijn nodig om de website goed te laten functioneren. Ze zorgen er bijvoorbeeld voor dat uw voorkeuren worden onthouden en dat u ingelogd kunt blijven."
+      },
+      {
+        title: "Analytische cookies",
+        content: "Met analytische cookies verzamelen wij met behulp van derden statistieken over het gebruik van onze website. Door websitegebruik te meten kunnen we onze website blijven verbeteren in het voordeel van onze gebruikers."
+      },
+      {
+        title: "Marketing cookies",
+        content: "Marketing cookies worden gebruikt om het surfgedrag van bezoekers te volgen. Hiermee kunnen we relevante advertenties tonen op basis van uw interesses."
+      }
+    ]
+  },
+  {
+    title: "Cookie instellingen",
+    content: `U kunt uw cookie-instellingen aanpassen door uw browserinstellingen te wijzigen. U kunt uw browser zo instellen dat alle cookies worden geweigerd of dat u wordt gewaarschuwd wanneer cookies worden verzonden.`
+  },
+  {
+    title: "Cookies verwijderen",
+    content: `De meeste cookies hebben een houdbaarheidsdatum. Dat betekent dat ze na een bepaalde periode automatisch verlopen en geen gegevens van uw sitebezoek meer registreren. U kunt er ook voor kiezen de cookies handmatig te verwijderen voordat de houdbaarheidsdatum is verstreken.`
+  }
+];
+
+const browsers = [
+  {
+    name: "Google Chrome",
+    instructions: [
+      "Klik op de 3 puntjes rechtsboven",
+      "Klik op 'Instellingen'",
+      "Klik op 'Privacy en beveiliging'",
+      "Klik op 'Cookies en andere sitegegevens'",
+      "Hier kunt u cookies beheren of verwijderen"
+    ]
+  },
+  {
+    name: "Mozilla Firefox",
+    instructions: [
+      "Klik op het menu rechtsboven (≡)",
+      "Klik op 'Instellingen'",
+      "Ga naar 'Privacy & Beveiliging'",
+      "Onder 'Cookies en Sitegegevens' kunt u cookies beheren"
+    ]
+  },
+  {
+    name: "Microsoft Edge",
+    instructions: [
+      "Klik op de 3 puntjes rechtsboven",
+      "Klik op 'Instellingen'",
+      "Klik op 'Cookies en siterechten'",
+      "Hier kunt u cookies beheren of verwijderen"
+    ]
+  },
+  {
+    name: "Safari",
+    instructions: [
+      "Klik op 'Safari' in de menubalk",
+      "Kies 'Voorkeuren'",
+      "Ga naar het tabblad 'Privacy'",
+      "Hier kunt u cookies beheren of verwijderen"
+    ]
+  }
+];
+---
+
+<Layout title="Cookiebeleid | Van Tilburg Kozijnen">
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+      </div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          Cookie<span class="text-gradient">beleid</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+          Informatie over het gebruik van cookies op onze website
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cookie Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg prose-orange">
+        <p class="text-gray-600 mb-8">
+          Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        {sections.map((section) => (
+          <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+            {section.content && <p class="text-gray-600 mb-6">{section.content}</p>}
+            {section.subsections && (
+              <div class="space-y-6">
+                {section.subsections.map((subsection) => (
+                  <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">{subsection.title}</h3>
+                    <p class="text-gray-600">{subsection.content}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        <!-- Browser Instructions -->
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Cookies beheren per browser</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {browsers.map((browser) => (
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">{browser.name}</h3>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                  {browser.instructions.map((instruction) => (
+                    <li>{instruction}</li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="mt-12 p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Vragen over cookies?</h2>
+          <p class="text-gray-600">
+            Heeft u vragen over ons cookiebeleid? Neem dan contact met ons op:
+          </p>
+          <div class="mt-4 text-gray-600">
+            <p>Van Tilburg Kozijnen</p>
+            <p>Industrieweg 12</p>
+            <p>5145 PV Waalwijk</p>
+            <p>Tel: <a href="tel:0416123456" class="text-orange-600 hover:text-orange-700">0416-123456</a></p>
+            <p>Email: <a href="mailto:info@vantilburgkozijnen.nl" class="text-orange-600 hover:text-orange-700">info@vantilburgkozijnen.nl</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

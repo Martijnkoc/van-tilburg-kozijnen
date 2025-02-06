@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="404 - Pagina niet gevonden | Van Tilburg Kozijnen">
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full text-center">
+      <div class="mb-8">
+        <h1 class="text-9xl font-bold text-primary-600">404</h1>
+        <h2 class="mt-6 text-3xl font-bold text-gray-900">
+          Oeps! Pagina niet gevonden
+        </h2>
+        <p class="mt-2 text-sm text-gray-600">
+          De pagina die u zoekt bestaat niet of is verplaatst.
+        </p>
+      </div>
+      <div class="mt-8 space-y-4">
+        <a
+          href="/"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+          Terug naar home
+        </a>
+        <div class="mt-4">
+          <a href="/contact" class="text-primary-600 hover:text-primary-500">
+            Contact opnemen <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

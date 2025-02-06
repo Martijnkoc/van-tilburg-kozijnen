@@ -2,109 +2,102 @@
 const steps = [
   {
     number: "01",
-    title: "Strategisch adviesgesprek",
-    description: "Onze experts analyseren uw project en adviseren over de beste oplossingen voor uw specifieke situatie.",
-    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+    title: "Persoonlijk adviesgesprek",
+    description: "Onze ervaren adviseurs bespreken uw wensen en eisen. We analyseren uw project en delen onze expertise over materialen, design en duurzame oplossingen.",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+    details: ["Gratis advies", "Materiaaladvies", "Duurzaamheidsopties"]
   },
   {
     number: "02",
     title: "Technische inmeting",
-    description: "Ons technisch team voert een gedetailleerde inmeting uit en brengt alle technische specificaties in kaart.",
-    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+    description: "Ons technisch team voert een gedetailleerde inmeting uit. We controleren de bouwkundige situatie en maken een technisch plan dat voldoet aan alle bouweisen.",
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
+    details: ["Exacte maatvoering", "Technische analyse", "Bouwkundige check"]
   },
   {
     number: "03",
-    title: "Project offerte",
-    description: "U ontvangt een gedetailleerde offerte met transparante prijsopbouw, planning en projectspecificaties.",
-    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+    title: "Gedetailleerde offerte",
+    description: "U ontvangt een heldere offerte met alle specificaties. We bieden verschillende opties en een duidelijke prijsopbouw zonder verborgen kosten.",
+    icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+    details: ["Transparante prijzen", "Meerdere opties", "Duidelijke planning"]
   },
   {
     number: "04",
     title: "Productie & Kwaliteitscontrole",
-    description: "Uw kozijnen worden geproduceerd volgens ISO-normen met uitgebreide kwaliteitscontroles in elke fase.",
-    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608"
+    description: "Uw kozijnen worden met precisie geproduceerd in onze werkplaats. Elke fase wordt gecontroleerd volgens strenge kwaliteitsnormen.",
+    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724",
+    details: ["ISO-normen", "Kwaliteitscontroles", "Vakmanschap"]
+  },
+  {
+    number: "05",
+    title: "Vakkundige montage",
+    description: "Ons ervaren montageteam installeert uw kozijnen met de grootste zorg. We werken netjes en zorgen voor een perfect eindresultaat.",
+    icon: "M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z",
+    details: ["Gecertificeerde monteurs", "Nette werkwijze", "Kwaliteitsgarantie"]
+  },
+  {
+    number: "06",
+    title: "Nazorg & Garantie",
+    description: "Na oplevering blijven we voor u klaar staan. U krijgt uitgebreide garantie en we bieden onderhoudstips voor een langdurig perfect resultaat.",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    details: ["10 jaar garantie", "Onderhoudstips", "Service-gerichte nazorg"]
   }
 ];
 ---
 
-<div class="process-timeline relative">
-  <!-- Steps -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-    {steps.map((step, index) => (
-      <div 
-        class="process-step relative h-[280px]"
-        data-step={index + 1}
-      >
-        <div class="card-3d-wrapper h-full">
-          <div class="card-front bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 h-full transform transition-all duration-500 hover:scale-105 flex flex-col">
-            <!-- Step Number & Icon -->
-            <div class="flex items-center justify-center mb-4 relative">
-              <div class="relative w-20 h-20">
-                <!-- Animated Border -->
-                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-400/40 to-primary-600/40"></div>
-                <!-- Icon Container -->
-                <div class="absolute inset-[2px] rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm overflow-hidden group">
-                  {step.number === "01" && (
-                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
-                      <path class="document-line" d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="document-line delay-1" d="M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="document-outline" d="M7 21a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                  )}
-                  {step.number === "02" && (
-                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
-                      <path class="measure-line" d="M4 21h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="measure-tick" d="M6 21v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="measure-tick delay-1" d="M10 21v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="measure-tick delay-2" d="M14 21v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path class="measure-tick delay-3" d="M18 21v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  )}
-                  {step.number === "03" && (
-                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
-                      <path class="paper-outline" d="M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
-                      <path class="checkmark delay-1" d="M9 11l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  )}
-                  {step.number === "04" && (
-                    <svg class="w-12 h-12 text-primary-500 animated-icon" viewBox="0 0 24 24" fill="none">
-                      <path class="gear-outline" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37c.996.608" stroke="currentColor" stroke-width="2"/>
-                      <circle class="gear-center" cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                  )}
-                </div>
+<div class="bg-gradient-to-b from-orange-50 to-white py-16 lg:py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Onze werkwijze</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Van eerste gesprek tot nazorg: wij begeleiden u door het hele proces met vakmanschap en persoonlijke aandacht.</p>
+    </div>
+    
+    <div class="process-timeline grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {steps.map((step, index) => (
+        <div 
+          class="process-step relative"
+          data-step={index + 1}
+        >
+          <div class="card-3d-wrapper h-full">
+            <div class="card-front bg-white rounded-2xl p-6 shadow-lg border border-orange-100 h-full transform transition-all duration-500 hover:scale-105 hover:shadow-xl flex flex-col">
+              <!-- Step Number & Icon -->
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl font-bold text-orange-500">{step.number}</span>
+                <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon}></path>
+                </svg>
               </div>
-              <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold shadow-lg">
-                {step.number}
-              </div>
-            </div>
-
-            <!-- Content -->
-            <div class="text-center relative z-10 flex-grow flex flex-col justify-center">
-              <h4 class="text-lg font-bold text-text-dark mb-1.5 font-montreal">{step.title}</h4>
-              <p class="text-[0.9rem] leading-snug text-text-light font-commons">{step.description}</p>
-            </div>
-
-            <!-- Decorative Elements -->
-            <div class="absolute inset-0 rounded-2xl transition-all duration-500">
-              <div class="absolute top-0 left-1/2 w-px h-0 group-hover:h-full bg-gradient-to-b from-transparent via-primary-500/20 to-transparent transition-all duration-500"></div>
-              <div class="absolute left-0 top-1/2 h-px w-0 group-hover:w-full bg-gradient-to-r from-transparent via-primary-500/20 to-transparent transition-all duration-500"></div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
+              <p class="text-gray-600 mb-4 flex-grow">{step.description}</p>
+              
+              <!-- Details -->
+              <ul class="space-y-2">
+                {step.details.map((detail) => (
+                  <li class="flex items-center text-sm text-gray-500">
+                    <svg class="w-4 h-4 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+          
+          {index !== steps.length - 1 && index % 3 !== 2 && (
+            <div class="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+              <div class="relative w-8">
+                <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                  <path d="M2 12H30M30 12L20 4M30 12L20 20" stroke="rgb(249, 115, 22)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          )}
         </div>
-
-        <!-- Connection Line -->
-        {index !== steps.length - 1 && (
-          <div class="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-            <div class="relative w-8">
-              <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
-                <path d="M2 12H30M30 12L20 4M30 12L20 20" stroke="rgb(249, 115, 22)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
-        )}
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </div>
 
@@ -112,144 +105,18 @@ const steps = [
   .process-timeline {
     perspective: 2000px;
   }
-
-  .card-3d-wrapper {
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  .process-step {
+    transition: all 0.3s ease;
   }
-
-  .process-step:hover .card-3d-wrapper {
-    transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
-  }
-
+  
   .card-front {
     backface-visibility: hidden;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
-
-  .arrow-icon {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-
-  .animate-once .arrow-icon {
-    animation: arrow-animate 1s forwards;
-  }
-
-  @keyframes arrow-animate {
-    to { 
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Icon Animations */
-  .animated-icon {
-    transition: transform 0.3s ease;
-  }
-
-  .process-step:hover .animated-icon {
-    transform: scale(1.1);
-  }
-
-  /* Document Icon Animation */
-  .document-line {
-    stroke-dasharray: 6;
-    stroke-dashoffset: 6;
-  }
-
-  .document-line.delay-1 {
-    transition-delay: 0.1s;
-  }
-
-  .animate-once .document-line {
-    animation: draw-line 0.5s forwards;
-  }
-
-  @keyframes draw-line {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  /* Measure Icon Animation */
-  .measure-tick {
-    transform-origin: bottom;
-    opacity: 0;
-  }
-
-  .measure-tick.delay-1 { animation-delay: 0.1s; }
-  .measure-tick.delay-2 { animation-delay: 0.2s; }
-  .measure-tick.delay-3 { animation-delay: 0.3s; }
-
-  .animate-once .measure-tick {
-    animation: tick-appear 0.3s ease forwards;
-  }
-
-  @keyframes tick-appear {
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Gear Animation */
-  .gear-outline {
-    transform-origin: center;
-  }
-
-  .process-step:hover .gear-outline {
-    animation: rotate 4s linear infinite;
-  }
-
-  .gear-center {
-    transform-origin: center;
-  }
-
-  .process-step:hover .gear-center {
-    animation: rotate-reverse 4s linear infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes rotate-reverse {
-    from {
-      transform: rotate(360deg);
-    }
-    to {
-      transform: rotate(0deg);
+  
+  @media (max-width: 1024px) {
+    .arrow-icon {
+      transform: rotate(90deg);
     }
   }
 </style>
-
-<script>
-  function initializeAnimations() {
-    const steps = document.querySelectorAll('.process-step');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Add a class to trigger the one-time animation
-          entry.target.classList.add('animate-once');
-          // Stop observing after the animation is triggered
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    steps.forEach(step => observer.observe(step));
-  }
-
-  // Initialize on page load
-  window.addEventListener('load', initializeAnimations);
-</script>

@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    title: "Algemeen",
+    content: `Van Tilburg Kozijnen respecteert de privacy van alle gebruikers van haar website en draagt er zorg voor dat de persoonlijke informatie die u ons verschaft vertrouwelijk wordt behandeld. Wij gebruiken uw gegevens om aanvragen zo snel en gemakkelijk mogelijk te laten verlopen. Voor het overige zullen wij deze gegevens uitsluitend gebruiken met uw toestemming.`
+  },
+  {
+    title: "Gebruik van verzamelde gegevens",
+    content: `Wanneer u een offerte aanvraagt of contact met ons opneemt, vragen we u om persoonsgegevens te verstrekken. Deze gegevens worden gebruikt om de dienst uit te kunnen voeren en om u te informeren over onze dienstverlening. De gegevens worden opgeslagen op beveiligde servers van Van Tilburg Kozijnen of die van een derde partij.`
+  },
+  {
+    title: "Communicatie",
+    content: `Wanneer u e-mail of andere berichten naar ons verzendt, is het mogelijk dat we die berichten bewaren. Soms vragen wij u naar uw persoonlijke gegevens die voor de desbetreffende situatie relevant zijn. Dit maakt het mogelijk uw vragen te verwerken en uw verzoeken te beantwoorden.`
+  },
+  {
+    title: "Cookies",
+    content: `Wij verzamelen gegevens voor onderzoek om zo een beter inzicht te krijgen in onze klanten, zodat wij onze diensten hierop kunnen afstemmen. Deze website maakt gebruik van "cookies" om de website te helpen analyseren hoe gebruikers de site gebruiken. U kunt cookies uitzetten via uw browser.`
+  },
+  {
+    title: "Doeleinden",
+    content: `We verzamelen of gebruiken geen informatie voor andere doeleinden dan de doeleinden die worden beschreven in dit privacybeleid tenzij we van tevoren uw toestemming hiervoor hebben verkregen.`
+  },
+  {
+    title: "Derden",
+    content: `De informatie wordt niet met derden gedeeld, behalve in het geval van een wettelijke verplichting. In enkele gevallen kan de informatie intern gedeeld worden. Onze werknemers zijn verplicht om de vertrouwelijkheid van uw gegevens te respecteren.`
+  },
+  {
+    title: "Beveiliging",
+    content: `Wij nemen beveiligingsmaatregelen om misbruik van en ongeautoriseerde toegang tot persoonsgegevens te beperken. In het bijzonder nemen wij de volgende maatregelen: logische toegangscontrole, gebruik van wachtwoorden en encryptie van gevoelige gegevens.`
+  },
+  {
+    title: "Aanpassen/uitschrijven communicatie",
+    content: `Als u uw gegevens aan wilt passen of uzelf uit onze bestanden wilt laten halen, kunt u contact met ons opnemen via onderstaande contactgegevens.`
+  },
+  {
+    title: "Wijzigingen",
+    content: `Deze privacyverklaring kan worden gewijzigd. Eventuele wijzigingen worden op deze pagina gepubliceerd. We raden u aan deze privacyverklaring regelmatig te raadplegen, zodat u van eventuele wijzigingen op de hoogte bent.`
+  }
+];
+---
+
+<Layout title="Privacy | Van Tilburg Kozijnen">
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+      </div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          Privacy<span class="text-gradient">verklaring</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+          Hoe wij omgaan met uw privacy en persoonsgegevens
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg prose-orange">
+        <p class="text-gray-600 mb-8">
+          Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        {sections.map((section) => (
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+            <p class="text-gray-600">{section.content}</p>
+          </div>
+        ))}
+
+        <div class="mt-12 p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Contact</h2>
+          <p class="text-gray-600">
+            Als u vragen heeft over deze privacyverklaring, kunt u contact met ons opnemen:
+          </p>
+          <div class="mt-4 text-gray-600">
+            <p>Van Tilburg Kozijnen</p>
+            <p>Industrieweg 12</p>
+            <p>5145 PV Waalwijk</p>
+            <p>Tel: <a href="tel:0416123456" class="text-orange-600 hover:text-orange-700">0416-123456</a></p>
+            <p>Email: <a href="mailto:info@vantilburgkozijnen.nl" class="text-orange-600 hover:text-orange-700">info@vantilburgkozijnen.nl</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,153 @@
+---
+import Button from './Button.astro';
+---
+
+<form class="space-y-8" id="b2bContactForm">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Naam *</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw naam"
+      />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Bedrijf *</label>
+      <input
+        type="text"
+        name="company"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw bedrijfsnaam"
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">E-mail *</label>
+      <input
+        type="email"
+        name="email"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw e-mailadres"
+      />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Telefoon *</label>
+      <input
+        type="tel"
+        name="phone"
+        required
+        class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+        placeholder="Uw telefoonnummer"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Type Project *</label>
+    <select
+      name="projectType"
+      required
+      class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+    >
+      <option value="">Selecteer type project</option>
+      <option value="nieuwbouw">Nieuwbouw</option>
+      <option value="renovatie">Renovatie</option>
+      <option value="verduurzaming">Verduurzaming</option>
+      <option value="anders">Anders</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Geschatte Projectomvang *</label>
+    <select
+      name="projectSize"
+      required
+      class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+    >
+      <option value="">Selecteer projectomvang</option>
+      <option value="small">1-10 kozijnen</option>
+      <option value="medium">11-50 kozijnen</option>
+      <option value="large">51-200 kozijnen</option>
+      <option value="xlarge">200+ kozijnen</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Projectomschrijving *</label>
+    <textarea
+      name="description"
+      rows="4"
+      required
+      class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+      placeholder="Beschrijf uw project en specifieke wensen..."
+    ></textarea>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Gewenste Startdatum</label>
+    <input
+      type="date"
+      name="startDate"
+      class="mt-1 block w-full px-4 py-2.5 rounded-lg border border-gray-300/50 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 backdrop-blur-sm bg-white/70 transition-all duration-200"
+    />
+  </div>
+
+  <div class="flex items-start space-x-3">
+    <div class="flex items-center h-5">
+      <input
+        id="privacy"
+        name="privacy"
+        type="checkbox"
+        required
+        class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+      />
+    </div>
+    <div class="ml-3 text-sm">
+      <label for="privacy" class="font-medium text-gray-700">Privacy akkoord</label>
+      <p class="text-gray-500">Ik ga akkoord met de verwerking van mijn gegevens zoals beschreven in de <a href="/privacy" class="text-primary-600 hover:text-primary-500">privacyverklaring</a>.</p>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <Button type="submit" variant="primary" size="lg">
+      Verstuur Aanvraag
+    </Button>
+  </div>
+</form>
+
+<script>
+document.getElementById('b2bContactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+  
+  try {
+    const response = await fetch('/api/b2b-contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      alert('Bedankt voor uw aanvraag. We nemen zo spoedig mogelijk contact met u op.');
+      form.reset();
+    } else {
+      throw new Error('Er is iets misgegaan bij het versturen van het formulier.');
+    }
+  } catch (error) {
+    alert('Er is iets misgegaan bij het versturen van het formulier. Probeer het later opnieuw of neem telefonisch contact op.');
+    console.error('Form submission error:', error);
+  }
+});
+</script>

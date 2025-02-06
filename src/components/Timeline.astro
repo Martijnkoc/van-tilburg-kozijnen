@@ -3,54 +3,98 @@ const timelineEvents = [
   {
     year: "1985",
     title: "Oprichting",
-    description: "Van Tilburg Kozijnen werd opgericht door Jan van Tilburg met een focus op kwaliteit en vakmanschap."
+    description: "Start van het familiebedrijf in Waalwijk, gericht op kwaliteit in houten kozijnen.",
+    achievement: "Eerste opdrachten"
   },
   {
     year: "1995",
-    title: "Uitbreiding Services",
-    description: "Introductie van nieuwe diensten waaronder renovatie en restauratie van historische panden."
+    title: "Groei",
+    description: "Verhuizing naar groter pand met moderne machines. Specialisatie in renovatie.",
+    achievement: "500+ kozijnen"
   },
   {
     year: "2005",
     title: "Innovatie",
-    description: "Implementatie van de nieuwste technologieën en duurzame materialen in onze producten."
+    description: "Investering in CNC-machines en modern kwaliteitssysteem.",
+    achievement: "ISO & KOMO"
   },
   {
     year: "2015",
-    title: "Groei & Expertise",
-    description: "Uitbreiding van ons team en versterking van onze expertise in moderne kozijnoplossingen."
+    title: "Duurzaam",
+    description: "Introductie Accoya hout en start eigen opleidingsprogramma.",
+    achievement: "FSC® & PEFC™"
+  },
+  {
+    year: "2020",
+    title: "Digitaal",
+    description: "3D-ontwerp software en geautomatiseerde productie.",
+    achievement: "Smart Factory"
   },
   {
     year: "2023",
-    title: "Toekomstgericht",
-    description: "Focus op duurzaamheid en innovatieve oplossingen voor de moderne bouw."
+    title: "Toekomst",
+    description: "Focus op energiezuinige oplossingen en circulaire productie.",
+    achievement: "CO₂-neutraal"
   }
 ];
 ---
 
-<section id="timeline" class="py-8 bg-gradient-to-br from-bg-light via-bg-light/95 to-bg-light/90">
+<section class="py-12 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold text-text-dark mb-2 font-montreal">Onze Geschiedenis</h2>
-      <p class="text-base text-text-light font-commons">Al meer dan 35 jaar uw specialist in kozijnen</p>
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Onze Geschiedenis</h2>
+      <p class="text-gray-600">Van kleine werkplaats tot moderne kozijnenfabriek</p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-      {timelineEvents.map((event) => (
-        <div class="timeline-card bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 transition-all duration-300 hover:scale-105">
-          <span class="text-primary-500 font-bold text-xl mb-1 block font-montreal">{event.year}</span>
-          <h3 class="font-semibold text-lg mb-1 text-text-dark">{event.title}</h3>
-          <p class="text-sm text-text-light">{event.description}</p>
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="absolute top-[4.5rem] left-4 right-4 h-0.5 bg-gray-200"></div>
+          
+          <!-- Timeline events -->
+          <div class="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {timelineEvents.map((event) => (
+              <div class="relative pt-8">
+                <!-- Year marker -->
+                <div class="absolute top-[4.5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary-600 border-4 border-white"></div>
+                
+                <div class="relative bg-white rounded p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full">
+                  <div class="text-sm font-medium text-primary-600 mb-1">
+                    {event.year}
+                  </div>
+                  
+                  <h3 class="text-base font-semibold text-gray-900 mb-1">
+                    {event.title}
+                  </h3>
+                  
+                  <p class="text-sm text-gray-600 mb-2">
+                    {event.description}
+                  </p>
+                  
+                  <div class="text-xs font-medium text-primary-600/80">
+                    {event.achievement}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .timeline-card {
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  @media (max-width: 767px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-event {
+      transition: none !important;
+    }
   }
 </style>

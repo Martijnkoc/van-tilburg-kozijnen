@@ -1,41 +1,121 @@
 ---
 const faqs = [
   {
-    question: "Wat is de levensduur van Accoya kozijnen?",
-    answer: "Accoya kozijnen hebben een gegarandeerde levensduur van 50 jaar bovengronds. Door het speciale acetyleerproces is het hout zeer duurzaam en onderhoudsarm."
+    question: "Wat zijn de voordelen van houten kozijnen ten opzichte van kunststof?",
+    answer: "Houten kozijnen hebben diverse voordelen: ze zijn duurzamer, hebben een langere levensduur (50+ jaar met Accoya), zijn beter voor het milieu, hebben een hogere isolatiewaarde, en verhogen de waarde van uw woning. Daarnaast zijn ze volledig recyclebaar en hebben ze een authentieke, luxe uitstraling."
   },
   {
-    question: "Waarom kiezen voor houten kozijnen van Van Tilburg?",
-    answer: "Wij zijn gespecialiseerd in luxe Accoya houten kozijnen met KOMO-keurmerk. We bieden 50 jaar garantie, vakmanschap, duurzaamheid en een onderhoudsarm product."
+    question: "Wat kost een houten kozijn van Van Tilburg Kozijnen?",
+    answer: "De prijs van een houten kozijn is afhankelijk van verschillende factoren zoals afmeting, houtsoort (bijvoorbeeld Accoya) en specifieke wensen. Voor een gemiddeld kozijn kunt u rekenen op €800-€1500. Neem contact met ons op voor een exacte prijsopgave en ontvang binnen 24 uur een vrijblijvende offerte."
   },
   {
-    question: "Hoe onderhoudsvriendelijk zijn Accoya kozijnen?",
-    answer: "Accoya kozijnen zijn zeer onderhoudsvriendelijk. Door de hoge duurzaamheid en stabiliteit is minder onderhoud nodig dan bij traditionele houten kozijnen."
+    question: "Waarom is Accoya hout de beste keuze voor kozijnen?",
+    answer: "Accoya is momenteel het meest duurzame en stabiele hout voor kozijnen. Het heeft een gegarandeerde levensduur van 50 jaar bovengronds, is zeer onderhoudsarm, 100% milieuvriendelijk en heeft de hoogste duurzaamheidsklasse (1). Daarnaast krimpt en zwelt het nauwelijks, wat resulteert in perfect sluitende ramen en deuren."
   },
   {
-    question: "Wat kost een Accoya kozijn?",
-    answer: "De prijs van een Accoya kozijn is afhankelijk van de maat, uitvoering en eventuele extra's. Neem contact met ons op voor een vrijblijvende offerte op maat."
+    question: "Hoe lang duurt de productie en installatie van nieuwe kozijnen?",
+    answer: "De totale doorlooptijd vanaf bestelling is gemiddeld 6-8 weken. De productie in onze werkplaats in Waalwijk duurt ongeveer 4-6 weken. De installatie zelf neemt, afhankelijk van de omvang, 1-3 werkdagen in beslag. We zorgen voor een strakke planning en minimale overlast."
   },
   {
-    question: "Hoe lang duurt de installatie van nieuwe kozijnen?",
-    answer: "De installatietijd varieert per project. Gemiddeld duurt een complete kozijnvervanging 1-3 dagen, afhankelijk van de omvang en complexiteit."
+    question: "Wat is het onderhoud voor houten kozijnen van Van Tilburg?",
+    answer: "Onze kozijnen zijn zeer onderhoudsarm. Voor Accoya kozijnen adviseren we elke 6-8 jaar een nieuwe laklaag. Traditionele houten kozijnen hebben om de 4-6 jaar onderhoud nodig. We bieden ook onderhoudscontracten aan waarbij we de staat van uw kozijnen periodiek controleren en onderhouden."
+  },
+  {
+    question: "Werkt Van Tilburg Kozijnen in heel Noord-Brabant?",
+    answer: "Ja, we zijn actief in heel Noord-Brabant en omstreken. Onze hoofdvestiging is in Waalwijk, maar we werken in de hele regio waaronder Den Bosch, Tilburg, Breda, Eindhoven en omliggende gemeenten. We komen graag bij u langs voor een vrijblijvend adviesgesprek."
+  },
+  {
+    question: "Zijn er subsidies beschikbaar voor nieuwe kozijnen?",
+    answer: "Ja, er zijn vaak subsidies beschikbaar voor het verduurzamen van uw woning, waaronder het plaatsen van nieuwe, energiezuinige kozijnen. De exacte subsidies verschillen per gemeente. We helpen u graag bij het aanvragen van beschikbare subsidies en kunnen u adviseren over de mogelijkheden."
+  },
+  {
+    question: "Wat is de garantie op kozijnen van Van Tilburg?",
+    answer: "We geven 20 jaar garantie op de constructie van onze kozijnen en 10 jaar op het schilderwerk. Voor Accoya kozijnen geldt zelfs een garantie van 50 jaar op het hout. Daarnaast bieden we 100% garantie op een correcte montage en waterdichte aansluiting."
   }
 ];
 ---
 
-<section class="py-16 bg-gray-50">
+<section class="py-12 bg-gradient-to-b from-gray-50 to-white" id="faq">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12">Veelgestelde vragen</h2>
+    <div class="relative text-center mb-10">
+      {/* Modern geometric accent */}
+      <div class="absolute left-1/2 -translate-x-1/2 -top-8 w-24 h-24 bg-gradient-to-br from-primary-100 to-primary-50 rounded-full blur-2xl opacity-60"></div>
+      
+      {/* Small highlight text */}
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-100 shadow-sm mb-4">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
+        </span>
+        <span class="text-sm font-medium bg-gradient-to-r from-primary-500 to-primary-600 text-transparent bg-clip-text">
+          Alles wat u moet weten
+        </span>
+      </div>
+
+      {/* Main heading with gradient */}
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-transparent bg-clip-text">
+        Veelgestelde vragen over houten kozijnen
+      </h2>
+
+      {/* Modern styled description */}
+      <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        Ontdek waarom steeds meer mensen kiezen voor de
+        <span class="relative inline-block px-2">
+          <span class="absolute inset-0 bg-primary-100/40 -skew-x-12 rounded"></span>
+          <span class="relative text-primary-800">duurzame houten kozijnen</span>
+        </span>
+        van Van Tilburg
+      </p>
+
+      {/* Decorative elements */}
+      <div class="absolute -right-8 top-0 w-24 h-24 bg-gradient-to-bl from-primary-100 to-transparent rounded-full blur-xl opacity-40"></div>
+      <div class="absolute -left-12 bottom-0 w-32 h-32 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-xl opacity-30"></div>
+    </div>
     
-    <div class="max-w-3xl mx-auto">
-      <div class="space-y-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid gap-4">
         {faqs.map((faq, index) => (
-          <div class="bg-white rounded-lg shadow-soft p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
-            <p class="text-gray-600">{faq.answer}</p>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow overflow-hidden">
+            <details class="group" open={index === 0}>
+              <summary class="flex justify-between items-center p-6 cursor-pointer">
+                <h3 class="text-lg font-semibold text-gray-900 pr-8">{faq.question}</h3>
+                <span class="flex-shrink-0 ml-1.5 p-1.5 text-gray-900 sm:ml-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="flex-shrink-0 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="px-6 pb-6 text-gray-600">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
           </div>
         ))}
       </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-gray-600 mb-4">Heeft u een andere vraag? Neem gerust contact met ons op</p>
+      <button
+        type="button"
+        data-modal="quote"
+        class="inline-flex items-center px-6 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/20 hover:-translate-y-0.5"
+      >
+        <span>Stel uw vraag</span>
+        <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
     </div>
   </div>
 
@@ -51,5 +131,11 @@ const faqs = [
         "text": faq.answer
       }
     }))
-  })}></script>
+  })} />
 </section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

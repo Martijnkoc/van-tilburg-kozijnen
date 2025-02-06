@@ -6,49 +6,38 @@ import prefetch from '@astrojs/prefetch';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://vantilburgkozijnen.nl',
+  site: 'https://www.vantilburgkozijnen.nl',
   integrations: [
-    tailwind({
-      applyBaseStyles: true
-    }),
+    tailwind(),
     sitemap(),
-    prefetch()
+    prefetch(),
   ],
-  headers: {
-    '/*': [
-      {
-        key: 'Content-Security-Policy',
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self';"
-      },
-      {
-        key: 'Strict-Transport-Security',
-        value: 'max-age=31536000; includeSubDomains'
-      },
-      {
-        key: 'X-Content-Type-Options',
-        value: 'nosniff'
-      },
-      {
-        key: 'X-Frame-Options',
-        value: 'SAMEORIGIN'
-      },
-      {
-        key: 'X-XSS-Protection',
-        value: '1; mode=block'
-      },
-      {
-        key: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin'
-      },
-      {
-        key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=()'
-      }
-    ]
+  server: {
+    headers: {
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self';"
+    }
   },
   vite: {
+    build: {
+      // Improve performance by splitting chunks
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor': [
+              'react',
+              'react-dom',
+            ],
+          },
+        },
+      },
+    },
     ssr: {
-      external: ["svgo"]
-    }
-  }
+      external: ["svgo"],
+      noExternal: ['@astrojs/prefetch'],
+    },
+  },
+  compressHTML: true,
+  build: {
+    inlineStylesheets: 'auto',
+  },
 });

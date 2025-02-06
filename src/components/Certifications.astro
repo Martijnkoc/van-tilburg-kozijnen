@@ -2,41 +2,39 @@
 import { certifications } from '../data/guarantees';
 ---
 
-<section id="garanties" class="py-20 bg-gradient-to-br from-gray-50 via-gray-50/95 to-gray-100/90">
+<section id="garanties" class="py-10 bg-gray-50">
   <div class="container mx-auto px-4">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-4xl mx-auto mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-montreal">Garanties en Keurmerken</h2>
-        <p class="text-xl text-gray-600 font-commons">
-          Wij staan voor kwaliteit en zekerheid. Al onze producten en diensten voldoen aan de hoogste kwaliteitseisen.
-        </p>
-      </div>
+    <div class="text-center mb-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-montreal">Garanties en Keurmerken</h2>
+      <p class="text-lg text-gray-600 font-commons">
+        Wij staan voor kwaliteit en zekerheid. Al onze producten en diensten voldoen aan de hoogste kwaliteitseisen.
+      </p>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-        {Object.entries(certifications).map(([key, cert]) => (
-          <div class="backdrop-blur-md bg-white/90 rounded-xl p-6 shadow-[0_8px_32px_0_rgba(31,38,135,0.2)] border border-white/20 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.3)] transition-all duration-300">
-            <div class="flex flex-col h-full">
-              <div class="flex items-center justify-center mb-6 h-20">
-                <img src={cert.logo} alt={cert.title} class="h-full object-contain" />
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4 text-center font-montreal">{cert.title}</h3>
-              <p class="text-sm text-gray-600 mb-6 text-center font-commons">{cert.description}</p>
-              <div class="mt-auto">
-                <ul class="space-y-2">
-                  {cert.benefits.map(benefit => (
-                    <li class="flex items-start space-x-2 text-gray-600 text-sm font-commons">
-                      <svg class="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      {Object.entries(certifications).map(([key, cert]) => (
+        <div class="backdrop-blur-md bg-white/90 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300">
+          <div class="flex flex-col h-full">
+            <div class="flex items-center justify-center mb-4 h-16">
+              <img src={cert.logo} alt={cert.title} class="h-full object-contain" />
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2 text-center font-montreal">{cert.title}</h3>
+            <p class="text-sm text-gray-600 mb-4 text-center font-commons">{cert.description}</p>
+            <div class="mt-auto">
+              <ul class="space-y-2">
+                {cert.benefits.map(benefit => (
+                  <li class="flex items-start space-x-2 text-gray-600 text-sm font-commons">
+                    <svg class="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>

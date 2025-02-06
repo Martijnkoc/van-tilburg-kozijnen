@@ -22,7 +22,7 @@ const team: TeamMember[] = [
   {
     name: "Norain van Tilburg",
     role: "Project Manager",
-    image: "/images/team/norain.jpg",
+    image: "/images/team/norain-new.jpg",
     linkedin: "https://www.linkedin.com/in/norain-van-tilburg-10987920b"
   },
   {
@@ -34,9 +34,9 @@ const team: TeamMember[] = [
 ];
 ---
 
-<section id="team" class="py-12 sm:py-16 md:py-20 bg-gray-50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+<section class="py-12 bg-gradient-to-b from-white to-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-text-dark mb-4 sm:mb-6 font-montreal">
         Ons Team
       </h2>
@@ -45,7 +45,7 @@ const team: TeamMember[] = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {team.map(member => (
         <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           <div class="aspect-w-4 aspect-h-5">

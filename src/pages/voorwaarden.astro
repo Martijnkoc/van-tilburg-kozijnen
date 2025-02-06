@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    title: "1. Algemeen",
+    content: `Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen en overeenkomsten tussen Van Tilburg Kozijnen en de opdrachtgever. Afwijkingen van deze voorwaarden zijn slechts geldig indien deze uitdrukkelijk schriftelijk zijn overeengekomen.`
+  },
+  {
+    title: "2. Offertes en aanbiedingen",
+    content: `Alle offertes en aanbiedingen van Van Tilburg Kozijnen zijn vrijblijvend, tenzij in de offerte een termijn voor aanvaarding is gesteld. Een offerte of aanbieding vervalt indien het product waarop de offerte of de aanbieding betrekking heeft in de tussentijd niet meer beschikbaar is.`
+  },
+  {
+    title: "3. Uitvoering van de overeenkomst",
+    content: `Van Tilburg Kozijnen zal de overeenkomst naar beste inzicht en vermogen en overeenkomstig de eisen van goed vakmanschap uitvoeren. Een en ander op grond van de op dat moment bekende stand der wetenschap.`
+  },
+  {
+    title: "4. Levertijd",
+    content: `De door Van Tilburg Kozijnen opgegeven levertijden zijn indicatief en zijn nimmer te beschouwen als een fatale termijn. Bij overschrijding van een termijn dient de opdrachtgever Van Tilburg Kozijnen schriftelijk in gebreke te stellen.`
+  },
+  {
+    title: "5. Betaling",
+    content: `Betaling dient te geschieden binnen 14 dagen na factuurdatum, op een door Van Tilburg Kozijnen aan te geven wijze in de valuta waarin is gefactureerd. Bezwaren tegen de hoogte van de facturen schorten de betalingsverplichting niet op.`
+  },
+  {
+    title: "6. Garantie",
+    content: `Van Tilburg Kozijnen garandeert dat de te leveren zaken voldoen aan de gebruikelijke eisen en normen die daaraan kunnen worden gesteld en vrij zijn van welke gebreken ook. De garantietermijn komt overeen met de fabrieksgarantietermijn.`
+  },
+  {
+    title: "7. Aansprakelijkheid",
+    content: `Indien Van Tilburg Kozijnen aansprakelijk mocht zijn, dan is deze aansprakelijkheid beperkt tot hetgeen in deze bepaling is geregeld. De aansprakelijkheid van Van Tilburg Kozijnen is in ieder geval steeds beperkt tot het bedrag der uitkering van zijn verzekeraar in voorkomend geval.`
+  },
+  {
+    title: "8. Overmacht",
+    content: `Van Tilburg Kozijnen is niet gehouden tot het nakomen van enige verplichting jegens de opdrachtgever indien hij daartoe gehinderd wordt als gevolg van een omstandigheid die niet is te wijten aan schuld.`
+  },
+  {
+    title: "9. Intellectuele eigendom",
+    content: `Van Tilburg Kozijnen behoudt zich de rechten en bevoegdheden voor die hem toekomen op grond van de Auteurswet en andere intellectuele wet- en regelgeving.`
+  },
+  {
+    title: "10. Toepasselijk recht",
+    content: `Op alle rechtsbetrekkingen waarbij Van Tilburg Kozijnen partij is, is uitsluitend het Nederlands recht van toepassing. De rechtbank is bij uitsluiting bevoegd van geschillen kennis te nemen.`
+  }
+];
+---
+
+<Layout title="Algemene Voorwaarden | Van Tilburg Kozijnen">
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+      </div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          Algemene <span class="text-gradient">Voorwaarden</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+          Onze algemene voorwaarden voor een transparante samenwerking
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg prose-orange">
+        <p class="text-gray-600 mb-8">
+          Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        <div class="space-y-12">
+          {sections.map((section) => (
+            <div class="bg-white">
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
+              <p class="text-gray-600">{section.content}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Download Section -->
+        <div class="mt-12 p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Download de algemene voorwaarden</h2>
+          <p class="text-gray-600 mb-4">
+            U kunt onze algemene voorwaarden ook downloaden als PDF-bestand om later te raadplegen.
+          </p>
+          <a
+            href="/downloads/algemene-voorwaarden.pdf"
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          >
+            Download PDF
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="mt-12 p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Vragen over onze voorwaarden?</h2>
+          <p class="text-gray-600">
+            Heeft u vragen over onze algemene voorwaarden? Neem dan contact met ons op:
+          </p>
+          <div class="mt-4 text-gray-600">
+            <p>Van Tilburg Kozijnen</p>
+            <p>Industrieweg 12</p>
+            <p>5145 PV Waalwijk</p>
+            <p>Tel: <a href="tel:0416123456" class="text-orange-600 hover:text-orange-700">0416-123456</a></p>
+            <p>Email: <a href="mailto:info@vantilburgkozijnen.nl" class="text-orange-600 hover:text-orange-700">info@vantilburgkozijnen.nl</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,97 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  className?: string;
+}
+
+const { src, poster, className = '' } = Astro.props;
+---
+
+<div class={`relative w-full ${className}`}>
+  <div class="relative w-full aspect-video overflow-hidden rounded-lg shadow-lg">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      poster={poster}
+      playsinline
+      autoplay
+      muted
+      loop
+      preload="metadata"
+    >
+      <source src={src} type="video/mp4" />
+      <p>Je browser ondersteunt geen HTML5 video. Hier is een <a href={src}>link naar de video</a>.</p>
+    </video>
+  </div>
+</div>
+
+<style>
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+  
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    /* iOS Safari specific styles */
+    video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>
+
+<script>
+  // Lazy load videos when they come into view
+  const videos = document.querySelectorAll('video');
+  
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target as HTMLVideoElement;
+          if (video.paused) {
+            video.play().catch(() => {
+              console.log('Video autoplay prevented');
+            });
+          }
+        } else {
+          const video = entry.target as HTMLVideoElement;
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.1
+    });
+
+    videos.forEach(video => {
+      videoObserver.observe(video);
+    });
+  }
+
+  // Handle iOS low power mode
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      videos.forEach(video => {
+        (video as HTMLVideoElement).pause();
+      });
+    } else {
+      videos.forEach(video => {
+        (video as HTMLVideoElement).play().catch(() => {
+          console.log('Video autoplay prevented on visibility change');
+        });
+      });
+    }
+  });
+</script>

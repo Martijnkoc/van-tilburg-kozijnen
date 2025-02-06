@@ -1,115 +1,303 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
 
 const projects = [
     {
-        title: 'Modern Bedrijfspand',
-        category: 'Nieuwbouw',
+        title: 'Kantoorcomplex The Edge',
+        category: 'Utiliteitsbouw',
+        sector: 'Kantoren',
         location: 'Amsterdam',
         year: '2023',
-        description: 'Complete renovatie van kozijnen en deuren voor een modern bedrijfspand.',
-        imageUrl: '/images/projects/project1.jpg'
+        description: 'Hoogwaardige Accoya kozijnen voor een duurzaam BREEAM Outstanding kantoorgebouw.',
+        specs: {
+            oppervlakte: '2.500m²',
+            kozijnen: '450+',
+            doorlooptijd: '8 maanden',
+            investering: '€1.2M - €1.5M',
+            energiebesparing: '35%',
+            co2reductie: '45 ton/jaar'
+        },
+        resultaten: [
+            'BREEAM Outstanding certificering behaald',
+            'Energielabel A+++ gerealiseerd',
+            'Onderhoudskosten 40% lager dan traditionele kozijnen'
+        ],
+        certificeringen: ['BREEAM', 'FSC', 'KOMO'],
+        imageUrl: 'https://placehold.co/800x600/e2e8f0/1e293b?text=The+Edge',
+        galerij: [
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+1',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+2',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+3'
+        ],
+        testimonial: {
+            quote: "Van Tilburg Kozijnen heeft een cruciale rol gespeeld in het behalen van onze duurzaamheidsdoelstellingen.",
+            auteur: "Jan de Vries",
+            functie: "Projectmanager Edge Development"
+        }
     },
     {
-        title: 'Villa Renovatie',
-        category: 'Renovatie',
+        title: 'Woontoren De Kroon',
+        category: 'Woningbouw',
+        sector: 'Appartementen',
+        location: 'Rotterdam',
+        year: '2023',
+        description: 'Complete kozijnrenovatie voor luxe appartementencomplex met 120 woningen.',
+        specs: {
+            oppervlakte: '3.600m²',
+            kozijnen: '720+',
+            doorlooptijd: '12 maanden',
+            investering: '€2.1M - €2.4M',
+            energiebesparing: '40%',
+            co2reductie: '65 ton/jaar'
+        },
+        resultaten: [
+            'Energielabel verbeterd van D naar A',
+            'Geluidsreductie van 38dB naar 45dB',
+            'Waardestijging appartementen gemiddeld 8%'
+        ],
+        certificeringen: ['KOMO', 'SKH', 'FSC'],
+        imageUrl: 'https://placehold.co/800x600/e2e8f0/1e293b?text=De+Kroon',
+        galerij: [
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+1',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+2',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+3'
+        ],
+        testimonial: {
+            quote: "De professionele aanpak en minimale overlast voor bewoners was indrukwekkend.",
+            auteur: "Marie Jansen",
+            functie: "VvE Voorzitter De Kroon"
+        }
+    },
+    {
+        title: 'Zorgcomplex Vita Nova',
+        category: 'Zorgvastgoed',
+        sector: 'Zorginstellingen',
         location: 'Utrecht',
         year: '2023',
-        description: 'Vervanging van oude kozijnen door duurzame Accoya houten kozijnen.',
-        imageUrl: '/images/projects/project2.jpg'
-    },
-    {
-        title: 'Monumentaal Pand',
-        category: 'Restauratie',
-        location: 'Haarlem',
-        year: '2022',
-        description: 'Zorgvuldige restauratie van historische kozijnen met behoud van authentieke details.',
-        imageUrl: '/images/projects/project3.jpg'
+        description: 'Specialistische kozijnen met focus op toegankelijkheid en veiligheid voor zorginstelling.',
+        specs: {
+            oppervlakte: '1.800m²',
+            kozijnen: '280+',
+            doorlooptijd: '6 maanden',
+            investering: '€950K - €1.1M',
+            energiebesparing: '30%',
+            co2reductie: '28 ton/jaar'
+        },
+        resultaten: [
+            'Volledig rolstoeltoegankelijke deuren',
+            'Brandveiligheid verhoogd naar klasse 60',
+            'Onderhoudscontract 15 jaar vastgelegd'
+        ],
+        certificeringen: ['KOMO', 'SKH', 'FSC', 'Brandveilig'],
+        imageUrl: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Vita+Nova',
+        galerij: [
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+1',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+2',
+            'https://placehold.co/800x600/e2e8f0/1e293b?text=Detail+3'
+        ],
+        testimonial: {
+            quote: "De specialistische kennis van zorgvastgoed was doorslaggevend in onze keuze.",
+            auteur: "Dr. Peter Klein",
+            functie: "Directeur Zorggroep Vita Nova"
+        }
     }
 ];
 
-const categories = ['Alle', 'Nieuwbouw', 'Renovatie', 'Restauratie'];
+const categories = ['Alle', 'Utiliteitsbouw', 'Woningbouw', 'Zorgvastgoed'];
+const sectors = [
+    'Alle sectoren',
+    'Kantoren',
+    'Appartementen',
+    'Zorginstellingen',
+    'Scholen',
+    'Hotels',
+    'Retail'
+];
+const sortOptions = [
+    { value: 'recent', label: 'Meest Recent' },
+    { value: 'budget-high', label: 'Hoogste Budget' },
+    { value: 'budget-low', label: 'Laagste Budget' },
+    { value: 'size', label: 'Grootste Oppervlakte' }
+];
 ---
 
-<Layout title="Projecten - R.VAN TILBURG KOZIJNEN">
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section class="bg-gray-50 py-20">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Onze Projecten</h1>
-                    <p class="text-xl text-gray-600">Ontdek onze gerealiseerde projecten en laat u inspireren</p>
+<PageLayout 
+    title="Projecten & Referenties"
+    breadcrumbs={[
+        { text: 'Home', href: '/' },
+        { text: 'Projecten', href: '/projecten' }
+    ]}
+>
+    <!-- Filter Section -->
+    <section class="py-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <!-- Category Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Categorie</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                        {categories.map((category) => (
+                            <option value={category}>{category}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <!-- Sector Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sector</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                        {sectors.map((sector) => (
+                            <option value={sector}>{sector}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <!-- Investment Range -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Investeringsrange</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                        <option value="all">Alle bedragen</option>
+                        <option value="0-500">€0 - €500K</option>
+                        <option value="500-1000">€500K - €1M</option>
+                        <option value="1000-2000">€1M - €2M</option>
+                        <option value="2000+">€2M+</option>
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sorteren op</label>
+                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                        {sortOptions.map((option) => (
+                            <option value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Filter Section -->
-        <section class="py-12">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-center space-x-4 mb-12">
-                    {categories.map((category) => (
-                        <button
-                            class="px-6 py-2 rounded-full border border-gray-300 hover:border-primary-600 hover:text-primary-600 transition-colors duration-300"
-                            data-category={category}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Grid -->
-        <section class="pb-20">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project) => (
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden" data-project data-category={project.category}>
+    <!-- Projects Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="relative h-64">
                             <img
                                 src={project.imageUrl}
                                 alt={project.title}
-                                class="w-full h-64 object-cover"
+                                class="w-full h-full object-cover"
                             />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                                <p class="text-gray-600 mb-4">{project.description}</p>
-                                <div class="flex justify-between text-sm text-gray-500">
-                                    <span>{project.location}</span>
-                                    <span>{project.year}</span>
-                                </div>
+                            <div class="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-sm">
+                                {project.category}
                             </div>
                         </div>
-                    ))}
-                </div>
+                        
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                            <p class="text-sm text-primary-600 mb-2">{project.location} | {project.year}</p>
+                            <p class="text-gray-600 mb-4">{project.description}</p>
+                            
+                            <!-- Key Specs -->
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="text-sm">
+                                    <span class="text-gray-600">Oppervlakte:</span>
+                                    <span class="font-medium text-gray-900 ml-1">{project.specs.oppervlakte}</span>
+                                </div>
+                                <div class="text-sm">
+                                    <span class="text-gray-600">Kozijnen:</span>
+                                    <span class="font-medium text-gray-900 ml-1">{project.specs.kozijnen}</span>
+                                </div>
+                                <div class="text-sm">
+                                    <span class="text-gray-600">Doorlooptijd:</span>
+                                    <span class="font-medium text-gray-900 ml-1">{project.specs.doorlooptijd}</span>
+                                </div>
+                                <div class="text-sm">
+                                    <span class="text-gray-600">Investering:</span>
+                                    <span class="font-medium text-gray-900 ml-1">{project.specs.investering}</span>
+                                </div>
+                            </div>
+
+                            <!-- Results -->
+                            <div class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-900 mb-2">Resultaten:</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    {project.resultaten.map((resultaat) => (
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            {resultaat}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <!-- Testimonial -->
+                            <blockquote class="border-l-4 border-primary-500 pl-4 mb-4 italic text-sm text-gray-600">
+                                "{project.testimonial.quote}"
+                                <footer class="mt-2 text-sm">
+                                    <strong class="text-gray-900">{project.testimonial.auteur}</strong>
+                                    <span class="text-gray-600"> - {project.testimonial.functie}</span>
+                                </footer>
+                            </blockquote>
+
+                            <!-- Certifications -->
+                            <div class="flex flex-wrap gap-2">
+                                {project.certificeringen.map((cert) => (
+                                    <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs">
+                                        {cert}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <a
+                                href={`/projecten/${project.title.toLowerCase().replace(/ /g, '-')}`}
+                                class="mt-4 inline-flex items-center text-primary-600 hover:text-primary-700"
+                            >
+                                Bekijk project details
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                ))}
             </div>
-        </section>
-    </main>
-</Layout>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-primary-900 text-white">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-4">Klaar voor uw project?</h2>
+            <p class="text-xl mb-8">
+                Laat ons u helpen bij het realiseren van uw volgende project. 
+                Onze experts staan klaar voor een vrijblijvend gesprek.
+            </p>
+            <a
+                href="/voor-professionals#contact"
+                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+            >
+                Plan een gesprek
+            </a>
+        </div>
+    </section>
+</PageLayout>
 
 <script>
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('[data-category]');
-    const projectCards = document.querySelectorAll('[data-project]');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.getAttribute('data-category');
-            
-            // Update active button state
-            filterButtons.forEach(btn => btn.classList.remove('bg-primary-600', 'text-white'));
-            button.classList.add('bg-primary-600', 'text-white');
-            
-            // Filter projects
-            projectCards.forEach(card => {
-                if (category === 'Alle' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+// Filter and sort functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const filters = document.querySelectorAll('select');
+    filters.forEach(filter => {
+        filter.addEventListener('change', updateProjects);
     });
+});
 
-    // Set 'Alle' as default active filter
-    document.querySelector('[data-category="Alle"]')?.classList.add('bg-primary-600', 'text-white');
+function updateProjects() {
+    // Implementeer hier de filter- en sorteerlogica
+    console.log('Updating projects...');
+}
 </script>

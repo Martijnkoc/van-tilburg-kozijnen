@@ -5,64 +5,130 @@ import Button from './ui/Button.astro';
 <section id="home" class="relative min-h-screen overflow-hidden">
   <div 
     class="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat transform scale-110 transition-transform duration-1000 parallax-bg"
-    style={`background-image: url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80);`}
-    data-aos="zoom-out"
-    data-aos-duration="2000"
+    style={`background-image: url('/images/hero-bg.jpg');`}
   >
-    <div class="absolute inset-0 bg-gradient-to-b from-text/60 to-text/20"></div>
+    <div class="absolute inset-0 bg-pattern opacity-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/60 to-gray-900/40"></div>
   </div>
   
-  <div class="relative container mx-auto px-4 h-screen flex items-center">
-    <div class="max-w-3xl" data-aos="fade-up" data-aos-delay="200">
-      <div class="mb-4 text-primary-500 font-semibold tracking-wide uppercase" data-aos="fade-up">
-        Specialist in grootschalige projecten
+  <div class="relative container mx-auto px-4 sm:px-6 h-screen flex items-center pt-20 sm:pt-24">
+    <div class="max-w-3xl">
+      <div class="mb-4 text-primary-500 font-semibold tracking-wide uppercase text-sm sm:text-base">
+        <span class="hidden">Houten Kozijnen Waalwijk</span>
+        Specialist in Houten Kozijnen & Deuren in Noord-Brabant
       </div>
-      <h1 class="font-montreal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-        Toonaangevend in<br class="hidden sm:block" />Kozijnen & Deuren
+      <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+        Vakkundig & Duurzaam<br class="hidden sm:block" />
+        <span class="text-primary-500">Kozijnen op Maat</span>
       </h1>
-      <p class="font-commons text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl" data-aos="fade-up" data-aos-delay="400">
-        Uw betrouwbare partner voor woningcorporaties, aannemers en vastgoedbeheerders. Specialist in nieuwbouw en renovatie.
-      </p>
-      <div data-aos="fade-up" data-aos-delay="600">
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <button
-            type="button"
-            data-modal="quote"
-            class="w-full sm:w-auto inline-flex text-center justify-center px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl hover:shadow-primary-600/20 backdrop-blur-sm transition-all duration-300"
-          >
-            Plan een gesprek
-          </button>
-          <Button href="#projecten" variant="secondary" class="w-full sm:w-auto text-center justify-center border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white backdrop-blur-sm transition-all duration-300">
-            Bekijk onze projecten
-          </Button>
+      <div class="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 space-y-4">
+        <p>
+          ✓ 35+ jaar ervaring in <strong>kozijnen en deuren</strong><br />
+          ✓ FSC®-gecertificeerd & Accoya specialist<br />
+          ✓ Werkzaam in heel Noord-Brabant
+        </p>
+        <p class="font-semibold">
+          Ontvang <span class="text-primary-500">binnen 24 uur</span> een vrijblijvende offerte!
+        </p>
+      </div>
+      
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap gap-3 sm:gap-4 mb-8">
+        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2">
+          <img src="/images/fsc-logo.svg" alt="FSC Certificering" class="w-6 sm:w-8 h-6 sm:h-8 mr-2" />
+          <span class="text-white text-xs sm:text-sm">FSC® Gecertificeerd</span>
         </div>
+        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2">
+          <img src="/images/komo-logo.svg" alt="KOMO Keurmerk" class="w-6 sm:w-8 h-6 sm:h-8 mr-2" />
+          <span class="text-white text-xs sm:text-sm">KOMO Keurmerk</span>
+        </div>
+        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2">
+          <img src="/images/accoya-logo.svg" alt="Accoya Partner" class="w-6 sm:w-8 h-6 sm:h-8 mr-2" />
+          <span class="text-white text-xs sm:text-sm">Accoya Partner</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          type="button"
+          data-modal="quote"
+          class="group px-8 py-4 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/20 hover:-translate-y-0.5"
+        >
+          Gratis Adviesgesprek
+          <span class="block text-sm font-normal opacity-90 group-hover:opacity-100">
+            Ontvang binnen 24 uur reactie →
+          </span>
+        </button>
+        <button
+          type="button"
+          class="px-8 py-4 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+        >
+          Bekijk Onze Projecten
+          <span class="block text-sm font-normal opacity-90">
+            35+ jaar ervaring
+          </span>
+        </button>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Preview van volgende sectie -->
-<div id="next-section" class="h-24 bg-white"></div>
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.vantilburgkozijnen.nl/#local",
+      "name": "Van Tilburg Kozijnen",
+      "image": "/images/hero-bg.jpg",
+      "description": "Specialist in houten kozijnen en deuren in Waalwijk. 35+ jaar ervaring in productie en installatie van hoogwaardige kozijnen.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Industrieweg XX",
+        "addressLocality": "Waalwijk",
+        "postalCode": "5145 XX",
+        "addressRegion": "Noord-Brabant",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.6882,
+        "longitude": 5.0697
+      },
+      "url": "https://www.vantilburgkozijnen.nl",
+      "telephone": "+31416123456",
+      "priceRange": "€€",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.6882,
+          "longitude": 5.0697
+        },
+        "geoRadius": 50000
+      }
+    }
+  </script>
+</section>
 
 <style>
   section {
     perspective: 10px;
     transform-style: preserve-3d;
   }
-  
+
   .parallax-bg {
     transform: translateZ(-10px) scale(2);
   }
-</style>
 
-<script>
-  document.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxBgs = document.querySelectorAll('.bg-cover');
-    
-    parallaxBgs.forEach((bg) => {
-      const yPos = -(scrolled * 0.5);
-      bg.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.1)`;
-    });
-  });
-</script>
+  .bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  }
+</style>

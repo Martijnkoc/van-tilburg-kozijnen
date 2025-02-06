@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const vacancies = [
+  {
+    title: "Werkplaats Timmerman",
+    type: "Fulltime",
+    location: "Waalwijk",
+    description: "Als werkplaats timmerman ben je verantwoordelijk voor het vervaardigen van hoogwaardige kozijnen, ramen en deuren.",
+    requirements: [
+      "MBO-diploma Timmerman of gelijkwaardig",
+      "Minimaal 2 jaar relevante werkervaring",
+      "Kennis van moderne machines en technieken",
+      "Oog voor detail en kwaliteit",
+      "Zelfstandig kunnen werken"
+    ],
+    benefits: [
+      "Marktconform salaris",
+      "Goede secundaire arbeidsvoorwaarden",
+      "Pensioenregeling",
+      "Opleidingsmogelijkheden",
+      "Prettige werksfeer in een modern bedrijf"
+    ]
+  },
+  {
+    title: "Montage Medewerker",
+    type: "Fulltime",
+    location: "Regio Zuid-Nederland",
+    description: "Als montage medewerker ben je verantwoordelijk voor het vakkundig plaatsen van kozijnen bij onze klanten.",
+    requirements: [
+      "MBO werk- en denkniveau",
+      "Ervaring in de kozijnmontage",
+      "In bezit van rijbewijs B",
+      "Klantvriendelijk en representatief",
+      "Flexibele werkhouding"
+    ],
+    benefits: [
+      "Goed salaris",
+      "Bedrijfsauto",
+      "Telefoon en laptop",
+      "Doorgroeimogelijkheden",
+      "Gevarieerd werk"
+    ]
+  },
+  {
+    title: "Werkvoorbereider",
+    type: "Fulltime",
+    location: "Waalwijk",
+    description: "Als werkvoorbereider zorg je voor een soepele planning en voorbereiding van onze projecten.",
+    requirements: [
+      "MBO+/HBO opleiding Bouwkunde of vergelijkbaar",
+      "Ervaring met AutoCAD en Microsoft Office",
+      "Goede communicatieve vaardigheden",
+      "Analytisch en gestructureerd",
+      "Kennis van kozijnen is een pre"
+    ],
+    benefits: [
+      "Uitstekend salaris",
+      "25 vakantiedagen",
+      "Reiskostenvergoeding",
+      "Persoonlijk ontwikkelingsbudget",
+      "Moderne werkomgeving"
+    ]
+  }
+];
+
+const workAtVanTilburg = [
+  {
+    title: "Ontwikkeling",
+    description: "We investeren in jouw groei met opleidingen en doorgroeimogelijkheden.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`
+  },
+  {
+    title: "Werksfeer",
+    description: "Een prettige, informele werksfeer in een hecht team van professionals.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`
+  },
+  {
+    title: "Stabiliteit",
+    description: "Een stabiel familiebedrijf met meer dan 30 jaar ervaring in de branche.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>`
+  },
+  {
+    title: "Innovatie",
+    description: "Werken met moderne machines en technieken in een innovatieve omgeving.",
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>`
+  }
+];
+---
+
+<Layout title="Vacatures | Van Tilburg Kozijnen">
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+      </div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          Werken bij <span class="text-gradient">Van Tilburg Kozijnen</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+          Word onderdeel van ons team en help mee aan het creëren van hoogwaardige kozijnen en tevreden klanten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work Here Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+        Waarom werken bij Van Tilburg Kozijnen?
+      </h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {workAtVanTilburg.map((item) => (
+          <div class="relative group">
+            <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-orange-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-all duration-300 blur"></div>
+            <div class="relative p-6 bg-white rounded-lg shadow-xl">
+              <div class="text-orange-500" set:html={item.icon} />
+              <h3 class="mt-4 text-lg font-semibold text-gray-900">{item.title}</h3>
+              <p class="mt-2 text-gray-600">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vacancies Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+        Actuele vacatures
+      </h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {vacancies.map((vacancy) => (
+          <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">{vacancy.title}</h3>
+                  <div class="mt-1 flex items-center gap-4">
+                    <span class="inline-flex items-center text-sm text-gray-600">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                      {vacancy.type}
+                    </span>
+                    <span class="inline-flex items-center text-sm text-gray-600">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                      {vacancy.location}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">{vacancy.description}</p>
+              
+              <div class="mb-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-2">Wij vragen</h4>
+                <ul class="space-y-2">
+                  {vacancy.requirements.map((req) => (
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-orange-500 mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-gray-600">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="text-sm font-semibold text-gray-900 mb-2">Wij bieden</h4>
+                <ul class="space-y-2">
+                  {vacancy.benefits.map((benefit) => (
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-orange-500 mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-gray-600">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <button
+                onclick="window.location.href='mailto:vacatures@vantilburgkozijnen.nl?subject=Sollicitatie: {vacancy.title}'"
+                class="w-full btn btn-primary"
+              >
+                Solliciteer direct
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Application Section -->
+  <section class="relative py-16 bg-primary-900">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-white">
+          Geen passende vacature?
+        </h2>
+        <p class="mt-4 text-lg text-gray-300">
+          We zijn altijd op zoek naar talent! Stuur een open sollicitatie en vertel ons waarom jij bij ons past.
+        </p>
+        <div class="mt-8">
+          <a
+            href="mailto:vacatures@vantilburgkozijnen.nl?subject=Open Sollicitatie"
+            class="btn btn-primary"
+          >
+            Open sollicitatie versturen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -28,7 +28,7 @@ const {
   </div>
 
   <!-- Before Image (Clip) -->
-  <div class="before-image absolute inset-0" style="clip-path: inset(0 50% 0 0);">
+  <div class="before-image absolute inset-0" style="width: 0;">
     <img
       src={beforeImage}
       alt="Voor"
@@ -40,7 +40,7 @@ const {
   </div>
 
   <!-- Slider Handle -->
-  <div class="slider-handle absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize select-none touch-none" style="left: 50%;">
+  <div class="slider-handle absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize select-none touch-none" style="left: 0;">
     <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
       <svg class="w-6 h-6 text-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h8m-8 5h8" />
@@ -50,99 +50,60 @@ const {
 </div>
 
 <script>
-  class BeforeAfterSlider {
-    private container: HTMLElement;
-    private handle: HTMLElement;
-    private beforeImage: HTMLElement;
-    private isDragging: boolean = false;
-    private startX: number = 0;
-    private handlePosition: number = 50;
+  function initSlider() {
+    const slider = document.querySelector('.slider-handle');
+    const beforeImage = document.querySelector('.before-image');
+    if (!slider || !beforeImage) return;
 
-    constructor(container: HTMLElement) {
-      this.container = container;
-      this.handle = container.querySelector('.slider-handle') as HTMLElement;
-      this.beforeImage = container.querySelector('.before-image') as HTMLElement;
+    let isDragging = false;
 
-      this.initializeEvents();
+    function updateSliderPosition(clientX: number) {
+      const bounds = slider.parentElement?.getBoundingClientRect();
+      if (!bounds) return;
+
+      const position = Math.min(Math.max(0, clientX - bounds.left), bounds.width);
+      const percentage = (position / bounds.width) * 100;
+
+      slider.style.left = `${percentage}%`;
+      beforeImage.style.width = `${percentage}%`;
     }
 
-    private initializeEvents(): void {
-      // Mouse events
-      this.handle.addEventListener('mousedown', this.startDragging.bind(this));
-      document.addEventListener('mousemove', this.drag.bind(this));
-      document.addEventListener('mouseup', this.stopDragging.bind(this));
+    slider.addEventListener('mousedown', () => {
+      isDragging = true;
+    });
 
-      // Touch events
-      this.handle.addEventListener('touchstart', this.startDragging.bind(this));
-      document.addEventListener('touchmove', this.drag.bind(this));
-      document.addEventListener('touchend', this.stopDragging.bind(this));
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      updateSliderPosition(e.clientX);
+    });
 
-      // Click/tap on container
-      this.container.addEventListener('click', this.handleClick.bind(this));
-    }
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
 
-    private startDragging(e: MouseEvent | TouchEvent): void {
-      this.isDragging = true;
-      this.startX = this.getEventX(e) - this.handle.offsetLeft;
-      this.container.classList.add('dragging');
-    }
-
-    private drag(e: MouseEvent | TouchEvent): void {
-      if (!this.isDragging) return;
-
+    // Touch events
+    slider.addEventListener('touchstart', (e) => {
+      isDragging = true;
       e.preventDefault();
-      const x = this.getEventX(e);
-      const containerRect = this.container.getBoundingClientRect();
-      const containerX = containerRect.left;
-      const containerWidth = containerRect.width;
+    });
 
-      let position = ((x - containerX) / containerWidth) * 100;
-      position = Math.max(0, Math.min(100, position));
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      updateSliderPosition(e.touches[0].clientX);
+    });
 
-      this.updatePosition(position);
-    }
-
-    private stopDragging(): void {
-      this.isDragging = false;
-      this.container.classList.remove('dragging');
-    }
-
-    private handleClick(e: MouseEvent): void {
-      const containerRect = this.container.getBoundingClientRect();
-      const containerX = containerRect.left;
-      const containerWidth = containerRect.width;
-      const x = e.clientX;
-
-      const position = ((x - containerX) / containerWidth) * 100;
-      this.updatePosition(position);
-    }
-
-    private updatePosition(position: number): void {
-      this.handlePosition = position;
-      this.handle.style.left = `${position}%`;
-      this.beforeImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
-    }
-
-    private getEventX(e: MouseEvent | TouchEvent): number {
-      return e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
-    }
+    document.addEventListener('touchend', () => {
+      isDragging = false;
+    });
   }
 
-  // Initialize all sliders on the page
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll<HTMLElement>('.before-after-slider').forEach(slider => {
-      new BeforeAfterSlider(slider);
-    });
-  });
+  // Initialize all sliders when the DOM is ready
+  document.addEventListener('DOMContentLoaded', initSlider);
 </script>
 
 <style>
   .before-after-slider {
     touch-action: none;
-  }
-
-  .before-after-slider.dragging {
-    cursor: grabbing;
   }
 
   .before-after-slider img {
@@ -153,8 +114,7 @@ const {
     transition: transform 0.1s ease;
   }
 
-  .slider-handle:hover,
-  .dragging .slider-handle {
+  .slider-handle:hover {
     transform: scale(1.1);
   }
 </style>
