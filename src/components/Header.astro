@@ -3,13 +3,19 @@ interface Props {
   currentPath?: string;
 }
 
-const { currentPath = Astro.url.pathname } = Astro.props;
+const currentPath = Astro.url.pathname;
 
-const menuItems = [
-  { href: "/over-ons", text: "Over ons" },
-  { href: "/projecten", text: "Projecten" },
-  { href: "/voor-professionals", text: "Voor professionals" },
-  { href: "/contact", text: "Contact" },
+interface MenuItem {
+  title: string;
+  href: string;
+  children?: MenuItem[];
+}
+
+const menuItems: MenuItem[] = [
+  { title: "Over ons", href: "/over-ons" },
+  { title: "Projecten", href: "/projecten" },
+  { title: "Voor professionals", href: "/voor-professionals" },
+  { title: "Contact", href: "/contact" },
 ];
 ---
 
@@ -42,7 +48,7 @@ const menuItems = [
             class="text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent rounded-md px-2 py-1"
             aria-current={currentPath === item.href ? 'page' : undefined}
           >
-            {item.text}
+            {item.title}
           </a>
         ))}
         <a 
@@ -106,7 +112,7 @@ const menuItems = [
                     class="text-white text-base font-medium hover:text-orange-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
                     aria-current={currentPath === item.href ? 'page' : undefined}
                   >
-                    {item.text}
+                    {item.title}
                   </a>
                 ))}
                 <a 

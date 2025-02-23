@@ -1,96 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const documents = [
   {
     title: "Accoya Specificaties",
-    description: "Technische specificaties en eigenschappen van Accoya hout",
-    icon: "file-text",
-    url: "/docs/accoya-specificaties.pdf",
-    categories: ["Materialen", "Specificaties"]
+    description: "Technische details en eigenschappen van Accoya hout",
+    downloadUrl: "/docs/accoya-specificaties.pdf",
+    type: "PDF"
   },
   {
     title: "Hardhout Details",
-    description: "Gedetailleerde informatie over hardhout soorten en toepassingen",
-    icon: "file-text",
-    url: "/docs/hardhout-details.pdf",
-    categories: ["Materialen", "Specificaties"]
+    description: "Specificaties en kenmerken van onze hardhout producten",
+    downloadUrl: "/docs/hardhout-details.pdf",
+    type: "PDF"
   },
   {
     title: "Montage Handleiding",
-    description: "Stap-voor-stap handleiding voor het monteren van kozijnen",
-    icon: "book-open",
-    url: "/docs/montage-handleiding.pdf",
-    categories: ["Handleidingen", "Installatie"]
+    description: "Stap-voor-stap instructies voor het monteren van kozijnen",
+    downloadUrl: "/docs/montage-handleiding.pdf",
+    type: "PDF"
   }
 ];
 ---
 
-<Layout title="Technische Documentatie | Van Tilburg Kozijnen">
-  <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800">
-      <div class="absolute inset-0">
-        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
-      </div>
-    </div>
+<Layout title="Documentatie | Van Tilburg Kozijnen">
+  <div class="pt-20">
+    <Breadcrumbs items={[{ title: "Documentatie", url: "/documentatie" }]} />
     
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-          Technische <span class="text-gradient">Documentatie</span>
-        </h1>
-        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
-          Download technische specificaties, handleidingen en certificeringen
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Documents Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-8">Technische Documentatie</h1>
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {documents.map((doc) => (
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="p-6">
-              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                <Icon name={doc.icon} class="w-6 h-6 text-orange-600" />
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                {doc.title}
-              </h3>
-              <p class="text-gray-600 mb-4">
-                {doc.description}
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {doc.categories.map((category) => (
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                    {category}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={doc.url}
-                class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-300 w-full"
-                download
-              >
-                <Icon name="download" class="w-4 h-4 mr-2" />
-                Download
-              </a>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex items-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+              </svg>
+              <h2 class="text-xl font-semibold text-gray-900 ml-3">{doc.title}</h2>
             </div>
+            
+            <p class="text-gray-600 mb-6">{doc.description}</p>
+            
+            <a
+              href={doc.downloadUrl}
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+              Download {doc.type}
+            </a>
           </div>
         ))}
       </div>
     </div>
-  </section>
+  </div>
 </Layout>
-
-<style>
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600;
-  }
-</style>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import GoogleMap from '../components/GoogleMap.astro';
 
 const contactInfo = {
@@ -21,7 +20,6 @@ const contactInfo = {
   }
 };
 
-const fullAddress = `${contactInfo.address.street}, ${contactInfo.address.city}`;
 ---
 
 <Layout title="Contact | Van Tilburg Kozijnen">
