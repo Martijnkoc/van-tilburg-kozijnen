@@ -7,33 +7,124 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+// Schema.org breadcrumb data
+const breadcrumbList = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "/"
+    },
+    ...items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": item.title,
+      "item": item.url
+    }))
+  ]
+};
 ---
 
-<nav aria-label="Breadcrumb" class="text-sm">
-  <ol class="flex items-center space-x-2">
-    <li>
-      <a href="/" class="text-orange-500 hover:text-orange-700 transition-colors">
-        Home
+<nav 
+  aria-label="Breadcrumb" 
+  class="text-sm py-4"
+>
+  <ol 
+    class="flex items-center flex-wrap gap-2"
+    itemscope 
+    itemtype="https://schema.org/BreadcrumbList"
+  >
+    <li 
+      class="flex items-center"
+      itemprop="itemListElement" 
+      itemscope 
+      itemtype="https://schema.org/ListItem"
+    >
+      <a 
+        href="/" 
+        class="text-orange-500 hover:text-orange-700 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 rounded-md px-2 py-1"
+        itemprop="item"
+        aria-label="Ga naar homepage"
+      >
+        <span itemprop="name">Home</span>
       </a>
+      <meta itemprop="position" content="1" />
     </li>
     
     {items.map((item, index) => (
-      <li class="flex items-center space-x-2">
-        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      <li 
+        class="flex items-center gap-2"
+        itemprop="itemListElement" 
+        itemscope 
+        itemtype="https://schema.org/ListItem"
+      >
+        <svg 
+          class="w-4 h-4 text-gray-400 flex-shrink-0" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M9 5l7 7-7 7" 
+          />
         </svg>
         <a 
           href={item.url}
-          class={`${
-            index === items.length - 1 
-              ? 'text-gray-600 cursor-default pointer-events-none' 
-              : 'text-orange-500 hover:text-orange-700 transition-colors'
-          }`}
+          class={`
+            transition-colors
+            ${index === items.length - 1 
+              ? 'text-gray-600 cursor-default pointer-events-none aria-current="page"' 
+              : 'text-orange-500 hover:text-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 rounded-md px-2 py-1'
+            }
+          `}
+          itemprop="item"
           aria-current={index === items.length - 1 ? 'page' : undefined}
         >
-          {item.title}
+          <span itemprop="name">{item.title}</span>
         </a>
+        <meta itemprop="position" content={`${index + 2}`} />
       </li>
     ))}
   </ol>
 </nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbList)} />
+
+<style>
+  /* Animatie voor hover effect */
+  a {
+    position: relative;
+    text-decoration: none;
+  }
+
+  a:not([aria-current="page"])::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  a:not([aria-current="page"]):hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Verbeterde leesbaarheid voor huidige pagina */
+  [aria-current="page"] {
+    font-weight: 500;
+  }
+</style>

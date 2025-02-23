@@ -16,19 +16,21 @@ const menuItems = [
 <header 
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-sm" 
   id="header"
+  role="banner"
 >
   <!-- Dark overlay for better text visibility -->
   <div class="absolute inset-0 bg-black/30 transition-opacity duration-300" id="header-overlay"></div>
   
-  <nav class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+  <nav class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6" role="navigation" aria-label="Hoofdnavigatie">
     <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex-shrink-0">
+      <!-- Logo with fallback -->
+      <a href="/" class="flex-shrink-0" aria-label="Ga naar homepage">
         <img 
           src="/images/logo.svg" 
           alt="Van Tilburg Kozijnen" 
           class="h-10 w-auto"
           id="main-logo"
+          onerror="this.onerror=null; this.src='/images/logo-fallback.png'; this.classList.add('logo-fallback')"
         />
       </a>
 
@@ -37,14 +39,15 @@ const menuItems = [
         {menuItems.map((item) => (
           <a
             href={item.href}
-            class="text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium"
+            class="text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent rounded-md px-2 py-1"
+            aria-current={currentPath === item.href ? 'page' : undefined}
           >
             {item.text}
           </a>
         ))}
         <a 
           href="/contact" 
-          class="ml-8 inline-flex items-center justify-center px-6 py-2 border border-transparent rounded-full text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 transition-colors duration-300"
+          class="ml-8 inline-flex items-center justify-center px-6 py-2 border border-transparent rounded-full text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
         >
           Contact opnemen
         </a>
@@ -54,9 +57,10 @@ const menuItems = [
       <button 
         type="button"
         id="mobile-menu-button"
-        class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-400 transition-colors duration-300"
+        class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
         aria-controls="mobile-menu"
         aria-expanded="false"
+        aria-label="Open menu"
       >
         <span class="sr-only">Open menu</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,20 +70,27 @@ const menuItems = [
     </div>
 
     <!-- Mobile menu -->
-    <div class="lg:hidden hidden" id="mobile-menu">
-      <div class="fixed inset-0 bg-gray-900/95 z-50">
+    <div 
+      class="lg:hidden" 
+      id="mobile-menu" 
+      aria-label="Mobiel menu"
+      hidden
+    >
+      <div class="fixed inset-0 bg-gray-900/95 z-50 transition-opacity duration-300" id="mobile-menu-backdrop">
         <div class="fixed inset-y-0 right-0 max-w-full flex">
-          <div class="w-full sm:max-w-sm bg-gray-900">
+          <div class="w-full sm:max-w-sm bg-gray-900 transform transition-transform duration-300" id="mobile-menu-content">
             <div class="h-20 flex items-center justify-between px-6">
               <img 
                 src="/images/logo.svg" 
                 alt="Van Tilburg Kozijnen" 
                 class="h-8 w-auto"
+                onerror="this.onerror=null; this.src='/images/logo-fallback.png'; this.classList.add('logo-fallback')"
               />
               <button 
                 type="button"
                 id="close-menu-button"
-                class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-400 transition-colors duration-300"
+                class="rounded-md text-white hover:text-orange-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                aria-label="Sluit menu"
               >
                 <span class="sr-only">Sluit menu</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,14 +103,15 @@ const menuItems = [
                 {menuItems.map((item) => (
                   <a
                     href={item.href}
-                    class="text-white text-base font-medium hover:text-orange-400 transition-colors duration-300"
+                    class="text-white text-base font-medium hover:text-orange-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                    aria-current={currentPath === item.href ? 'page' : undefined}
                   >
                     {item.text}
                   </a>
                 ))}
                 <a 
                   href="/contact" 
-                  class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full text-base font-medium text-white bg-orange-500 hover:bg-orange-600 transition-colors duration-300"
+                  class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full text-base font-medium text-white bg-orange-500 hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
                 >
                   Contact opnemen
                 </a>
@@ -112,99 +124,6 @@ const menuItems = [
   </nav>
 </header>
 
-<script>
-  // Safely get elements with type checking
-  const header = document.getElementById('header');
-  const headerOverlay = document.getElementById('header-overlay');
-  const navLinks = document.querySelectorAll('#nav-links a:not([class*="bg-orange"])');
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeMenuButton = document.getElementById('close-menu-button');
-
-  // Add scroll event listener
-  window.addEventListener('scroll', () => {
-    if (!header || !headerOverlay) return;
-    
-    if (window.scrollY > 50) {
-      header.classList.add('bg-white', 'shadow-lg');
-      header.classList.remove('bg-transparent');
-      headerOverlay.classList.add('opacity-0');
-      navLinks.forEach(link => {
-        if (link instanceof HTMLElement) {
-          link.classList.remove('text-white');
-          link.classList.add('text-gray-900');
-        }
-      });
-    } else {
-      header.classList.remove('bg-white', 'shadow-lg');
-      header.classList.add('bg-transparent');
-      headerOverlay.classList.remove('opacity-0');
-      navLinks.forEach(link => {
-        if (link instanceof HTMLElement) {
-          link.classList.add('text-white');
-          link.classList.remove('text-gray-900');
-        }
-      });
-    }
-  });
-
-  // Mobile menu functionality
-  function toggleMobileMenu() {
-    if (!mobileMenu || !mobileMenuButton) return;
-    
-    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-    mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu.classList.toggle('hidden');
-    document.body.style.overflow = isExpanded ? '' : 'hidden';
-  }
-
-  // Event listeners for mobile menu
-  mobileMenuButton?.addEventListener('click', toggleMobileMenu);
-  closeMenuButton?.addEventListener('click', toggleMobileMenu);
-
-  // Close menu on click outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu || !mobileMenuButton) return;
-    
-    const target = e.target as HTMLElement;
-    if (!mobileMenu.classList.contains('hidden') && 
-        !mobileMenuButton.contains(target) && 
-        !mobileMenu.contains(target)) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Close menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (!mobileMenu) return;
-    
-    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Close menu on resize
-  window.addEventListener('resize', () => {
-    if (!mobileMenu) return;
-    
-    if (window.innerWidth >= 1024 && !mobileMenu.classList.contains('hidden')) {
-      toggleMobileMenu();
-    }
-  });
-
-  // Initial state check
-  if (window.scrollY > 50 && header && headerOverlay) {
-    header.classList.add('bg-white', 'shadow-lg');
-    headerOverlay.classList.add('opacity-0');
-    navLinks.forEach(link => {
-      if (link instanceof HTMLElement) {
-        link.classList.remove('text-white');
-        link.classList.add('text-gray-900');
-      }
-    });
-  }
-</script>
-
 <style>
   /* Smooth transitions */
   .transition-all {
@@ -212,4 +131,92 @@ const menuItems = [
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
   }
+
+  /* Animaties voor mobiel menu */
+  #mobile-menu[hidden] {
+    display: none;
+  }
+
+  #mobile-menu-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  #mobile-menu:not([hidden]) #mobile-menu-backdrop {
+    opacity: 1;
+  }
+
+  #mobile-menu-content {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #mobile-menu:not([hidden]) #mobile-menu-content {
+    transform: translateX(0);
+  }
+
+  /* Fallback styling */
+  .logo-fallback {
+    filter: brightness(0) invert(1); /* Maakt PNG logo wit */
+  }
 </style>
+
+<script>
+  // Safely get elements with type checking
+  const header = document.getElementById('header');
+  const headerOverlay = document.getElementById('header-overlay');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu-button');
+  const navLinks = document.querySelectorAll('#nav-links a:not([class*="bg-orange"])');
+
+  if (!header || !headerOverlay || !mobileMenu || !mobileMenuButton || !closeMenuButton) {
+    console.error('Een of meer vereiste elementen niet gevonden');
+  } else {
+    // Header scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 0) {
+        header.classList.remove('bg-primary-900/95');
+        headerOverlay.classList.remove('opacity-0');
+      } else {
+        header.classList.add('bg-primary-900/95');
+        headerOverlay.classList.add('opacity-0');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Mobile menu functionality
+    const toggleMenu = (show: boolean) => {
+      mobileMenu.hidden = !show;
+      mobileMenuButton.setAttribute('aria-expanded', show.toString());
+      if (show) {
+        document.body.style.overflow = 'hidden';
+        // Focus op sluit-knop voor toegankelijkheid
+        setTimeout(() => closeMenuButton.focus(), 100);
+      } else {
+        document.body.style.overflow = '';
+        // Focus terug naar menu-knop
+        setTimeout(() => mobileMenuButton.focus(), 100);
+      }
+    };
+
+    mobileMenuButton.addEventListener('click', () => toggleMenu(true));
+    closeMenuButton.addEventListener('click', () => toggleMenu(false));
+
+    // Sluit menu met Escape toets
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.hidden) {
+        toggleMenu(false);
+      }
+    });
+
+    // Sluit menu bij klikken buiten menu
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        toggleMenu(false);
+      }
+    });
+  }
+</script>

@@ -6,19 +6,16 @@ const teamMembers = [
   {
     name: "Patrick van Tilburg",
     role: "Algemeen Directeur",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Patrick",
     description: "Met jarenlange ervaring leidt Patrick het bedrijf met passie en vakmanschap."
   },
   {
     name: "Norain van Tilburg",
     role: "Junior Directielid",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Norain",
     description: "Als nieuwe generatie brengt Norain frisse ideeën en innovatie in het bedrijf."
   },
   {
     name: "Nordin van Tilburg",
     role: "Junior Directielid",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Nordin",
     description: "Nordin focust zich op de technische innovatie en toekomstvisie van het bedrijf."
   }
 ];
@@ -26,108 +23,37 @@ const teamMembers = [
 const extendedTeam = [
   {
     name: "John van den Broek",
-    role: "Werkvoorbereiding",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=John"
+    role: "Werkvoorbereiding"
   },
   {
     name: "Ivo Middeldorp",
-    role: "Calculator",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Ivo"
+    role: "Calculator"
   },
   {
     name: "Peter de Nijs",
-    role: "Machinale",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Peter"
+    role: "Machinale"
   },
   {
     name: "Bjorna Geers",
-    role: "Voormontage",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Bjorna"
+    role: "Voormontage"
   },
   {
     name: "Patrick Goossens",
-    role: "Spuiterij",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Patrick_G"
+    role: "Spuiterij"
   },
   {
     name: "Niels Huijgen",
-    role: "Afmontage",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Niels"
+    role: "Afmontage"
   },
   {
     name: "Jeroen Wolst",
-    role: "Afmontage",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Jeroen"
+    role: "Afmontage"
   },
   {
     name: "Robin Gottheil",
-    role: "Afmontage",
-    image: "https://placehold.co/400x500/e2e8f0/1e293b?text=Robin"
+    role: "Afmontage"
   }
 ];
-
-const milestones = [
-  {
-    year: "1972",
-    title: "Oprichting",
-    description: "Van Tilburg Kozijnen werd opgericht door Rinus en Marie van Tilburg als doe-het-zelf zaak in de Dorpsstraat van Ossendrecht."
-  },
-  {
-    year: "1990",
-    title: "Volgende stap",
-    description: "Verhuizing naar het industrieterrein van Ossendrecht om een volwaardige timmerfabriek te realiseren. De focus verschoof van materiaalverkoop naar het maken van houten deuren, kozijnen en ramen."
-  },
-  {
-    year: "1998",
-    title: "2e generatie",
-    description: "Patrick van Tilburg nam het roer over en implementeerde nieuwe technologieën. Het team werd uitgebreid en de focus op kwaliteit werd verder versterkt."
-  },
-  {
-    year: "2008",
-    title: "Vernieuwing",
-    description: "Investering in innovatie en kwaliteit met nieuwe machines en het behalen van belangrijke keurmerken."
-  },
-  {
-    year: "2024",
-    title: "3e generatie",
-    description: "Nordin en Norain van Tilburg treden toe tot de directie en blazen het familiebedrijf een frisse toekomst in."
-  },
-  {
-    year: "2025",
-    title: "Toekomstgericht",
-    description: "Realisatie van een nieuw machinepark met focus op kwaliteitsborging, duurzaamheid en toekomstbestendige productie."
-  }
-];
-
-const certifications = [
-  {
-    name: "KOMO",
-    image: "https://placehold.co/200x100/e2e8f0/1e293b?text=KOMO",
-    description: "Met KOMO-certificering garanderen wij onbetwiste kwaliteit. Wij waarborgen hiermee dat onze producten en processen voldoen aan de hoogste kwaliteit.",
-    features: [
-      "Onafhankelijk kwaliteitscontrole",
-      "Voldoet aan alle bouwnormen",
-      "Continue procesverbetering",
-      "Gegarandeerde productkwaliteit"
-    ]
-  },
-  {
-    name: "SKH",
-    image: "https://placehold.co/200x100/e2e8f0/1e293b?text=SKH",
-    description: "SKH-certificering waarborgt de kwaliteit van onze houten gevelelementen."
-  },
-  {
-    name: "FSC",
-    image: "https://placehold.co/200x100/e2e8f0/1e293b?text=FSC",
-    description: "FSC-certificering garandeert dat ons hout afkomstig is uit verantwoord beheerde bossen."
-  },
-  {
-    name: "Politiekeurmerk",
-    image: "https://placehold.co/200x100/e2e8f0/1e293b?text=PKV",
-    description: "Dit keurmerk garandeert dat onze kozijnen, ramen en deuren getest zijn op weerstand tegen inbraak. Producten met dit kenmerk bieden extra veiligheid en voldoen aan strenge eisen voor inbraakwerendheid."
-  }
-];
-
 ---
 
 <Layout title="Over Ons | Van Tilburg Kozijnen">
@@ -137,14 +63,15 @@ const certifications = [
     <!-- Hero Section -->
     <section class="relative py-20 bg-primary-900 text-white overflow-hidden">
       <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-primary-900 to-blue-900/50"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-orange-500/30 to-primary-600/0 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#fb923c_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
       </div>
       
-      <div class="relative container mx-auto px-4">
-        <div class="max-w-4xl">
-          <h1 class="text-5xl font-bold mb-6">
-            Maak kennis met het meest gezellige team van Brabant!
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            Van Tilburg <span class="text-gradient">Kozijnen</span>
           </h1>
           <p class="text-xl text-gray-200">
             Een familiebedrijf met meer dan 50 jaar ervaring in kozijnen
@@ -167,11 +94,19 @@ const certifications = [
           {teamMembers.map((member) => (
             <div class="bg-white rounded-xl shadow-lg overflow-hidden">
               <div class="aspect-[4/5] relative">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  class="w-full h-full object-cover"
-                />
+                {member.name === "Patrick van Tilburg" ? (
+                  <img
+                    src="/team/patrick.jpg"
+                    alt={`Foto van ${member.name}`}
+                    class="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src={`https://placehold.co/400x500/e2e8f0/1e293b?text=${member.name.split(' ')[0]}`}
+                    alt={`Foto van ${member.name}`}
+                    class="w-full h-full object-cover"
+                  />
+                )}
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
@@ -194,128 +129,20 @@ const certifications = [
           </p>
         </div>
 
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {extendedTeam.slice(0, 3).map((member) => (
-              <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="aspect-[4/5] relative">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div class="p-6">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-                  <p class="text-primary-600 font-medium">{member.role}</p>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {extendedTeam.map((member) => (
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div class="aspect-[4/5] relative">
+                <img
+                  src={`https://placehold.co/400x500/e2e8f0/1e293b?text=${member.name.split(' ')[0]}`}
+                  alt={`Foto van ${member.name}`}
+                  class="w-full h-full object-cover"
+                />
               </div>
-            ))}
-          </div>
-
-          <div class="mt-12 text-center" x-data="{ showMore: false }">
-            <button
-              class="btn btn-primary"
-              @click="showMore = !showMore"
-              x-text="showMore ? 'Toon minder' : 'Bekijk hele team'"
-            >
-              Bekijk hele team
-            </button>
-
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
-              x-show="showMore"
-              x-transition
-            >
-              {extendedTeam.slice(3).map((member) => (
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <div class="aspect-[4/5] relative">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      class="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-                    <p class="text-primary-600 font-medium">{member.role}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="py-24 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Onze Geschiedenis</h2>
-          <p class="text-xl text-gray-600">
-            Een familiebedrijf met een rijke historie en een heldere toekomstvisie
-          </p>
-        </div>
-
-        <div class="max-w-6xl mx-auto">
-          <div class="relative">
-            <div class="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gray-200"></div>
-
-            <div class="space-y-16">
-              {milestones.map((milestone, index) => (
-                <div class="relative">
-                  <div class={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <div class="flex-1">
-                      <div class={`p-6 bg-white rounded-xl shadow-lg ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
-                        <div class="text-primary-600 font-bold text-xl mb-2">{milestone.year}</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">{milestone.title}</h3>
-                        <p class="text-gray-600">{milestone.description}</p>
-                      </div>
-                    </div>
-                    <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-lg">
-                      {milestone.year.slice(-2)}
-                    </div>
-                    <div class="flex-1"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section class="py-24 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Garanties en Keurmerken</h2>
-          <p class="text-xl text-gray-600">
-            Wij staan voor kwaliteit en zekerheid. Al onze producten en diensten voldoen aan de hoogste kwaliteitseisen.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {certifications.map((cert) => (
-            <div class="bg-white rounded-xl shadow-lg p-8">
-              <div class="flex items-center mb-6">
-                <img src={cert.image} alt={cert.name} class="h-16 w-auto mr-6" />
-                <h3 class="text-2xl font-bold text-gray-900">{cert.name}</h3>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
+                <p class="text-primary-600 font-medium">{member.role}</p>
               </div>
-              <p class="text-gray-600 mb-6">{cert.description}</p>
-              {cert.features && (
-                <ul class="space-y-3">
-                  {cert.features.map((feature) => (
-                    <li class="flex items-start">
-                      <svg class="w-5 h-5 text-primary-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span class="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </div>
           ))}
         </div>
@@ -323,3 +150,9 @@ const certifications = [
     </section>
   </div>
 </Layout>
+
+<style>
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600;
+  }
+</style>
